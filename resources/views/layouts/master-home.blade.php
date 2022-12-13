@@ -8,8 +8,9 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <title>Findsta interesting information</title>
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{ header('Access-Control-Allow-Origin: *') }}
     {{ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE') }}

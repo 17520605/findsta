@@ -5,7 +5,13 @@
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
     <div class="head-title">
-        <span class="cat-title" style="background-color: #000000;"><i class="fa-solid fa-fire-flame-simple"></i> Hots Post <div class="follow-tc nfllowing" data-id="3" data-type="cat" onclick="return followTc(this);"><i class="fas fa-plus fa-lg"></i> <span>Follow</span></div></span>
+        <span class="cat-title" style="background-color: #000000;"><i class="fa-solid fa-fire-flame-simple"></i> {{__('hot')}}
+            @if (Auth::check())
+            <li class="king-nav-main-item king-nav-main-user">
+                <div class="follow-tc nfllowing" data-id="3" data-type="cat" onclick="return followTc(this);"><i class="fas fa-plus fa-lg"></i> <span>Follow</span></div>
+            </li>
+        @endif 
+    </span>
     </div>
     <div id="king-body-wrapper" class="king-body-in">
         <div class="king-main full-page">

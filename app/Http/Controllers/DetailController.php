@@ -23,8 +23,50 @@ class DetailController extends Controller
             $blog->poster = $bannerBlog->thumbnail;
             $blog->src = $fileBlog->url;
             $blog->source = $fileBlog->source;
-            
             $blog->tags = $array;
+            $this->countView($blog->id);
+            // get previous user id
+            $previousId = \App\Models\Blogs::where([['id', '<', $id],['is_public', '=' , 1]])->max('id');
+            $blogPrevious = \App\Models\Blogs::where([['id',$previousId]])->first();
+            $previous = $blogPrevious;
+            // get next user id
+            $nextId = \App\Models\Blogs::where([['id', '>', $id],['is_public', '=' , 1]])->min('id');
+            $blogNext = \App\Models\Blogs::where([['id',$nextId]])->first();
+            $next = $blogNext;
+
+            if($lang)           
+            {
+                $relateds = \App\Models\Blogs::where([['is_public','=',1],['id','!=',$id],['categoryId', '=' , $blog->categoryId]])->orderby('id', 'DESC')->offset(0)->limit(4)->get();
+            }
+            else
+            {
+                $lang = 'en';
+                $relateds = \App\Models\Blogs::where([['is_public','=',1],['id','!=',$id],['categoryId', '=' , $blog->categoryId]])->orderby('id', 'DESC')->offset(0)->limit(4)->get();
+            }
+            foreach ($relateds as $related) {
+                $bannerId = $related->bannerId;
+                if($bannerId)
+                {
+                    $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
+                    $related->thumbnail = $poster->thumbnail;
+                }
+                else
+                {
+                    $fileId = $related->fileId;
+                    $poster = \App\Models\Files::where('id', '=', $fileId)->first();
+                    $related->thumbnail = $poster->thumbnail;
+                }
+                $categoryId = $related->categoryId;
+                if($categoryId)
+                {
+                    $categories = \App\Models\Categories::where([['is_public',1],['id',$categoryId]])->first();
+                    $related->category = $categories->name;
+                }
+                else
+                {
+                    $related->category = 'Empty';
+                }
+            }  
            
         }
         $topvideos = \App\Models\Blogs::where([['is_public',1],['type','video']])->orderby('id', 'DESC')->offset(0)->limit(5)->get();
@@ -43,6 +85,6 @@ class DetailController extends Controller
             }
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
-        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog]);
+        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog,'previous'=>$previous,'next'=>$next ,'relateds'=>$relateds]);
     }
 }

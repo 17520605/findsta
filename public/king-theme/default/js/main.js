@@ -1,6 +1,9 @@
 $(document).ready(function () {
   kinglazyload();
-  mansoryLoad()
+  mansoryLoad();
+  window.setTimeout(function() {
+    mansoryLoad();
+  }, 1200);
   function mansoryLoad() {
     if (typeof Masonry !== "undefined") {
       var container = document.querySelector(".king-part-q-list .container");
@@ -314,7 +317,5 @@ $(document).ready(function () {
       localStorage.setItem("svolume", this.muted());
     });
   }
-  window.setTimeout(function() {
-    mansoryLoad()
-  }, 1000);
+
 });

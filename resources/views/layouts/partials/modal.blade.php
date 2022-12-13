@@ -11,10 +11,11 @@
                 @csrf
                 <input type="text" class="modal-input" name="email" placeholder="{{ __('email') }}">
                 <input type="password" class="modal-input" name="password" placeholder="{{ __('password') }}">
+                <span class="notify-login"></span>
                 <div id="king-rememberbox"><input type="checkbox" name="remember" id="king-rememberme" value="1">
                     <label for="king-rememberme" id="king-remember">{{ __('remember') }}</label>
                 </div>
-                <input type="submit" value="{{ __('log_in') }}" id="king-login" name="dologin">
+                <button type="submit" id="king-login"><span class="icon-loader"></span> {{ __('log_in') }}</button>
             </form>
         </div>
         <div class="king-modal-footer" style="padding: 10px">
@@ -80,21 +81,23 @@
         $('.loginForm').submit(function (e) { 
             e.preventDefault();
             const data = $(this).serializeArray();
+            $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-login').html(``);
             $.ajax({
                 type: "post",
                 url: "{{ route('post.login')}}",
                 data: data,
                 dataType: "json",
                 success: function (response) {
+                    $('.icon-loader').html(``);
                     if (response && response.result === 'ok') {
                         $('#loginmodal').modal('hide');
-                        alert(response.message);
                         setTimeout(function() {
                             location.href = '/';
                         }, 500);
                     } else
                     if (response.result === 'fail') {
-                        alert(response.message);
+                        $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
                     }
                 }
             });

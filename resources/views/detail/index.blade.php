@@ -4,18 +4,22 @@
         var b = document.getElementsByTagName('body')[0];
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
-    <div class="king-video-in">
-        <div class="king-video">
-            @if ($blog->type === 'image')
-                {
+    
+    @if ($blog->type === 'image')
+        @if ($blog->fileId != 0)
+            <div class="king-video-in">
+                <div class="king-video">
                     <div class="king-gallery owl-carousel">
                         <a href="{{$blog->src}}">
                             <img class="gallery-img king-lazy" data-king-img-src="{{$blog->src}}" alt="">
                         </a>
                     </div>
-                }
-            @elseif($blog->type === 'video')
-            {
+                </div>
+            </div>
+        @endif
+    @elseif($blog->type === 'video')
+        <div class="king-video-in">
+            <div class="king-video">
                 @if ($blog->source === 'youtube')
                     <iframe width="800" height="450" src="{{$blog->src}}" frameborder="0" allowfullscreen></iframe>
                 @else
@@ -23,10 +27,9 @@
                         <source src="{{$blog->src}}" type="video/mp4">
                     </video>
                 @endif
-            }
-            @endif
+            </div>
         </div>
-    </div>
+    @endif
     <div id="king-body-wrapper" class="king-body-in">
         <div class="king-main post-page">
             <div class="king-main-in">
@@ -67,12 +70,10 @@
                             <input type="hidden" name="code"
                                 value="1-1669304788-953d96b746213be4588524a06e15234203f99db1">
                         </FORM>
-                        <div class="share-link" data-toggle="modal" data-target="#sharemodal" role="button"><i
-                                data-toggle="tooltip" data-placement="top" class="fas fa-share" title="Share"></i></div>
-                        <a href="#" class="share-link" data-toggle="tooltip" data-placement="right" title="Bookmark"
-                            data-bookmarkid="3" onclick="return bookmark(this);">
-                            <i class="far fa-bookmark"></i>
-                        </a>
+                        <div class="share-link" data-toggle="modal" data-target="#sharemodal" role="button"><i data-toggle="tooltip" data-placement="top" class="fas fa-share" title="Share"></i></div>
+                        @if (Auth::check())
+                            <a href="#" class="share-link" data-toggle="tooltip" data-placement="right" title="Bookmark"data-bookmarkid="3" onclick="return bookmark(this);"><i class="far fa-bookmark"></i></a>
+                        @endif
                     </div>
                     <div class="king-q-view hentry question" id="q3">
                         <div class="rightview">
@@ -92,17 +93,21 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <span class="king-view-count">
-                                <span class="king-view-count-data">104</span><span class="king-view-count-pad">
-                                    views</span>
-                            </span>
-                            <span class="meta-when">
-                                <span class="meta-when-data"><span class="published updated"><span class="value-title"
-                                            title="2021-03-17T14:47:39+0000">Mar 17, 2021</span></span></span>
-                            </span>
+                            <div style="margin: 10px 0px">   
+                                <span class="king-view-count">
+                                    <span class="king-view-count-data">{{number_format_short($blog->viewer)}}</span><span class="king-view-count-pad">
+                                        {{__('views')}}</span>
+                                </span>
+                                <span class="meta-when">
+                                    <span class="meta-when-data"><span class="published updated"><span class="value-title" title="2021-03-17T14:47:39+0000">{{$blog->updated_at->format('d M Y')}}</span></span></span>
+                                </span>
+                                <span class="king-view-count" style="float: right">
+                                    <span class="king-view-count-data">{{__('author')}} : {{$blog->author}}</span></span>
+                                </span>
+                            </div>
                             <div class="prev-next">
-                                <A href="https://demos.kingthemes.net/4/big-hero-6-official-teaser-trailer" class="king-next-q"><i class="fas fa-angle-left"></i> <span>vimeo video I am a...</span></A>
-                                <A href="https://demos.kingthemes.net/2/vimeo-video-i-am-a" class="king-prev-q"> <span>vimeo video I am a...</span> <i class="fas fa-angle-right"></i></A>
+                                <A href="{{ env('APP_URL') }}/{{$next->id}}/{{$next->slug}}" class="king-next-q"><i class="fas fa-angle-left"></i> <span>{{$next->title}}</span></A>
+                                <A href="{{ env('APP_URL') }}/{{$previous->id}}/{{$previous->slug}}" class="king-prev-q"> <span>{{$previous->title}}</span> <i class="fas fa-angle-right"></i></A>
                             </div>
                         </div>
                     </div> <!-- END king-q-view -->
@@ -113,82 +118,40 @@
                                 <h3>Share</h3>
                                 <a class="post-share share-fb" data-toggle="tooltip" data-placement="top"
                                     title="Facebook" href="#" target="_blank" rel="nofollow"
-                                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://demos.kingthemes.net/3/single-image-iphone-wallpaper','facebook-share-dialog','width=626,height=436');return false;"><i
+                                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','facebook-share-dialog','width=626,height=436');return false;"><i
                                         class="fab fa-facebook-square"></i></i></a>
                                 <a class="social-icon share-tw" href="#" data-toggle="tooltip"
                                     data-placement="top" title="Twitter" rel="nofollow" target="_blank"
-                                    onclick="window.open('http://twitter.com/share?text=single image iphone wallpaper&amp;url=https://demos.kingthemes.net/3/single-image-iphone-wallpaper','twitter-share-dialog','width=626,height=436');return false;"><i
+                                    onclick="window.open('http://twitter.com/share?text={{ $blog->title }};url={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','twitter-share-dialog','width=626,height=436');return false;"><i
                                         class="fab fa-twitter"></i></a>
                                 <a class="social-icon share-pin" href="#" data-toggle="tooltip"
                                     data-placement="top" title="Pin this" rel="nofollow" target="_blank"
-                                    onclick="window.open('//pinterest.com/pin/create/button/?url=https://demos.kingthemes.net/3/single-image-iphone-wallpaper&amp;description=single image iphone wallpaper','pin-share-dialog','width=626,height=436');return false;"><i
+                                    onclick="window.open('//pinterest.com/pin/create/button/?url={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','pin-share-dialog','width=626,height=436');return false;"><i
                                         class="fab fa-pinterest-square"></i></a>
                                 <a class="social-icon share-em"
-                                    href="mailto:?subject=single image iphone wallpaper&amp;body=https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
+                                    href="mailto:?subject={{ $blog->title }}&amp;body={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}"
                                     data-toggle="tooltip" data-placement="top" title="Email this"><i
                                         class="fas fa-envelope"></i></a>
                                 <a class="social-icon share-tb" href="#" data-toggle="tooltip"
                                     data-placement="top" title="Tumblr" rel="nofollow" target="_blank"
-                                    onclick="window.open( 'http://www.tumblr.com/share/link?url=https://demos.kingthemes.net/3/single-image-iphone-wallpaper&amp;name=single image iphone wallpaper','tumblr-share-dialog','width=626,height=436' );return false;"><i
+                                    onclick="window.open( 'http://www.tumblr.com/share/link?url={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','tumblr-share-dialog','width=626,height=436' );return false;"><i
                                         class="fab fa-tumblr-square"></i></a>
                                 <a class="social-icon share-linkedin" href="#" data-toggle="tooltip"
                                     data-placement="top" title="LinkedIn" rel="nofollow" target="_blank"
-                                    onclick="window.open( 'http://www.linkedin.com/shareArticle?mini=true&amp;url=https://demos.kingthemes.net/3/single-image-iphone-wallpaper&amp;title=single image iphone wallpaper&amp;source=single image iphone wallpaper','linkedin-share-dialog','width=626,height=436');return false;"><i
+                                    onclick="window.open( 'http://www.linkedin.com/shareArticle?mini=true&amp;url={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','linkedin-share-dialog','width=626,height=436');return false;"><i
                                         class="fab fa-linkedin"></i></a>
                                 <a class="social-icon share-vk" href="#" data-toggle="tooltip"
                                     data-placement="top" title="Vk" rel="nofollow" target="_blank"
-                                    onclick="window.open('http://vkontakte.ru/share.php?url=https://demos.kingthemes.net/3/single-image-iphone-wallpaper','vk-share-dialog','width=626,height=436');return false;"><i
+                                    onclick="window.open(`http://vkontakte.ru/share.php?url={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}`,'vk-share-dialog','width=626,height=436');return false;"><i
                                         class="fab fa-vk"></i></a>
                                 <a class="social-icon share-wapp"
-                                    href="whatsapp://send?text=https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
+                                    href="whatsapp://send?text{{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}"
                                     data-action="share/whatsapp/share" data-toggle="tooltip" data-placement="top"
                                     title="whatsapp"><i class="fab fa-whatsapp-square"></i></a>
-                                <h3>or Copy Link</h3>
+                                <h3>{{__('link_copy')}}</h3>
                                 <input type="text" id="modal-url"
-                                    value="https://demos.kingthemes.net/3/single-image-iphone-wallpaper">
-                                <span class="copied" style="display: none;">Link Copied</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pboxes">
-                        <div class="user-boxx postuser">
-                            <div class="user-box">
-                                <div class="user-box-pt">
-                                    <div class="user-box-cover">
-                                        <div data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=15118906847734386087&amp;qa_size=680"
-                                            class="king-box-bg"></div>
-                                        <div class="user-box-up"><a href="https://demos.kingthemes.net/user/king"
-                                                class="user-box-alink averified"><img
-                                                    data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=14473541867296403178&amp;qa_size=170"
-                                                    class="king-avatar king-lazy" width="90" height="90"></a>
-                                        </div>
-                                    </div>
-                                    <div class="user-box-in">
-                                        <div class="user-box-name"><a href="https://demos.kingthemes.net/user/king">
-                                                <h3>king</h3>
-                                            </a>
-                                            <div class="verify-button verified"><i class="fa fa-check-circle"></i></div>
-                                        </div>
-                                        <div class="user-box-tp"><span class="user-box-point"><strong>630</strong>
-                                                Points</span></div>
-                                        <div class="king-stats">
-                                            <span><strong>24</strong>Posts</span><span><strong>1</strong>Following</span><span><strong>0</strong>Followers</span>
-                                        </div>
-                                        <div class="user-box-buttons">
-                                            <div id="follow_1">
-                                                <form method="post" action="">
-                                                    <button name="favorite_U_1_1"
-                                                        onclick="return qa_favorite_click2(this);" type="submit"
-                                                        class="king-follow "><i class="fas fa-plus"></i>Follow</button>
-                                                    <input type="hidden" name="code"
-                                                        value="1-1669304788-4c55cb6eb047621fb1d4935bef149603c1f29e67">
-                                                </form>
-                                            </div><a class="king-message" href="https://demos.kingthemes.net/message/king"
-                                                data-toggle="tooltip" data-placement="top" title="Send message"><i
-                                                    class="fas fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    value="{{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}">
+                                <span class="copied" style="display: none;">{{__('copied')}}</span>
                             </div>
                         </div>
                     </div>
@@ -280,46 +243,101 @@
                                 <div class="king-part-a-form">
                                     <div class="king-a-form" id="anew">
                                         <h2>Your Comment</h2>
-                                        <form method="post"
-                                            action="https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
-                                            name="a_form">
-                                            <table class="king-form-tall-table">
-                                                <tr>
-                                                    <td class="king-form-tall-data">
-                                                        <TEXTAREA name="a_content" id="a_content" ROWS="5" COLS="40" class="king-form-tall-text"></TEXTAREA>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="king-form-tall-label">
-                                                        <label>
-                                                            <input name="a_notify" type="checkbox" value="1"
-                                                                class="king-form-tall-checkbox">
-                                                            Email me (nguyenhuuminhkhai@gmail.com) if my Comment is
-                                                            voted or replied on
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="1" class="king-form-tall-buttons">
-                                                        <input onclick=" return qa_submit_answer(3, this);"
-                                                            value="Add Comment" title="" type="submit"
-                                                            class="king-form-tall-button king-form-tall-button-answer">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <input type="hidden" name="a_editor" value="">
-                                            <input type="hidden" name="a_doadd" value="1">
-                                            <input type="hidden" name="code"
-                                                value="1-1669304788-228e82fb16acd66b699050fe5cf5a7624bf2cff1">
-                                        </form>
+                                        @if (Auth::check())
+                                            <form method="post"
+                                                action="https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
+                                                name="a_form">
+                                                <table class="king-form-tall-table">
+                                                    <tr>
+                                                        <td class="king-form-tall-data">
+                                                            <TEXTAREA name="a_content" id="a_content" ROWS="5" COLS="40" class="king-form-tall-text"></TEXTAREA>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="king-form-tall-label">
+                                                            <label>
+                                                                <input name="a_notify" type="checkbox" value="1"
+                                                                    class="king-form-tall-checkbox">
+                                                                Email me (nguyenhuuminhkhai@gmail.com) if my Comment is
+                                                                voted or replied on
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" class="king-form-tall-buttons">
+                                                            <input onclick=" return qa_submit_answer(3, this);"
+                                                                value="Add Comment" title="" type="submit"
+                                                                class="king-form-tall-button king-form-tall-button-answer">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="hidden" name="a_editor" value="">
+                                                <input type="hidden" name="a_doadd" value="1">
+                                                <input type="hidden" name="code"
+                                                    value="1-1669304788-228e82fb16acd66b699050fe5cf5a7624bf2cff1">
+                                            </form>
+                                        @else
+                                            <form method="post" action="../30/wild-flower-illustration" name="a_form">
+                                                <table class="king-form-tall-table">
+                                                    <tbody><tr>
+                                                        <td class="king-form-tall-data">
+                                                            <textarea name="a_content" id="a_content" rows="5" cols="40" class="king-form-tall-text"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="king-form-tall-label">
+                                                            Your name to display (optional)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="king-form-tall-data">
+                                                            <input name="a_name" type="text" value="" class="king-form-tall-text">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="king-form-tall-label">
+                                                            <label>
+                                                                <input name="a_notify" id="a_notify" onclick="if (document.getElementById('a_notify').checked) document.getElementById('a_email').focus();" type="checkbox" value="1" class="king-form-tall-checkbox">
+                                                                <span id="a_email_shown" style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody><tbody id="a_email_display" style="display: none;">
+                                                        <tr>
+                                                            <td class="king-form-tall-data">
+                                                                <input name="a_email" id="a_email" type="text" value="" class="king-form-tall-text">
+                                                                <div class="king-form-tall-note">Privacy: Your email address will only be used for sending these notifications.</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tbody><tr>
+                                                        <td class="king-form-tall-label">
+                                                            Anti-spam verification:
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="king-form-tall-data">
+                                                            <div id="qa_captcha_div_1"><center><div class="g-recaptcha" data-sitekey="6Ldd6DcfAAAAAGPRXpyzLSOWRQd8gLVaGDNTCAR9" data-theme="light" data-type="image"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Ldd6DcfAAAAAGPRXpyzLSOWRQd8gLVaGDNTCAR9&amp;co=aHR0cHM6Ly9kZW1vcy5raW5ndGhlbWVzLm5ldDo0NDM.&amp;hl=en&amp;type=image&amp;v=pn3ro1xnhf4yB8qmnrhh9iD2&amp;theme=light&amp;size=normal&amp;cb=gfb4a1hbl1de" width="304" height="78" role="presentation" name="a-bj5tjjccix5h" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></center></div>
+                                                            <div class="king-form-tall-note">To avoid this verification in future, please <a href="../login">log in</a> or <a href="../register">register</a>.</div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" class="king-form-tall-buttons">
+                                                            <input onclick=" return qa_submit_answer(30, this);" value="Add Comment" title="" type="submit" class="king-form-tall-button king-form-tall-button-answer">
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                                <input type="hidden" name="a_editor" value="">
+                                                <input type="hidden" name="a_doadd" value="1">
+                                                <input type="hidden" name="code" value="0-1670920436-04bca61bcea6a91cc8fc53b456dd581e1c680ba5">
+                                            </form>
+                                        @endif
                                     </div> <!-- END king-a-form -->
-
                                 </div>
                                 <div class="king-part-a-list">
                                     <div class="king-a-list" id="a_list">
 
                                     </div> <!-- END king-a-list -->
-
                                 </div>
                             </div>
                             <div class="tab-pane " id="fbcomments">
@@ -339,21 +357,23 @@
                                 Related Posts
                             </div>
                             <div class="ilgili">
-                                <div class="simple-posts"><a
-                                        href="https://demos.kingthemes.net/29/multiple-wallpaper-images-enjoy-it">
+                                @foreach ($relateds as $related)
+                                <div class="simple-posts">
+                                    <a href="{{ env('APP_URL') }}/{{ $related->id }}/{{ $related->slug }}">
                                         <div class="simple-post">
-                                            <div class="king-box-bg"
-                                                data-king-img-src="https://demos.kingthemes.net/king-include/uploads/2022/03/316676-macos-monterey-1920x1080-wwdc-2021-5k-23424.jpg">
-                                            </div>
+                                            <div class="king-box-bg" data-king-img-src="{{ $related->thumbnail }}"></div>
                                         </div>
                                     </a>
-                                    <div class="simple-post-content"><a
-                                            href="https://demos.kingthemes.net/29/multiple-wallpaper-images-enjoy-it"
-                                            class="simple-post-title">Multiple wallpaper images , enjoy it</a></div>
-                                    <div class="simple-post-meta"><span><i class="fa fa-eye" aria-hidden="true"></i> 447
-                                        </span><span><i class="fa fa-comment" aria-hidden="true"></i> 0</span><span><i
-                                                class="fas fa-chevron-up"></i> 0</span></div>
+                                    <div class="simple-post-content">
+                                        <a href="{{ env('APP_URL') }}/{{ $related->id }}/{{ $related->slug }}" class="simple-post-title">{{$related->title}}</a>
+                                    </div>
+                                    <div class="simple-post-meta">
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 447 </span>
+                                        <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
+                                        <span><i class="fas fa-chevron-up"></i> 0</span>
+                                    </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

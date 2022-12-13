@@ -32,5 +32,17 @@
     "private_messages": "Tin nhắn riêng tư",
     "top_videos": "Video hàng đầu",
     "tag_clouds": "Thẻ Tags",
-    "categories": "Danh mục"
+    "categories": "Danh mục",
+    "follow": "Theo dõi",
+    "author": "Tác giả",
+    "views": "Người đọc",
+    "link_copy":"hoặc Sao chép đường dẫn",
+    "copied":"Đã sao chép đường dẫn",
+    "search": "Tìm kiếm",
+    "end_page": "Cuối trang.",
+    "load_more": "Tải thêm",
+    "first_name": "Tên:",
+    "last_name": "Họ:",
+    "login_with_google": "Đăng nhập bằng Google",
+    "privacy_your_email": "Quyền riêng tư: Địa chỉ email của bạn sẽ không được chia sẻ hoặc bán cho bên thứ ba."
 }

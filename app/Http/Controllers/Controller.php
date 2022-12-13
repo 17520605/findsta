@@ -122,5 +122,14 @@ class Controller extends BaseController
         return $resObj;
     }
 
+    public function countView($id)
+    {
+        $blog = \App\Models\Blogs::where('id', $id)->first();
+        if(isset($blog)){
+            $blog->viewer = ($blog->viewer + 1);
+            $saved = $blog->save();
+        }
+    }
+
 
 }

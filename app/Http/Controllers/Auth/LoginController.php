@@ -10,7 +10,8 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
-        return view('auth.login');
+        $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
+        return view('auth.login',['categories'=>$categories]);
     }
     public function postLogin(Request $request)
     {
@@ -20,13 +21,13 @@ class LoginController extends Controller
         {
             return response()->json([
                 'result' => 'ok',
-                'message' => "Login success"
+                'message' => "Login success !"
             ], 200);
         }
         else{
             return response()->json([
                 'result' => 'fail',
-                'message' => "Failed action please try again !"
+                'message' => "Incorrect account or password !"
             ], 200);
         }
     }

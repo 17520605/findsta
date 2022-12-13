@@ -92,9 +92,6 @@
                         <span class="king-bmcount" id="bcounter">0</span>
                     </div>
                 </li>
-                <li>
-                    <div class="king-rlater king-history-new-event-link" title="Change language" data-toggle="modal" data-target="#langsmodal" aria-expanded="true" role="button"><i class="fa-solid fa-globe"></i></div>
-                </li>
             @else
                 <li>
                     <a class="reglink hreg" href="{{env('APP_URL')}}/register">{{__('register')}}</a>
@@ -104,6 +101,9 @@
                         <i class="fa-solid fa-user"></i></div>
                 </li>
             @endif
+                <li>
+                    <div class="king-rlater king-history-new-event-link" title="Change language" data-toggle="modal" data-target="#langsmodal" aria-expanded="true" role="button"><i class="fa-solid fa-globe"></i></div>
+                </li>
                 <li>
                     <div class="king-rlater king-history-new-event-link" title="Show notifications"
                         data-toggle="dropdown" data-target=".king-notify" aria-expanded="true" role="button"><i

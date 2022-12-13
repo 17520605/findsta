@@ -9,6 +9,7 @@
 <script src="{{ asset('king-theme/default/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('king-theme/default/js/jquery-ias.min.js') }}"></script>
 <script src="{{ asset('king-theme/default/js/masonry.pkgd.min.js') }}"></script>
+<script src="{{ asset('king-theme/default/js/moment.min.js') }}"></script>
 <!-- Plugins JS start-->
 @stack('scripts')
 <!-- Plugins JS Ends-->

@@ -32,5 +32,17 @@
     "private_messages": "Private Messages",
     "top_videos": "Top Videos",
     "tag_clouds": "Tag Clouds",
-    "categories": "Categories"
+    "categories": "Categories",
+    "follow": "Follows",
+    "author": "Author",
+    "views": "Views",
+    "link_copy":"or Link Copy",
+    "copied":"Link Copied",
+    "search": "Search",
+    "end_page": "End of the page.",
+    "load_more": "Load More",
+    "first_name": "First Name:",
+    "last_name": "Last Name:",
+    "login_with_google": "Login using Google",
+    "privacy_your_email": "Privacy: Your email address will not be shared or sold to third parties."
 }

@@ -32,5 +32,17 @@
     "private_messages": "개인 메시지",
     "top_videos": "인기 동영상",
     "tag_clouds": "태그 클라우드",
-    "categories": "카테고리"
+    "categories": "카테고리",
+    "follow": "따르다",
+    "author": "저자",
+    "views": "독자",
+    "link_copy":"또는 링크 복사",
+    "copied":"복사된 링크",
+    "search": "검색",
+    "end_page": "문서의 끝입니다.",
+    "load_more": "더 불러오기",
+    "first_name": "이름:",
+    "last_name": "성:",
+    "login_with_google": "Google 을 사용하여 로그인",
+    "privacy_your_email": "개인 정보 보호: 귀하의 이메일 주소는 제3자에게 공유되거나 판매되지 않습니다."
 }
