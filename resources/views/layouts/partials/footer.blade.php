@@ -46,23 +46,23 @@
 </ul>
 <ul class="king-nav-footer-list">
     <li class="king-nav-footer-item king-nav-footer-feedback">
-        <a href="./feedback" class="king-nav-footer-link">{{ __('send_feedback') }}</a>
+        <a href="{{route('get.feedback')}}" class="king-nav-footer-link">{{ __('send_feedback') }}</a>
     </li>
     <li class="king-nav-footer-item king-nav-footer-custom-5">
-        <a href="./#" class="king-nav-footer-link"><i class="fas fa-address-card"></i>{{ __('about_us') }}</a>
+        <a href="#" class="king-nav-footer-link"><i class="fas fa-address-card"></i>{{ __('about_us') }}</a>
     </li>
     <li class="king-nav-footer-item king-nav-footer-privacy-policy">
         <a href="./privacy-policy" class="king-nav-footer-link"><i
                 class="fas fa-user-secret"></i>{{ __('privacy_policy') }}</a>
     </li>
     <li class="king-nav-footer-item king-nav-footer-custom-3">
-        <a href="./#" class="king-nav-footer-link"><i class="far fa-life-ring"></i>{{ __('support') }}</a>
+        <a href="#" class="king-nav-footer-link"><i class="far fa-life-ring"></i>{{ __('support') }}</a>
     </li>
     <li class="king-nav-footer-item king-nav-footer-custom-2">
-        <a href="./#" class="king-nav-footer-link"><i class="fas fa-user-md"></i>{{ __('careers') }}</a>
+        <a href="#" class="king-nav-footer-link"><i class="fas fa-user-md"></i>{{ __('careers') }}</a>
     </li>
     <li class="king-nav-footer-item king-nav-footer-custom-1">
-        <a href="./#" class="king-nav-footer-link"><i class="far fa-address-card"></i>{{ __('testimonials') }}</a>
+        <a href="#" class="king-nav-footer-link"><i class="far fa-address-card"></i>{{ __('testimonials') }}</a>
     </li>
 </ul>
 <div class="king-nav-footer-clear">

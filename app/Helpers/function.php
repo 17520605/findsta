@@ -57,6 +57,11 @@ if (!function_exists('get_data_user'))
             $n_format = floor($n / 1000000000000);
             $suffix = 'T+';
         }
+        else
+        {
+            $n_format = $n;
+            $suffix = '';
+        }
     
         return !empty($n_format . $suffix) ? $n_format . $suffix : 0;
     }

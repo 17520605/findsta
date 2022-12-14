@@ -106,8 +106,12 @@
                                 </span>
                             </div>
                             <div class="prev-next">
-                                <A href="{{ env('APP_URL') }}/{{$next->id}}/{{$next->slug}}" class="king-next-q"><i class="fas fa-angle-left"></i> <span>{{$next->title}}</span></A>
-                                <A href="{{ env('APP_URL') }}/{{$previous->id}}/{{$previous->slug}}" class="king-prev-q"> <span>{{$previous->title}}</span> <i class="fas fa-angle-right"></i></A>
+                                @if ($next)
+                                    <A href="{{ env('APP_URL') }}/{{$next->id}}/{{$next->slug}}" class="king-next-q"><i class="fas fa-angle-left"></i> <span>{{$next->title}}</span></A>
+                                @endif
+                                @if ($previous)
+                                    <A href="{{ env('APP_URL') }}/{{$previous->id}}/{{$previous->slug}}" class="king-prev-q"> <span>{{$previous->title}}</span> <i class="fas fa-angle-right"></i></A>
+                                @endif
                             </div>
                         </div>
                     </div> <!-- END king-q-view -->

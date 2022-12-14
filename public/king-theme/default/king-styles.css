@@ -886,7 +886,8 @@ h4 {
 
 .king-template-user .king-form-wide-label {
     text-align: left;
-    border-bottom: 1px solid #e7ebec
+    border-bottom: 1px solid #e7ebec;
+    min-width: 200px;
 }
 
 .king-template-user .king-form-wide-data {
@@ -1539,11 +1540,23 @@ h9 {
 
 .king-avatar-image {
     border-radius: 50%;
-    width: 52px;
-    height: 52px;
+    width: 85px;
+    height: 85px;
     object-fit: cover
 }
-
+.change-avatar{
+    cursor: pointer;
+    font-size: 30px;
+    opacity: 0.7;
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    color: #fff;
+}
+.change-avatar:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
 a:active,
 a:visited,
 .king-avatar-link:hover {
@@ -7161,7 +7174,7 @@ a.king-readlater {
 }
 
 .king-readlater.selected {
-    background-color: #0c0b0d;
+    background-color: #0c0b0d !important;
     color: #fff;
     transition: all 1s ease-in-out
 }
@@ -7616,4 +7629,7 @@ a.king-readlater {
 .tata.text {
     color: #fff;
     background: #323232;
+}
+.tooltip-inner{
+    white-space: nowrap !important;
 }

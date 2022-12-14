@@ -146,11 +146,12 @@ function qa_favorite_click2(elem) {
 }
 
 function qa_ajax_post(operation, params, callback) {
+	var root = "{{ env('APP_URL') }}"
 	$.extend(params, {
 		qa: 'ajax',
 		qa_operation: operation,
-		qa_root: qa_root,
-		qa_request: qa_request
+		qa_root: root,
+		qa_request: 'home'
 	});
 	$.post(qa_root, params, function(response) {
 		var header = 'QA_AJAX_RESPONSE';
@@ -309,31 +310,38 @@ function memnext() {
 }
 
 function bookmark(elem) {
-	var params = {};
+	let id = elem.getAttribute('data-bookmarkid');
+	$.ajax({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		type: "post",
+		url: "{{ env('APP_URL') }}/bookmark/" + id + "/toggle",
+		dataType: "json",
+		success: function(response) {
+			var x = document.getElementById('bcount');
+			var z = x.value;
+			var y = document.getElementById('bcounter');
+			if (response && response.result === 'ok') {
+				if (response.status == 'add') {
+					elem.classList.toggle('selected');
+					let t = parseInt(z) + 1;
+					y.innerText = t;
+					x.value = t;
+				} else {
+					elem.classList.toggle('selected');
+					let t = parseInt(z) - 1;
 
-	params.id = elem.getAttribute('data-bookmarkid');
-
-	qa_ajax_post('bookmark', params, function(lines) {
-		var x = document.getElementById('bcount');
-		var z = x.value;
-		var y = document.getElementById('bcounter');
-		if (lines[0] == '1') {
-			elem.classList.toggle('selected');
-			let t = parseInt(z) + 1;
-
-			y.innerText = t;
-			x.value = t;
-		} else {
-			elem.classList.toggle('selected');
-			let t = parseInt(z) - 1;
-
-			y.innerText = t;
-			x.value = t;
-		}
+					y.innerText = t;
+					x.value = t;
+				}
+			}
+		},
 	});
 
 	return false;
 }
+
 function bookmodal() {
 	var params = {};
 

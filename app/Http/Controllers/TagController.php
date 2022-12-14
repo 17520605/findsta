@@ -12,6 +12,7 @@ class TagController extends Controller
     public function index($tag)
     {
         $lang = Session::get('language'); 
+        $userId = get_data_user('web');
         if($lang)           
         {
             //['lang', $lang],
@@ -24,6 +25,18 @@ class TagController extends Controller
         }
         foreach ($lists as $list) {
             $bannerId = $list->bannerId;
+            if($userId)
+            {
+                $bookmark = \App\Models\bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
+                if($bookmark)
+                {
+                    $list->bookmark = true;
+                }
+                else
+                {
+                    $list->bookmark = false;
+                }
+            }
             if($bannerId)
             {
                 $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
@@ -64,6 +77,13 @@ class TagController extends Controller
             }
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
-        return view('tags.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'tag'=>$tag]);
+        if($userId){
+            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+        }
+        else
+        {
+            $count_bookmarks = 0;
+        }
+        return view('tags.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'tag'=>$tag, 'count_bookmarks'=>$count_bookmarks]);
     }
 }

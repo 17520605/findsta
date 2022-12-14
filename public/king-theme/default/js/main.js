@@ -4,6 +4,9 @@ $(document).ready(function () {
   window.setTimeout(function() {
     mansoryLoad();
   }, 1200);
+  window.setTimeout(function() {
+    mansoryLoad();
+  }, 3200);
   function mansoryLoad() {
     if (typeof Masonry !== "undefined") {
       var container = document.querySelector(".king-part-q-list .container");

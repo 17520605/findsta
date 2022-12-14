@@ -22,18 +22,11 @@
                             @foreach ($lists as $list)
                                 <div class="box king-q-list-item king-class-video" id="q{{ $list->id }}">
                                     <div class="king-post-upbtn">
-                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}"
-                                            class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip"
-                                            data-placement="right" title="Quick View"><i
-                                                class="fa-solid fa-chevron-up"></i></a>
-                                        <a href="#" class="king-readlater" data-toggle="tooltip"
-                                            data-placement="right" title="Bookmark" data-bookmarkid="43"
-                                            onclick="return bookmark(this);">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}"
-                                            class="ajax-popup-share magnefic-button" data-toggle="tooltip"
-                                            data-placement="right" title="Share"><i class="fas fa-share-alt"></i></a>
+                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+                                        @if (Auth::check())
+                                            <a href="javascript:void(0)" class="king-readlater {{$list->bookmark ? 'selected' : ''}}" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_bookmark')}}" data-bookmarkid="{{ $list->id }}" onclick="return bookmark(this);"> <i class="far fa-bookmark"></i></a>
+                                        @endif
+                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="ajax-popup-share magnefic-button" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_share')}}"><i class="fas fa-share-alt"></i></a>
                                     </div>
                                     <div class="king-q-item-main">
                                         <a class="item-a"

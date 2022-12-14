@@ -8,22 +8,21 @@
         <div class="user-box">
             <div class="user-box-pt">
                 <div class="user-box-cover">
-                    <div data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=3562180120032919605&amp;qa_size=1280"
-                        class="king-box-bg"></div>
+                    <div data-king-img-src="https://res.cloudinary.com/dsldtailo/image/upload/v1670949819/findsta/default/happy-new-year-2023-background-with-minimal-red-line_1361-4043.webp_qmvgim.png" class="king-box-bg"></div>
                     <div class="user-box-up">
-                        <div class="user-box-links"></div><a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh"
-                            class="user-box-alink"><img
-                                data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=16288416615195025482&amp;qa_size=220"
-                                class="king-avatar king-lazy" width="140" height="140"></a>
+                        <div class="user-box-links"></div>
+                        <a href="#" class="user-box-alink"><img data-king-img-src="{{$profile->avatar}}" class="king-avatar king-lazy" width="140" height="140">
+                        </a>
                     </div>
                 </div>
                 <div class="user-box-in">
-                    <div class="user-box-name"><a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh">
-                            <h3>Khai Nguyễn Hữu Minh</h3>
-                        </a></div>
-                    <div class="user-box-tp"><span class="user-box-point"><strong>100</strong> Points</span></div>
+                    <div class="user-box-name">
+                        <a href="{{ route('user.get.myseting')}}">
+                            <h3>{{$profile->fname}} {{$profile->lname}}</h3>
+                        </a>
+                    </div>
                     <div class="king-stats">
-                        <span><strong>0</strong>Posts</span><span><strong>0</strong>Following</span><span><strong>0</strong>Followers</span>
+                        <span><strong>0</strong>{{__('count_posts')}}</span><span><strong>0</strong>{{__('count_following')}}</span><span><strong>0</strong>{{__('count_followers')}}</span>
                     </div>
                     <div class="user-box-buttons">
                         <div id="follow_73"></div>
@@ -32,38 +31,31 @@
             </div>
         </div>
     </div>
-    <DIV id="king-body-wrapper" class="king-body-in">
+    <div id="king-body-wrapper" class="king-body-in">
         <ul class="king-nav-sub-list">
-            <li class="king-nav-sub-item king-nav-sub-questions">
-                <a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh" class="king-nav-sub-link">All Post</a>
-            </li>
             <li class="king-nav-sub-item king-nav-sub-profile">
-                <a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh/profile" class="king-nav-sub-link">User Khai Nguyễn Hữu
-                    Minh</a>
+                <a href="{{ route('user.get.myprofile')}}" class="king-nav-sub-link">{{__('info_my_profile')}}</a>
             </li>
             <li class="king-nav-sub-item king-nav-sub-account">
-                <a href="./account" class="king-nav-sub-link">My details</a>
+                <a href="{{ route('user.get.myseting')}}" class="king-nav-sub-link">{{__('info_my_details')}}</a>
             </li>
             <li class="king-nav-sub-item king-nav-sub-favorites">
-                <a href="./favorites" class="king-nav-sub-link king-nav-sub-selected">My favorites</a>
+                <a href="{{ route('user.get.myfavorite')}}" class="king-nav-sub-link king-nav-sub-selected">{{__('info_my_favorites')}}</a>
             </li>
             <li class="king-nav-sub-item king-nav-sub-messages">
-                <a href="./messages" class="king-nav-sub-link">Private Messages</a>
-            </li>
-            <li class="king-nav-sub-item king-nav-sub-wall">
-                <a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh/wall" class="king-nav-sub-link">Wall</a>
+                <a href="{{ route('user.get.message')}}" class="king-nav-sub-link">{{__('info_messages')}}</a>
             </li>
             <li class="king-nav-sub-item king-nav-sub-follower">
-                <a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh/follower" class="king-nav-sub-link">Followers</a>
+                <a href="{{ route('user.get.follower')}}" class="king-nav-sub-link">{{__('info_followers')}}</a>
             </li>
             <li class="king-nav-sub-item king-nav-sub-following">
-                <a href="./user/Khai+Nguy%E1%BB%85n+H%E1%BB%AFu+Minh/following" class="king-nav-sub-link">Following</a>
+                <a href="{{ route('user.get.following')}}" class="king-nav-sub-link">{{__('info_following')}}</a>
             </li>
         </ul>
         <div class="king-nav-sub-clear">
         </div>
-        <DIV CLASS="king-main full-page">
-            <DIV CLASS="king-main-in">
+        <div class="king-main full-page">
+            <div class="king-main-in">
                 <div class="king-part-q-list king-inner">
                     <div class="container without-side">
                         <div class="grid-sizer"></div>
@@ -87,8 +79,8 @@
                                             data-king-img-src="https://demos.kingthemes.net/king-include/uploads/2021/03/143534.jpg"
                                             alt="" /></span>
                                 </A>
-                                <DIV CLASS="king-post-content">
-                                    <DIV CLASS="king-q-item-title">
+                                <div class="king-post-content">
+                                    <div class="king-q-item-title">
                                         <div class="king-title-up">
                                             <a class="king-post-format" href="./type"><i class="fas fa-video"></i>
                                                 Video</a>
@@ -100,7 +92,7 @@
                                         <A HREF="./9/mp4-video-simple-post">
                                             <h2>Mp4 video simple post</h2>
                                         </A>
-                                    </DIV>
+                                    </div>
                                     <div class="post-meta">
                                         <div class="king-p-who">
                                             <img data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=14473541867296403178&amp;qa_size=107"
@@ -113,18 +105,17 @@
                                             <span><i class="fas fa-chevron-up"></i> 0</span>
                                         </div>
                                     </div>
-                                </DIV>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div> <!-- king-main-in -->
-        </DIV> <!-- king-main -->
+        </div> <!-- king-main -->
         <div class="king-suggest-next">
-            To add a Post or other item to your favorites, click the <span class="king-favorite-image">&nbsp;</span> at the
-            top of its page.
+            {{__('span_favorites')}}
         </div>
-    </DIV>
+    </div>
 @endsection
 @push('scripts')
 @endpush

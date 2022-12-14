@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function index($slug)
     {
         $lang = Session::get('language'); 
+        $userId = get_data_user('web');
         if($slug)
         {
             $category = \App\Models\Categories::where([['slug',$slug]])->first(); 
@@ -28,6 +29,18 @@ class CategoryController extends Controller
         }
         foreach ($lists as $list) {
             $bannerId = $list->bannerId;
+            if($userId)
+            {
+                $bookmark = \App\Models\bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
+                if($bookmark)
+                {
+                    $list->bookmark = true;
+                }
+                else
+                {
+                    $list->bookmark = false;
+                }
+            }
             if($bannerId)
             {
                 $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
@@ -68,6 +81,13 @@ class CategoryController extends Controller
             }
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
-        return view('categories.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'category'=>$category]);
+        if($userId){
+            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+        }
+        else
+        {
+            $count_bookmarks = 0;
+        }
+        return view('categories.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'category'=>$category, 'count_bookmarks'=>$count_bookmarks]);
     }
 }

@@ -66,32 +66,30 @@
             </div> <!-- king-main-in -->
         </div> <!-- king-main -->
     </div>
-
-
 @endsection
-@push('scripts')
-<script>
-    $('.loginForm').submit(function (e) { 
-        e.preventDefault();
-        const data = $(this).serializeArray();
-        $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
-        $('.notify-login').html(``);
-        $.ajax({
-            type: "post",
-            url: "{{ route('post.login')}}",
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                $('.icon-loader').html(``);
-                if (response && response.result === 'ok') {
-                    location.href = "{{ route('home')}}";
-                } else
-                if (response.result === 'fail') {
-                    $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
+@section('scripts')
+    <script>
+        $('.loginForm').submit(function (e) { 
+            e.preventDefault();
+            const data = $(this).serializeArray();
+            $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-login').html(``);
+            $.ajax({
+                type: "post",
+                url: "{{ route('post.login')}}",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    $('.icon-loader').html(``);
+                    if (response && response.result === 'ok') {
+                        location.href = "{{ route('home')}}";
+                    } else
+                    if (response.result === 'fail') {
+                        $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
+                    }
                 }
-            }
+            });
+            return false;
         });
-        return false;
-    });
-</script>
-@endpush
+    </script>
+@endsection

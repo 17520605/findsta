@@ -75,7 +75,7 @@
         </div>
     </div>
 </div>
-@push('scripts')
+@section('scripts')
     <script>
         const url = new URL(location.href);
         $('.loginForm').submit(function (e) { 
@@ -104,4 +104,4 @@
             return false;
         });
     </script>
-@endpush
+@stop

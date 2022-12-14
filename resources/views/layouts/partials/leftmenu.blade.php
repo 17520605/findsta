@@ -3,9 +3,9 @@
         <span>
             <button type="button" class="king-left-close" data-dismiss="modal" aria-label="Close"></button>
             @if (Auth::check())
-                <a class="leftmenu-lout" href="./messages" data-toggle="tooltip" data-placement="right" title="{{__('private_messages')}}"><i class="fa-regular fa-envelope"></i></a>
-                <a class="leftmenu-lout" href="./favorites" data-toggle="tooltip" data-placement="right" title="{{__('my_favorites')}}"><i class="fa-solid fa-heart"></i></a>
-                <a class="leftmenu-lout" href="./account" data-toggle="tooltip" data-placement="right" title="{{__('my_settings')}}"><i class="fa-solid fa-gear"></i></a>
+                <a class="leftmenu-lout" href="{{ route('user.get.message')}}" data-toggle="tooltip" data-placement="right" title="{{__('private_messages')}}"><i class="fa-regular fa-envelope"></i></a>
+                <a class="leftmenu-lout" href="{{ route('user.get.myfavorite')}}" data-toggle="tooltip" data-placement="right" title="{{__('my_favorites')}}"><i class="fa-solid fa-heart"></i></a>
+                <a class="leftmenu-lout" href="{{ route('user.get.myseting')}}" data-toggle="tooltip" data-placement="right" title="{{__('my_settings')}}"><i class="fa-solid fa-gear"></i></a>
             @endif
         </span>
         <span>

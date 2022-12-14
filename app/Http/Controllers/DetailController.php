@@ -13,10 +13,18 @@ class DetailController extends Controller
     public function index($id,$slug)
     {
         $lang = Session::get('language'); 
+        $userId = get_data_user('web');
         if($slug)
         {
             $blog = \App\Models\Blogs::where([['is_public',1],['id',$id],['slug',$slug]])->first(); 
-            $array = explode(',', $blog->tags );
+            if($blog->tags)
+            {
+                $array = explode(',', $blog->tags );
+            }
+            else
+            {
+                $array = [];
+            }
             $fileBlog = \App\Models\Files::where('id', '=', $blog->fileId)->first();
             $bannerBlog = \App\Models\Files::where('id', '=', $blog->bannerId)->first();
             $blog->thumbnail = $fileBlog->thumbnail;
@@ -85,6 +93,13 @@ class DetailController extends Controller
             }
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
-        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog,'previous'=>$previous,'next'=>$next ,'relateds'=>$relateds]);
+        if($userId){
+            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+        }
+        else
+        {
+            $count_bookmarks = 0;
+        }
+        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog,'previous'=>$previous,'next'=>$next ,'relateds'=>$relateds, 'count_bookmarks'=>$count_bookmarks]);
     }
 }

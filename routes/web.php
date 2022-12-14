@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
     
             Route::get  ('reset'  ,'ForgotPasswordController@getresetPassword')->name('get.send.reset.password');
         });
+
         Route::get('/', 'HomeController@index')->name('home');
+    
+        Route::post('/bookmark/{id}/toggle', 'HomeController@bookmark')->name('check.bookmark');
+        Route::get('/bookmark', 'HomeController@bookmarkList')->name('get.bookmark');
+
         Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('language.change');
 
         Route::get('/tag/{slug}', 'TagController@index');
@@ -37,15 +42,26 @@ use Illuminate\Support\Facades\Route;
         Route::get('/{id}/{slug}', 'DetailController@index');
     
         Route::get('/news', 'NewsController@index');
+
+        Route::get('/feedback', 'FeedbackController@index')->name('get.feedback');
+        Route::post('/feedback', 'FeedbackController@postFeedback')->name('post.feedback');;
     
-        
         //Hiển thị tổng quan user
-        Route::group(['prefix' => 'user','middleware' =>'checklogin'],function(){
-            Route::get('/info','UserController@updateInfo')->name('user.update.info');
-            Route::post('/info','UserController@saveUpdateInfo');
-            //Thay đổi mật khẩu
-            Route::get('/password','UserController@updatePassword')->name('user.update.password');
-            Route::post('/password','UserController@saveUpdatePassword');
+        Route::group(['middleware' =>'checklogin'],function(){
+            Route::get('/my-setting', 'UserController@mySeting')->name('user.get.myseting');
+            Route::post('/my-setting/{id}/save-edit', 'UserController@saveMySeting')->name('users.save-edit');
+            
+            Route::get('/my-setting/password', 'UserController@saveMySetingPassword');
+
+            Route::get('/my-favorites', 'UserController@myFavorite')->name('user.get.myfavorite');
+
+            Route::get('/my-profile', 'UserController@myProfile')->name('user.get.myprofile');
+
+            Route::get('/message', 'UserController@message')->name('user.get.message');
+
+            Route::get('/follower', 'UserController@follower')->name('user.get.follower');
+
+            Route::get('/following', 'UserController@following')->name('user.get.following');
         });
     });
     

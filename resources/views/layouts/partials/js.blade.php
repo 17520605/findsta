@@ -12,6 +12,7 @@
 <script src="{{ asset('king-theme/default/js/moment.min.js') }}"></script>
 <!-- Plugins JS start-->
 @stack('scripts')
+@yield('scripts')
 <!-- Plugins JS Ends-->
 <script>
     function changeLanguage() {

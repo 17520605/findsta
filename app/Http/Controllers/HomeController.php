@@ -14,6 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $lang = Session::get('language'); 
+        $userId = get_data_user('web');
         if($lang)           
         {
             //['lang', $lang],
@@ -42,6 +43,18 @@ class HomeController extends Controller
         }  
         foreach ($lists as $list) {
             $bannerId = $list->bannerId;
+            if($userId)
+            {
+                $bookmark = \App\Models\bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
+                if($bookmark)
+                {
+                    $list->bookmark = true;
+                }
+                else
+                {
+                    $list->bookmark = false;
+                }
+            }
             if($bannerId)
             {
                 $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
@@ -82,7 +95,14 @@ class HomeController extends Controller
             }
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
-        return view('home.index', ['features'=> $features , 'categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos]);
+        if($userId){
+            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+        }
+        else
+        {
+            $count_bookmarks = 0;
+        }
+        return view('home.index', ['features'=> $features , 'categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos , 'count_bookmarks'=>$count_bookmarks]);
     }
     public function changeLanguage($language)
     {
@@ -93,4 +113,65 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+    public function bookmark($blogId,Request $request)
+    {
+        $userId = get_data_user('web');
+        if($userId){
+            $bookmark = \App\Models\Bookmarks::where([['userId', $userId],['blogId', $blogId]])->first();
+            if(isset($bookmark))
+            {
+                $deleted = $bookmark->delete();
+                // if(isset($deleted))
+                // {
+                //     return response()->json([
+                //         'result' => 'ok',
+                //         'status' => 'delete',
+                //         'message' => "Remove bookmark success !"
+                //     ], 100);
+                // }
+                // else{
+                //     return response()->json([
+                //         'result' => 'fail',
+                //         'status' => 'delete',
+                //         'message' => "Remove bookmark false !"
+                //     ], 100);
+                // }
+            }
+            else
+            {
+                $bookmarks = new \App\Models\Bookmarks();
+                $bookmarks->userId = $userId;
+                $bookmarks->blogId = $blogId;
+                $saved = $bookmarks->save();
+                // if(isset($saved))
+                // {
+                //     return response()->json([
+                //         'result' => 'ok',
+                //         'status' => 'add',
+                //         'message' => "Add bookmark success !"
+                //     ], 100);
+                // }
+                // else{
+                //     return response()->json([
+                //         'result' => 'fail',
+                //         'status' => 'add',
+                //         'message' => "Add bookmark false !"
+                //     ], 100);
+                // }
+            }
+        
+        }
+        return redirect()->back();
+    }
+
+    public function bookmarkList($language)
+    {
+        if($language)
+        {        
+            Session::put('language', $language);
+        }
+
+        return redirect()->back();
+    }
+    
 }

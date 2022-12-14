@@ -27,98 +27,67 @@ class Controller extends BaseController
                 $profile = DB::table('profile')->where('userId', $user->id)->first();
             }
             
-            $parameters = Route::getCurrentRoute()->parameters();
-            $role = explode('/', Route::getCurrentRoute()->uri)[0];
-
-            if($role == 'administrator' && $user->level < User::LEVEL_TOURADMIN){
-                return response(view('others.permission_denied'));
-            }
-            else
-            if($role == 'partner' && $user->level < User::LEVEL_PARTICIPANT){
-                return response(view('others.permission_denied'));
-            }
-            else
-            if($role == 'speaker' && $user->level < User::LEVEL_SPEAKER){
-                return response(view('others.permission_denied'));
-            }
-
-            if(array_key_exists('id', $parameters)){
-                $tourId = Route::getCurrentRoute()->parameters()['id'];
-  
-                if($tourId != null){ 
-                    if($profile != null){
-                        $tour = DB::table('tour')->find($tourId);
-                        if($tour != null){
-                            if($role == 'administrator'){
-                                if($tour->organizerId == $profile->id){
-                                    return $next($request);
-                                }
-                                else{
-                                    return response(view('others.permission_denied'));
-                                }
-                            } 
-                            else
-                            if($role == 'partner'){
-                                $tour_partner = DB::table('tour_partner')
-                                ->where([
-                                    ['tour_partner.tourId', '=', $tourId],
-                                    ['tour_partner.partnerId', '=', $profile->id],
-                                    ['tour_partner.status', '!=', \App\Models\Tour_Partner::UNCONFIRMED]
-                                ])
-                                ->first();
-    
-                                if($tour_partner != null){
-                                    return $next($request);
-                                }else{
-                                    return response(view('others.permission_denied'));
-                                }
-                            }
-                            else
-                            if($role == 'speaker'){
-                                $tour_speaker = DB::table('tour_speaker')
-                                ->where([
-                                    ['tour_speaker.tourId', '=', $tourId],
-                                    ['tour_speaker.speakerId', '=', $profile->id],
-                                    ['tour_speaker.status', '!=', \App\Models\Tour_Speaker::UNCONFIRMED]
-                                ])
-                                ->first();
-    
-                                if($tour_speaker != null){
-                                    return $next($request);
-                                }else{
-                                    return response(view('others.permission_denied'));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
             return $next($request);
         });
     }
 
-    public function uploadFile($file, $isUsed = false)
-    {   
+    public function uploadFile($file, $isUsed = false, $folder ,$type)
+    {
+        $data1 = 'findsta';
+        $data2 = $folder;
+        $root = $data1 . '/' . $data2;
         $path = Storage::disk('temp')->putFile('/', $file);
         $res = cloudinary()->upload(Storage::disk('temp')->path($file->hashName()), [
+            'folder'=> $root,
             'resource_type' => 'auto'
         ])->getResponse();
         
         // delete file
         $path = Storage::disk('temp')->delete($path);
-
         $resObj = json_decode(json_encode($res));
-
         // save asset
-        $asset = new \App\Models\Asset();
-        $asset->name = $file->getClientOriginalName();
-        $asset->url = $resObj->url;
-        $asset->format = $file->getClientOriginalExtension();
-        $asset->size = $resObj->bytes;
-        $asset->isUsed = $isUsed;
-        $asset->save();
-
+        $files = new \App\Models\Files();
+        $files->name = $file->getClientOriginalName();
+        if($type === 'audio')
+        {
+            $background_audio = 'https://res.cloudinary.com/dsldtailo/image/upload/v1669107824/asset-default/shortwave_slide-f48bdaffdf7bd69ed210adb259371a937a4626bc-s1100-c50_xbadmr.jpg';
+            $files->thumbnail = $background_audio;
+        }
+        else if($type === 'image')
+        {
+            if(strpos($resObj->url, 'res.cloudinary.com/virtual-tour/image/upload/') >= 0){
+                $miniUrl = str_replace('upload/', 'upload/c_thumb,w_350,g_face/', $resObj->url);
+            }
+            else
+            {
+                $miniUrl = $resObj->url;
+            }
+            $files->thumbnailMini = $miniUrl;
+            $files->thumbnail = $resObj->url;
+        }
+        else
+        {
+            if(strpos($resObj->url, 'res.cloudinary.com/virtual-tour/image/upload/') >= 0){
+                $miniUrl = str_replace('upload/', 'upload/c_thumb,w_350,g_face/', $resObj->url);
+            }
+            else
+            {
+                $miniUrl = $resObj->url;
+            }
+            $files->thumbnailMini = $miniUrl;
+            $files->thumbnail = $resObj->url;
+        }
+        $files->url = $resObj->url;
+        $files->type = $resObj->type;
+        $files->source = $resObj->resource_type;
+        $files->desc = $resObj->asset_id;
+        $files->format = $file->getClientOriginalExtension();
+        $files->width = $resObj->width;
+        $files->height = $resObj->height;
+        $files->size = $resObj->bytes;
+        $files->save();
+        $filesId = $files->id;
+        $resObj->filesId = $filesId;
         return $resObj;
     }
 

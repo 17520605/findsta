@@ -86,29 +86,29 @@
         </div> <!-- king-main -->
     </div>
 @endsection
-@push('scripts')
-<script>
-    $('.registerForm').submit(function (e) { 
-        e.preventDefault();
-        const data = $(this).serializeArray();
-        $('.icon-loader-register').html(`<i class="fas fa-spinner fa-spin"></i>`);
-        $('.notify-register').html(``);
-        $.ajax({
-            type: "post",
-            url: "{{ route('post.register')}}",
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                $('.icon-loader-register').html(``);
-                if (response && response.result === 'ok') {
-                    location.href = "{{ route('get.login')}}";
-                } else
-                if (response.result === 'fail') {
-                    $('.notify-register').html(`<div class="king-form-tall-error">${response.message}</div>`)
+@section('scripts')
+    <script>
+        $('.registerForm').submit(function (e) { 
+            e.preventDefault();
+            const data = $(this).serializeArray();
+            $('.icon-loader-register').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-register').html(``);
+            $.ajax({
+                type: "post",
+                url: "{{ route('post.register')}}",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    $('.icon-loader-register').html(``);
+                    if (response && response.result === 'ok') {
+                        location.href = "{{ route('get.login')}}";
+                    } else
+                    if (response.result === 'fail') {
+                        $('.notify-register').html(`<div class="king-form-tall-error">${response.message}</div>`)
+                    }
                 }
-            }
+            });
+            return false;
         });
-        return false;
-    });
-</script>
-@endpush
+    </script>
+@endsection

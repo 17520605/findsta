@@ -65,19 +65,18 @@
                         <img data-king-img-src="{{ get_info_user(get_data_user('web'),'avatar')}}" class="king-avatar king-lazy" width="40" height="40">
                     </div>
                     <div class="king-dropdown">
-                        <a href="#">
+                        <a href="{{ route('user.get.myprofile')}}">
                             <h3>{{ get_info_user(get_data_user('web'),'name')}}</h3>
                         </a>
                         <ul class="king-nav-user-list">
                             <li class="king-nav-user-item king-nav-user-account">
-                                <a href="./account" class="king-nav-user-link">{{__('my_settings')}}</a>
+                                <a href="{{ route('user.get.myseting')}}" class="king-nav-user-link">{{__('my_settings')}}</a>
                             </li>
                             <li class="king-nav-user-item king-nav-user-updates">
-                                <a href="./favorites" class="king-nav-user-link">{{__('my_favorites')}}</a>
+                                <a href="{{ route('user.get.myfavorite')}}" class="king-nav-user-link">{{__('my_favorites')}}</a>
                             </li>
                             <li class="king-nav-user-item king-nav-user-logout">
-                                <span class="king-nav-user-nolink"> <a class="" title="Logout" href="{{ route('get.logout')}}"
-                                        rel="nofollow">{{__('logout')}}</a></span>
+                                <span class="king-nav-user-nolink"> <a class="" title="Logout" href="{{ route('get.logout')}}" rel="nofollow">{{__('logout')}}</a></span>
                             </li>
                         </ul>
                         <div class="king-nav-user-clear">
@@ -85,11 +84,10 @@
                     </div>
                 </li>
                 <li>
-                    <div class="king-rlater" data-toggle="modal" data-target="#rlatermodal"
-                        onclick="return bookmodal();">
+                    <div class="king-rlater" data-toggle="modal" data-target="#rlatermodal" onclick="return bookmodal();">
                         <i class="fa-solid fa-bookmark"></i>
                         <input type="hidden" class="king-bmcountin" id="bcount" value="0">
-                        <span class="king-bmcount" id="bcounter">0</span>
+                        <span class="king-bmcount" id="bcounter">{{ $count_bookmarks }}</span>
                     </div>
                 </li>
             @else
@@ -119,13 +117,13 @@
                         <span class="kingadd" data-toggle="dropdown" data-target=".king-submit" aria-expanded="false"
                             role="button"><i class="fa-solid fa-circle-plus"></i></span>
                         <div class="king-dropdown2">
-                            <a href="./news" class="kingaddnews"><i class="fas fa-newspaper"></i> News</a>
-                            <a href="./submit" class="kingaddimg"><i class="fas fa-image"></i> Image</a>
-                            <a href="./video" class="kingaddvideo"><i class="fas fa-video"></i> Video</a>
-                            <a href="./poll" class="kingaddpoll"><i class="fas fa-align-left"></i> Poll</a>
-                            <a href="./list" class="kingaddlist"><i class="fas fa-bars"></i> List</a>
-                            <a href="./trivia" class="kingaddtrivia"><i class="fas fa-times"></i> Trivia Quiz</a>
-                            <a href="./music" class="kingaddmusic"><i class="fas fa-headphones-alt"></i> Music</a>
+                            <a href="#" class="kingaddnews"><i class="fas fa-newspaper"></i> News</a>
+                            <a href="#" class="kingaddimg"><i class="fas fa-image"></i> Image</a>
+                            <a href="#" class="kingaddvideo"><i class="fas fa-video"></i> Video</a>
+                            <a href="#" class="kingaddpoll"><i class="fas fa-align-left"></i> Poll</a>
+                            <a href="#" class="kingaddlist"><i class="fas fa-bars"></i> List</a>
+                            <a href="#" class="kingaddtrivia"><i class="fas fa-times"></i> Trivia Quiz</a>
+                            <a href="#" class="kingaddmusic"><i class="fas fa-headphones-alt"></i> Music</a>
                         </div>
                     </div>
                 </li>
