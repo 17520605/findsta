@@ -94,5 +94,10 @@
     "tooltip_quick_view": "빠른 보기",
     "tooltip_bookmark": "북마크",
     "tooltip_share": "공유",
-    "list_new_post": "새 게시물 나열"
+    "list_new_post": "새 게시물 나열",
+    "tooltip_add_favorite": "이 글을 즐겨찾기에 추가",
+    "tooltip_remove_favorite": "즐겨찾기에서 제거",
+    "tooltip_like": "좋아요",
+    "tooltip_dislike": "싫어요",
+    "search_results": "검색 결과:"
 }

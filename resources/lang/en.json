@@ -94,5 +94,10 @@
     "tooltip_quick_view": "Quick View",
     "tooltip_bookmark": "Bookmark",
     "tooltip_share": "Share",
-    "list_new_post": "List New Post"
+    "list_new_post": "List New Post",
+    "tooltip_add_favorite": "Add this Post to my favorites",
+    "tooltip_remove_favorite": "Remove from my favorites",
+    "tooltip_like": "I like this",
+    "tooltip_dislike": "I dislike this",
+    "search_results": "Search results :"
 }

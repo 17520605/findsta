@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="post-meta">
                                                 <div class="king-p-who">
-                                                    <img data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=14473541867296403178&amp;qa_size=107"
+                                                    <img data-king-img-src="https://ui-avatars.com/api/?name={{ $list->author }}&background=random&rounded=true"
                                                         class="king-avatar king-lazy" width="27" height="27"><a
                                                         href="#" class="king-user-link">{{ $list->author }}</a>
                                                 </div>

@@ -121,21 +121,13 @@ class HomeController extends Controller
             if(isset($bookmark))
             {
                 $deleted = $bookmark->delete();
-                // if(isset($deleted))
-                // {
-                //     return response()->json([
-                //         'result' => 'ok',
-                //         'status' => 'delete',
-                //         'message' => "Remove bookmark success !"
-                //     ], 100);
-                // }
-                // else{
-                //     return response()->json([
-                //         'result' => 'fail',
-                //         'status' => 'delete',
-                //         'message' => "Remove bookmark false !"
-                //     ], 100);
-                // }
+                if(isset($deleted))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'delete',
+                    )); 
+                }
             }
             else
             {
@@ -143,35 +135,128 @@ class HomeController extends Controller
                 $bookmarks->userId = $userId;
                 $bookmarks->blogId = $blogId;
                 $saved = $bookmarks->save();
-                // if(isset($saved))
-                // {
-                //     return response()->json([
-                //         'result' => 'ok',
-                //         'status' => 'add',
-                //         'message' => "Add bookmark success !"
-                //     ], 100);
-                // }
-                // else{
-                //     return response()->json([
-                //         'result' => 'fail',
-                //         'status' => 'add',
-                //         'message' => "Add bookmark false !"
-                //     ], 100);
-                // }
+                if(isset($saved))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'add',
+                    )); 
+                }
+                
+            }
+             
+        
+        }
+        return redirect()->back();
+    }
+
+    public function bookmarkList()
+    {
+        $userId = get_data_user('web');
+        if($userId)
+        {        
+            $bookmarks = \App\Models\Bookmarks::where([['userId',$userId]])->orderby('id', 'DESC')->get();
+            if($bookmarks)
+            {
+                foreach($bookmarks as $bookmark)
+                {
+                    $blog = \App\Models\Blogs::where([['id',$bookmark->blogId]])->first();
+                    if($blog)
+                    {
+                        $bannerId = $blog->bannerId;
+                        if($bannerId)
+                        {
+                            $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
+                            $blog->thumbnail = $poster->thumbnail;
+                            $blog->src = $poster->url;
+                        }
+                        else
+                        {
+                            $fileId = $blog->fileId;
+                            $poster = \App\Models\Files::where('id', '=', $fileId)->first();
+                            $blog->thumbnail = $poster->thumbnail;
+                            $blog->src = $poster->url;
+                        }
+                        $bookmark->blog = $blog;
+                    }
+                    
+                }
+            }
+        }
+
+        return $bookmarks;
+    }
+    
+    public function favorite($blogId,Request $request)
+    {
+        $userId = get_data_user('web');
+        if($userId){
+            $favorite = \App\Models\Favorites::where([['userId', $userId],['blogId', $blogId]])->first();
+            if(isset($favorite))
+            {
+                $deleted = $favorite->delete();
+                if(isset($deleted))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'delete',
+                    )); 
+                }
+            }
+            else
+            {
+                $favorites = new \App\Models\Favorites();
+                $favorites->userId = $userId;
+                $favorites->blogId = $blogId;
+                $saved = $favorites->save();
+                if(isset($saved))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'add',
+                    )); 
+                }
             }
         
         }
         return redirect()->back();
     }
 
-    public function bookmarkList($language)
+    public function favoriteList()
     {
-        if($language)
+        $userId = get_data_user('web');
+        if($userId)
         {        
-            Session::put('language', $language);
+            $favorites = \App\Models\Favorites::where([['userId',$userId]])->orderby('id', 'DESC')->get();
+            if($favorites)
+            {
+                foreach($favorites as $favorite)
+                {
+                    $blog = \App\Models\Favorites::where([['id',$favorite->blogId]])->first();
+                    if($blog)
+                    {
+                        $bannerId = $blog->bannerId;
+                        if($bannerId)
+                        {
+                            $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
+                            $blog->thumbnail = $poster->thumbnail;
+                            $blog->src = $poster->url;
+                        }
+                        else
+                        {
+                            $fileId = $blog->fileId;
+                            $poster = \App\Models\Files::where('id', '=', $fileId)->first();
+                            $blog->thumbnail = $poster->thumbnail;
+                            $blog->src = $poster->url;
+                        }
+                        $favorite->blog = $blog;
+                    }
+                    
+                }
+            }
         }
 
-        return redirect()->back();
+        return $favorites;
     }
     
 }

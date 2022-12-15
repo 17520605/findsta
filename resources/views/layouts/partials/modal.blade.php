@@ -29,47 +29,16 @@
 </div>
 <div id="rlatermodal" class="king-modal-login">
     <div class="king-modal-content">
-        <button type="button" class="king-modal-close" data-dismiss="modal" aria-label="Close"><i
-                class="icon fa fa-fw fa-times"></i></button>
+        <button type="button" class="king-modal-close" onclick="return closebookmodal()">
+            <i class="icon fa fa-fw fa-times"></i>
+        </button>
         <div class="king-modal-header">
             <h2 class="modal-title">{{ __('bookmarks') }}</h2>
         </div>
         <div id="king-rlater-inside">
-            {{-- <div class="nopost"><i class="far fa-frown-open fa-4x"></i>{{ __('nothing_found') }} !</div> --}}
             <div class="bm-posts">
-                <div class="bm-post">
-                    <div class="bm-bg"
-                        style="background-image:url(https://demos.kingthemes.net/king-include/uploads/2022/03/931366-elice-768x565.png);">
-                        <a href="#" class="modalbook king-readlater selected" data-toggle="tooltip"
-                            data-placement="right" title="Bookmark" data-bookmarkid="28"
-                            onclick="return bookmark(this);">
-                            <i class="far fa-bookmark"></i>
-                        </a></div>
-                    <div class="bm-content"><a
-                            href="https://demos.kingthemes.net/28/only-a-music-expert-knows-these-lyrics-are-from-which-singer"
-                            class="bm-title">Only a music expert knows these lyrics are from which singer ?</a></div>
-                </div>
-                <div class="bm-post">
-                    <div class="bm-bg"
-                        style="background-image:url(https://demos.kingthemes.net/king-include/uploads/2022/03/316676-macos-monterey-1920x1080-wwdc-2021-5k-23424.jpg);">
-                        <a href="#" class="modalbook king-readlater selected" data-toggle="tooltip"
-                            data-placement="right" title="Bookmark" data-bookmarkid="29"
-                            onclick="return bookmark(this);">
-                            <i class="far fa-bookmark"></i>
-                        </a></div>
-                    <div class="bm-content"><a href="https://demos.kingthemes.net/29/multiple-wallpaper-images-enjoy-it"
-                            class="bm-title">Multiple wallpaper images , enjoy it</a></div>
-                </div>
-                <div class="bm-post">
-                    <div class="bm-bg"
-                        style="background-image:url(https://demos.kingthemes.net/king-include/uploads/2022/03/35171-fontcontrol_en.330c13d.jpg);">
-                        <a href="#" class="modalbook king-readlater selected" data-toggle="tooltip"
-                            data-placement="right" title="Bookmark" data-bookmarkid="30"
-                            onclick="return bookmark(this);">
-                            <i class="far fa-bookmark"></i>
-                        </a></div>
-                    <div class="bm-content"><a href="https://demos.kingthemes.net/30/wild-flower-illustration"
-                            class="bm-title">Wild flower illustration</a></div>
+                <div class="loading-bookmark">
+                    <span class="loader"></span>
                 </div>
             </div>
         </div>

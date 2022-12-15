@@ -19,20 +19,19 @@
         let language = $("input[name='user_lang']:checked").val();
         window.location.href = `{{ env('APP_URL') }}/change-language/${language}`
     };
-    function search($keyword) {
-        let keyword = $('#headerSearchInput').val();
-        window.location.href = "{{ env('APP_URL') }}/search/"+ $keyword;
+    function search(keyword) {
+        window.location.href = "{{ env('APP_URL') }}/search/"+ keyword;
     }
 
     $('#headerSearchInput').keypress(function(e) {
         if (e.which == 13) {
-            let keyword = $('#headerSearchInPageInput').val();
+            let keyword = $('#headerSearchInput').val();
             search(keyword);
         }
     });
 
     $('#headerSearchBtn').click(function(e) {
-        let keyword = $('#headerSearchInPageInput').val();
+        let keyword = $('#headerSearchInput').val();
         search(keyword);
     });
 

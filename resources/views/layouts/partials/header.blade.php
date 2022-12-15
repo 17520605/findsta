@@ -1,3 +1,12 @@
+{{-- <div class="king-notice" id="notice_gdpr" style="display: block;">
+    <form>
+        Our website uses cookies to improve your experience. 
+        <p></p>
+        Learn more <a href="#">Privacy Policy</a>
+        <button name="notice_gdpr" onclick="return qa_notice_click(this);" type="submit" class="king-notice-close-button"><i class="far fa-times-circle"></i></button>
+        <input type="hidden" name="code" value="0-1671094516-6356685942befea1b8ed8da5a42ae5912af0f282">
+    </form>
+</div> --}}
 <div class="king-header">
     <div class="header-left">
         <div class="king-left-toggle" data-toggle="dropdown" data-target=".leftmenu" aria-expanded="false" role="button">
@@ -46,8 +55,7 @@
                 <ul class="king-nav-cat-list king-nav-cat-list-4">
                     @foreach ($categories as $category)
                     <li class="king-nav-cat-item king-nav-cat-art">
-                        <a href="{{ env('APP_URL') }}/category/{{ $category->slug}}" class="king-nav-cat-link"><span style="color:{{ $category->color}}"><i
-                                    class="fa-brands {{ $category->icon}}"></i></span>{{ $category->name}}</a>
+                        <a href="{{ env('APP_URL') }}/category/{{ $category->slug}}" class="king-nav-cat-link"><span style="color:{{ $category->color}}"><i class="fa-brands {{ $category->icon}}"></i></span>{{ $category->name}}</a>
                         <span class="king-nav-cat-note">(4)</span>
                     </li>
                     @endforeach
@@ -84,9 +92,9 @@
                     </div>
                 </li>
                 <li>
-                    <div class="king-rlater" data-toggle="modal" data-target="#rlatermodal" onclick="return bookmodal();">
+                    <div class="king-rlater" onclick="return bookmodal();">
                         <i class="fa-solid fa-bookmark"></i>
-                        <input type="hidden" class="king-bmcountin" id="bcount" value="0">
+                        <input type="hidden" class="king-bmcountin" id="bcount" value="{{ $count_bookmarks }}">
                         <span class="king-bmcount" id="bcounter">{{ $count_bookmarks }}</span>
                     </div>
                 </li>

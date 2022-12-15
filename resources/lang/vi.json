@@ -94,5 +94,10 @@
     "tooltip_quick_view": "Xem nhanh",
     "tooltip_bookmark": "Bookmark",
     "tooltip_share": "Chia sẻ",
-    "list_new_post": "Liệt kê bài đăng mới"
+    "list_new_post": "Liệt kê bài đăng mới",
+    "tooltip_add_favorite": "Thêm bài đăng này vào mục ưa thích của tôi",
+    "tooltip_remove_favorite": "Xóa khỏi mục ưa thích của tôi",
+    "tooltip_like": "Tôi thích cái này",
+    "tooltip_dislike": "Tôi không thích điều này",
+    "search_results": "Kết quả tìm kiếm :"
 }

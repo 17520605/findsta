@@ -84,6 +84,6 @@ class SearchController extends Controller
         {
             $count_bookmarks = 0;
         }
-        return view('search.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'searchvalue'=>$q]);
+        return view('search.index', ['categories'=>$categories, 'lists'=>$lists, 'topvideos'=>$topvideos,'searchvalue'=>$q, 'count_bookmarks'=>$count_bookmarks]);
     }
 }

@@ -31,6 +31,94 @@ class DetailController extends Controller
             $blog->poster = $bannerBlog->thumbnail;
             $blog->src = $fileBlog->url;
             $blog->source = $fileBlog->source;
+            $comments = \App\Models\Comments::where([['blogId', $blog->id]])->orderby('id', 'DESC')->offset(0)->limit(10)->get();
+            foreach ($comments as $comment) {
+                $commentuserId = $comment->userId;
+                if($commentuserId)
+                {
+                    $profile = \App\Models\Profile::where('userId',  $commentuserId)->first();
+                    $avatarId = $profile->avatarId;
+                    if($avatarId != null || $avatarId != '')
+                    {
+                        $avatar = \App\Models\Files::where('id', '=', $avatarId)->first();
+                        $profile->avatar = $avatar->miniUrl();
+                        
+                    }else
+                    {
+                        $profile->avatar = 'https://ui-avatars.com/api/?name='.$profile->lname.' '.$profile->fname.'&background=random&rounded=true';
+                    }
+                    $comment->profile = $profile;
+                }else{
+                    $avatar = 'https://ui-avatars.com/api/?name='.$comment->name.'&background=random&rounded=true';
+                    $comment->avatar = $avatar;
+                }
+                $replies = \App\Models\Replies::where([['commentId', $comment->id]])->orderby('id', 'DESC')->get();
+                foreach ($replies as $reply) {
+                    $replyuserId = $reply->userId;
+                    if($replyuserId)
+                    {
+                        $profile = \App\Models\Profile::where('userId',  $replyuserId)->first();
+                        $avatarId = $profile->avatarId;
+                        if($avatarId != null || $avatarId != '')
+                        {
+                            $avatar = \App\Models\Files::where('id', '=', $avatarId)->first();
+                            $profile->avatar = $avatar->miniUrl();
+                            
+                        }else
+                        {
+                            $profile->avatar = 'https://ui-avatars.com/api/?name='.$profile->lname.' '.$profile->fname.'&background=random&rounded=true';
+                        }
+                        $reply->profile = $profile;
+                    }
+                    else
+                    {
+                        $avatar = 'https://ui-avatars.com/api/?name='.$reply->name.'&background=random&rounded=true';
+                        $reply->avatar = $avatar;
+                    }
+                }  
+                $comment->reply = $replies;
+        
+            }  
+            $likecount = \App\Models\Likes::where([['blogId',$blog->id]])->count();
+            if($userId)
+            {
+                $bookmark = \App\Models\Bookmarks::where([['userId',$userId],['blogId',$blog->id]])->first();
+                if($bookmark)
+                {
+                    $blog->bookmark = true;
+                }
+                else
+                {
+                    $blog->bookmark = false;
+                }
+                $favorite = \App\Models\Favorites::where([['userId',$userId],['blogId',$blog->id]])->first();
+                if($favorite)
+                {
+                    $blog->favorite = true;
+                }
+                else
+                {
+                    $blog->favorite = false;
+                }
+                $like = \App\Models\Likes::where([['userId',$userId],['blogId',$blog->id]])->first();
+                if($like)
+                {
+                    $blog->like = true;
+                    $blog->likecount = $likecount;
+                }
+                else
+                {
+                    $blog->like = false;
+                    $blog->likecount = $likecount;
+                }
+            }else
+            {
+                $blog->bookmark = false;
+                $blog->favorite = false;
+                $blog->like = false;
+                $blog->likecount = $likecount;
+            }
+            
             $blog->tags = $array;
             $this->countView($blog->id);
             // get previous user id
@@ -94,12 +182,157 @@ class DetailController extends Controller
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
         if($userId){
-            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+            $count_bookmarks = \App\Models\Bookmarks::where([['userId',$userId]])->count();
         }
         else
         {
             $count_bookmarks = 0;
         }
-        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog,'previous'=>$previous,'next'=>$next ,'relateds'=>$relateds, 'count_bookmarks'=>$count_bookmarks]);
+        return view('detail.index', ['categories'=>$categories, 'topvideos'=>$topvideos, 'blog'=>$blog,'previous'=>$previous,'next'=>$next ,'relateds'=>$relateds, 'count_bookmarks'=>$count_bookmarks , 'comments'=>$comments]);
+    }
+    public function addcomment($blogId,Request $request)
+    {
+        $userId = get_data_user('web');
+        $message = $request->input('message');
+        if($userId){
+            $profile = \App\Models\Profile::where([['userId', $userId]])->first();
+            $commnet = new \App\Models\Comments();
+            $commnet->userId = $profile->userId;
+            $commnet->blogId = $blogId;
+            $commnet->name = $profile->fname.' '.$profile->lname;
+            $commnet->email = $profile->email;
+            $commnet->message = $message;
+            $saved = $commnet->save();
+            if(isset($saved))
+            {
+                $comments = \App\Models\Comments::where([['blogId', $blogId]])->orderby('id', 'DESC')->offset(0)->limit(10)->get();
+                return response()->json([
+                    'success' => true,
+                    'comments' => $comments,
+                ]);
+            }
+        }else
+        {
+            $message = $request->input('message');
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $commnet = new \App\Models\Comments();
+            $commnet->blogId = $blogId;
+            $commnet->name = $name;
+            $commnet->email = $email;
+            $commnet->message = $message;
+            $saved = $commnet->save();
+            if(isset($saved))
+            {
+                return redirect()->back();
+            }
+        }
+        return redirect()->back();
+    }
+    public function removecomment(Request $request)
+    {
+        $commentId = $request->input('commentId');
+        $comment = \App\Models\Comments::where([['id', $commentId]])->first();
+        if(isset($comment))
+        {
+            $deleted = $comment->delete();
+            if(isset($deleted))
+            {
+                return redirect()->back();
+            }
+        }
+        return false;
+    }
+    public function addreply($blogId,Request $request)
+    {
+        $userId = get_data_user('web');
+        $commentId = $request->input('commentId');
+        $message = $request->input('message');
+        if($userId){
+            $profile = \App\Models\Profile::where([['userId', $userId]])->first();
+            $replies = new \App\Models\Replies();
+            $replies->userId = $profile->userId;
+            $replies->commentId = $commentId;
+            $replies->blogId = $blogId;
+            $replies->name = $profile->fname.' '.$profile->lname;
+            $replies->email = $profile->email;
+            $replies->message = $message;
+            $saved = $replies->save();
+            if(isset($saved))
+            {
+                return response()->json([
+                    'success' => true,
+                ]);
+            }
+        }else
+        {
+            $message = $request->input('message');
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $replies = new \App\Models\Replies();
+            $replies->blogId = $blogId;
+            $replies->commentId = $commentId;
+            $replies->name = $name;
+            $replies->email = $email;
+            $replies->message = $message;
+            $saved = $replies->save();
+            if(isset($saved))
+            {
+                return response()->json([
+                    'success' => true,
+                ]);
+            }
+        }
+        return redirect()->back();
+    }
+    public function removereply(Request $request)
+    {
+        $replyId = $request->input('replyId');
+        $reply = \App\Models\Replies::where([['id', $replyId]])->first();
+        if(isset($reply))
+        {
+            $deleted = $reply->delete();
+            if(isset($deleted))
+            {
+                return redirect()->back();
+            }
+        }
+        return false;
+    }
+    public function like($blogId,Request $request)
+    {
+        $userId = get_data_user('web');
+        if($userId){
+            $like = \App\Models\Likes::where([['userId', $userId],['blogId', $blogId]])->first();
+            if(isset($like))
+            {
+                $liked = $like->delete();
+                if(isset($liked))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'disklike',
+                    )); 
+                }
+            }
+            else
+            {
+                $like = new \App\Models\Likes();
+                $like->userId = $userId;
+                $like->blogId = $blogId;
+                $saved = $like->save();
+                if(isset($saved))
+                {
+                    return response()->json(array(
+                        'success' => true,
+                        'status' => 'like',
+                    )); 
+                }
+                
+            }
+             
+        
+        }
+        return redirect()->back();
     }
 }

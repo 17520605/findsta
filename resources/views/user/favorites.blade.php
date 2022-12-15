@@ -59,55 +59,65 @@
                 <div class="king-part-q-list king-inner">
                     <div class="container without-side">
                         <div class="grid-sizer"></div>
-                        <div class="box king-q-list-item king-q-favorited king-class-video" id="q9">
+                        @foreach ($favorites as $favorite)
+                        <div class="box king-q-list-item king-q-favorited " id="q{{ $favorite->list->id }}">
                             <div class="king-post-upbtn">
-                                <a href="./9/mp4-video-simple-post" class="ajax-popup-link magnefic-button mgbutton"
-                                    data-toggle="tooltip" data-placement="right" title="Quick View"><i
-                                        class="fa-solid fa-chevron-up"></i></a>
-                                <a href="#" class="king-readlater" data-toggle="tooltip" data-placement="right"
-                                    title="Bookmark" data-bookmarkid="9" onclick="return bookmark(this);">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
-                                <a href="./9/mp4-video-simple-post" class="ajax-popup-share magnefic-button"
-                                    data-toggle="tooltip" data-placement="right" title="Share"><i
-                                        class="fas fa-share-alt"></i></a>
+                                <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+                                @if (Auth::check())
+                                    <a href="javascript:void(0)" class="king-readlater {{$favorite->list->bookmark ? 'selected' : ''}}" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_bookmark')}}" data-bookmarkid="{{ $favorite->list->id }}" onclick="return bookmark(this);"> <i class="far fa-bookmark"></i></a>
+                                @endif
+                                <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="ajax-popup-share magnefic-button" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_share')}}"><i class="fas fa-share-alt"></i></a>
                             </div>
                             <div class="king-q-item-main">
-                                <A class="item-a" HREF="./9/mp4-video-simple-post">
-                                    <span class="post-featured-img"><img class="item-img king-lazy" width="1280"
-                                            height="720"
-                                            data-king-img-src="https://demos.kingthemes.net/king-include/uploads/2021/03/143534.jpg"
-                                            alt="" /></span>
-                                </A>
+                                <a class="item-a"
+                                    href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}">
+                                    <span class="post-featured-img"><img class="item-img king-lazy" width="800" height="auto"
+                                            data-king-img-src="{{ $favorite->list->thumbnail }}" alt="" /></span>
+                                </a>
                                 <div class="king-post-content">
                                     <div class="king-q-item-title">
                                         <div class="king-title-up">
-                                            <a class="king-post-format" href="./type"><i class="fas fa-video"></i>
-                                                Video</a>
+                                            @if ($favorite->list->type === 'video')
+                                                <a class="king-post-format" href="#video"><i
+                                                        class="fas fa-video"></i> Video</a>
+                                            @elseif ($favorite->list->type === 'image')
+                                                <a class="king-post-format" href="#images"><i
+                                                        class="fas fa-image"></i> Image</a>
+                                            @elseif ($favorite->list->type === 'audio')
+                                                <a class="king-post-format" href="#images"><i
+                                                        class="fa-solid fa-headphones"></i> Audio</a>
+                                            @endif
+                                            <a class="king-post-format" href="#news"><i
+                                                    class="fas fa-newspaper"></i> News</a>
                                             <span class="metah-where">
-                                                <span class="metah-where-data"><a href="./technology"
-                                                        class="king-category-link">Technology</a></span>
+                                                <span class="metah-where-data"><a href="#" class="king-category-link">{{ $favorite->list->category }}</a></span>
                                             </span>
                                         </div>
-                                        <A HREF="./9/mp4-video-simple-post">
-                                            <h2>Mp4 video simple post</h2>
-                                        </A>
+                                        <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}">
+                                            <h2
+                                                style="overflow: hidden;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2;
+                                        -webkit-box-orient: vertical;">
+                                                {{ $favorite->list->title }}</h2>
+                                        </a>
                                     </div>
                                     <div class="post-meta">
                                         <div class="king-p-who">
-                                            <img data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=14473541867296403178&amp;qa_size=107"
+                                            <img data-king-img-src="https://ui-avatars.com/api/?name={{ $favorite->list->author }}&background=random&rounded=true"
                                                 class="king-avatar king-lazy" width="27" height="27"><a
-                                                href="./user/king" class="king-user-link">king</a>
+                                                href="#" class="king-user-link">{{ $favorite->list->author }}</a>
                                         </div>
                                         <div>
                                             <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                                            <span><i class="fa fa-eye" aria-hidden="true"></i> 105</span>
+                                            <span><i class="fa fa-eye" aria-hidden="true"></i> 210</span>
                                             <span><i class="fas fa-chevron-up"></i> 0</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    @endforeach
                     </div>
                 </div>
             </div> <!-- king-main-in -->

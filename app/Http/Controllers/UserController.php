@@ -128,13 +128,53 @@ class UserController extends Controller
             $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
             $userId = get_data_user('web');
             if($userId){
-                $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+                $count_bookmarks = \App\Models\Bookmarks::where([['userId',$userId]])->count();
             }
             else
             {
                 $count_bookmarks = 0;
             }
-            return view('user.favorites',['categories'=>$categories , 'profile'=>$profile , 'user'=>$user, 'count_bookmarks'=>$count_bookmarks]);
+            $favorites = \App\Models\Favorites::where([['userId',$userId]])->orderby('id', 'DESC')->get();
+            foreach ($favorites as $favorite) {
+                $list = \App\Models\Blogs::where([['id',$favorite->blogId]])->first();
+                $bannerId = $list->bannerId;
+                if($userId)
+                {
+                    $bookmark = \App\Models\bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
+                    if($bookmark)
+                    {
+                        $list->bookmark = true;
+                    }
+                    else
+                    {
+                        $list->bookmark = false;
+                    }
+                }
+                if($bannerId)
+                {
+                    $poster = \App\Models\Files::where('id', '=', $bannerId)->first();
+                    $list->thumbnail = $poster->thumbnail;
+                }
+                else
+                {
+                    $fileId = $list->fileId;
+                    $poster = \App\Models\Files::where('id', '=', $fileId)->first();
+                    $list->thumbnail = $poster->thumbnail;
+                }
+                $categoryId = $favorite->categoryId;
+                if($categoryId)
+                {
+                    $categories = \App\Models\Categories::where([['is_public',1],['id',$categoryId]])->first();
+                    $list->category = $categories->name;
+                }
+                else
+                {
+                    $list->category = 'Empty';
+                }
+                $favorite->list = $list;
+    
+            }  
+            return view('user.favorites',['categories'=>$categories , 'profile'=>$profile , 'user'=>$user, 'count_bookmarks'=>$count_bookmarks, 'favorites'=>$favorites]);
         }
     }
     public function myProfile()
@@ -179,7 +219,7 @@ class UserController extends Controller
         {
             $count_bookmarks = 0;
         }
-        return view('user.messages',['categories'=>$categories]);
+        return view('user.messages',['categories'=>$categories,'count_bookmarks'=>$count_bookmarks]);
     }
     public function follower()
     {

@@ -657,6 +657,16 @@
     background: #fff;
 }
 
-.social-share a {
-    color: #fff;
+.king-night .king-search-button i {
+    color: #FFF;
+}
+
+.king-night .social-share a {
+    color: #fff !important;
+}
+.king-searchp-button{
+    background: none;
+}
+.king-searchp-form{
+    background: none;
 }

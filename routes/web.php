@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
         Route::post('/bookmark/{id}/toggle', 'HomeController@bookmark')->name('check.bookmark');
         Route::get('/bookmark', 'HomeController@bookmarkList')->name('get.bookmark');
 
+        Route::post('/favorite/{id}/toggle', 'HomeController@favorite')->name('check.favorite');
+        Route::get('/favorite', 'HomeController@favoriteList')->name('get.favorite');
+
+
+
         Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('language.change');
 
         Route::get('/tag/{slug}', 'TagController@index');
@@ -40,7 +45,14 @@ use Illuminate\Support\Facades\Route;
         Route::get('/search/{search}', 'SearchController@index');
     
         Route::get('/{id}/{slug}', 'DetailController@index');
-    
+        Route::post('/{id}/{slug}/addcomment', 'DetailController@addcomment')->name('post.comment');
+        Route::post('/{id}/{slug}/removecomment', 'DetailController@removecomment')->name('delete.comment');
+
+        Route::post('/{id}/{slug}/addreply', 'DetailController@addreply')->name('post.reply');
+        Route::post('/{id}/{slug}/removereply', 'DetailController@removereply')->name('delete.reply');
+
+        Route::post('/vote/{id}/toggle', 'DetailController@like')->name('toggle.like');
+
         Route::get('/news', 'NewsController@index');
 
         Route::get('/feedback', 'FeedbackController@index')->name('get.feedback');

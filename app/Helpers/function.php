@@ -65,4 +65,8 @@ if (!function_exists('get_data_user'))
     
         return !empty($n_format . $suffix) ? $n_format . $suffix : 0;
     }
+
+    function timeFromNow($date){
+        return moment($date).fromNow(true);
+     }
 }

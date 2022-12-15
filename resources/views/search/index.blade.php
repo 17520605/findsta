@@ -5,7 +5,7 @@
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
     <div class="head-title">
-        Search results : <div class="king-searchp">
+        {{__('search_results')}} <div class="king-searchp">
             <div class="king-searchp-form">
                 <input id="headerSearchInPageInput" type="text" name="q" value="{{$searchvalue}}" class="king-searchp-field" placeholder="Search">
                 <button id="headerSearchInPageBtn" class="king-searchp-button"><i class="fas fa-search fa-lg"></i></button>
@@ -66,7 +66,7 @@
                                             </div>
                                             <div class="post-meta">
                                                 <div class="king-p-who">
-                                                    <img data-king-img-src="https://demos.kingthemes.net/?qa=image&amp;qa_blobid=14473541867296403178&amp;qa_size=107"
+                                                    <img data-king-img-src="https://ui-avatars.com/api/?name={{ $list->author }}&background=random&rounded=true"
                                                         class="king-avatar king-lazy" width="27" height="27"><a
                                                         href="#" class="king-user-link">{{ $list->author }}</a>
                                                 </div>

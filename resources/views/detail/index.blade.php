@@ -35,44 +35,30 @@
             <div class="king-main-in">
                 <div class="king-part-q-view king-inner">
                     <div class="share-bar">
-                        <FORM method="post" action="https://demos.kingthemes.net/3/single-image-iphone-wallpaper">
-                            <div class="king-voting king-voting-net" id="voting_3">
-                                <div class="king-vote-buttons-netup">
-                                    <button title="I like this" name="vote_3_1_q3" onclick="return qa_vote_click(this);"
-                                        type="submit" value="+"
-                                        class="king-vote-first-button king-vote-up-button"></button>
+                        @if (Auth::check())
+                            <form>
+                                <div class="king-voting king-voting-net" id="voting_3">
+                                    <div class="king-vote-buttons-netup">
+                                        <button id="btn-like" title="{{__('tooltip_like')}}" {{$blog->like === true ? "disabled" : null}} style="opacity: {{$blog->like === true ? '0.3' : '1'}}" name="vote_3_1_q3" data-vote-id="{{$blog->id}}" onclick="return qa_vote_click(this);"  type="button" value="+"  class="king-vote-first-button king-vote-up-button"></button>
+                                    </div>
+                                    <div class="king-vote-count king-vote-count-net">
+                                        <span class="king-netvote-count">
+                                            <span id="count-vote" class="king-netvote-count-data">{{$blog->likecount}}</span>
+                                            <input type="hidden" value="{{$blog->likecount}}" id="value-vote">
+                                        </span>
+                                    </div>
+                                    <div class="king-vote-buttons-netdown">
+                                        <button id="btn-disklike" title="{{__('tooltip_dislike')}}" {{$blog->like === false ? "disabled" : null}} style="opacity: {{$blog->like === false ? '0.3' : '1'}}" name="vote_3_-1_q3" data-vote-id="{{$blog->id}}" onclick="return qa_vote_click(this);" type="button" value="&ndash;" class="king-vote-second-button king-vote-down-button"></button>
+                                    </div>
                                 </div>
-                                <div class="king-vote-count king-vote-count-net">
-                                    <span class="king-netvote-count">
-                                        <span class="king-netvote-count-data">0<span class="votes-up"><span
-                                                    class="value-title" title="0"></span></span><span
-                                                class="votes-down"><span class="value-title"
-                                                    title="0"></span></span></span><span
-                                            class="king-netvote-count-pad">
-                                            votes</span>
-                                    </span>
-                                </div>
-                                <div class="king-vote-buttons-netdown">
-                                    <button title="I dislike this" name="vote_3_-1_q3" onclick="return qa_vote_click(this);"
-                                        type="submit" value="&ndash;"
-                                        class="king-vote-second-button king-vote-down-button"></button>
-                                </div>
-                            </div>
-                            <input type="hidden" name="code"
-                                value="1-1669304788-cc60331768d7b208f416b3968d8bcc4a986adf19">
-                        </FORM>
-                        <FORM method="post" action="https://demos.kingthemes.net/3/single-image-iphone-wallpaper">
+                            </form>
                             <span class="king-favoriting" id="favoriting">
-                                <button title="Add this Post to my favorites" name="favorite_Q_3_1"
-                                    onclick="return qa_favorite_click(this);" type="submit" value="Follow"
-                                    class="king-favorite-button"><i class="fa-solid fa-heart"></i></button>
+                                <button title="{{$blog->favorite ? __('tooltip_remove_favorite') : __('tooltip_add_favorite')}}" data-favoriteid="{{$blog->id}}" onclick="return favorite(this);" value="Follow" class="{{$blog->favorite ? 'king-unfavorite-button' : 'king-favorite-button' }} "><i class="fa-solid fa-heart"></i></button>
                             </span>
-                            <input type="hidden" name="code"
-                                value="1-1669304788-953d96b746213be4588524a06e15234203f99db1">
-                        </FORM>
+                        @endif
                         <div class="share-link" data-toggle="modal" data-target="#sharemodal" role="button"><i data-toggle="tooltip" data-placement="top" class="fas fa-share" title="Share"></i></div>
                         @if (Auth::check())
-                            <a href="#" class="share-link" data-toggle="tooltip" data-placement="right" title="Bookmark"data-bookmarkid="3" onclick="return bookmark(this);"><i class="far fa-bookmark"></i></a>
+                            <a href="#" class="share-link {{$blog->bookmark ? 'selected':''}}" data-toggle="tooltip" data-placement="right" title="Bookmark" data-bookmarkid="{{$blog->id}}" onclick="return bookmark(this);"><i class="far fa-bookmark"></i></a>
                         @endif
                     </div>
                     <div class="king-q-view hentry question" id="q3">
@@ -163,8 +149,8 @@
                         <ul class="reactions" data-postid="3" data-valid="0">
                             <li class="reaction-item " id="reac1">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:21%;"></span>
-                                    <span class="reaction-percent">21%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
                                 <div class="reaction" data-id="1" data-voted="3" data-uvoted="0"
@@ -172,8 +158,8 @@
                             </li>
                             <li class="reaction-item " id="reac2">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:29%;"></span>
-                                    <span class="reaction-percent">29%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
                                 <div class="reaction" data-id="2" data-voted="4" data-uvoted="0"
@@ -181,8 +167,8 @@
                             </li>
                             <li class="reaction-item " id="reac3">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:21%;"></span>
-                                    <span class="reaction-percent">21%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
                                 <div class="reaction" data-id="3" data-voted="3" data-uvoted="0"
@@ -190,38 +176,38 @@
                             </li>
                             <li class="reaction-item " id="reac4">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:7%;"></span>
-                                    <span class="reaction-percent">7%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
-                                <div class="reaction" data-id="4" data-voted="1" data-uvoted="0"
+                                <div class="reaction" data-id="4" data-voted="0" data-uvoted="0"
                                     onclick="return reacclick(this);">Cute</div>
                             </li>
                             <li class="reaction-item " id="reac5">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:7%;"></span>
-                                    <span class="reaction-percent">7%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
-                                <div class="reaction" data-id="5" data-voted="1" data-uvoted="0"
+                                <div class="reaction" data-id="5" data-voted="0" data-uvoted="0"
                                     onclick="return reacclick(this);">Omg</div>
                             </li>
                             <li class="reaction-item " id="reac6">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:7%;"></span>
-                                    <span class="reaction-percent">7%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
-                                <div class="reaction" data-id="6" data-voted="1" data-uvoted="0"
+                                <div class="reaction" data-id="6" data-voted="0" data-uvoted="0"
                                     onclick="return reacclick(this);">WTF</div>
                             </li>
                             <li class="reaction-item " id="reac7">
                                 <div class="reaction-in">
-                                    <span class="reaction-result" style="height:7%;"></span>
-                                    <span class="reaction-percent">7%</span>
+                                    <span class="reaction-result" style="height:0%;"></span>
+                                    <span class="reaction-percent">0%</span>
                                     <span class="reaction-voted"></span>
                                 </div>
-                                <div class="reaction" data-id="7" data-voted="1" data-uvoted="0"
+                                <div class="reaction" data-id="7" data-voted="0" data-uvoted="0"
                                     onclick="return reacclick(this);">Cry</div>
                             </li>
                             <li class="reaction-item " id="reac8">
@@ -245,47 +231,38 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="comments">
                                 <div class="king-part-a-form">
+                                    <input id="id-blog-detail" type="hidden" value="{{$blog->id}}">
+                                    <input id="slug-blog-detail" type="hidden" value="{{$blog->slug}}">
                                     <div class="king-a-form" id="anew">
                                         <h2>Your Comment</h2>
                                         @if (Auth::check())
-                                            <form method="post"
-                                                action="https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
-                                                name="a_form">
+                                            <form class="commentForm">
                                                 <table class="king-form-tall-table">
                                                     <tr>
                                                         <td class="king-form-tall-data">
-                                                            <TEXTAREA name="a_content" id="a_content" ROWS="5" COLS="40" class="king-form-tall-text"></TEXTAREA>
+                                                            <textarea name="message" ROWS="5" COLS="40" class="king-form-tall-text"></textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="king-form-tall-label">
                                                             <label>
-                                                                <input name="a_notify" type="checkbox" value="1"
-                                                                    class="king-form-tall-checkbox">
-                                                                Email me (nguyenhuuminhkhai@gmail.com) if my Comment is
-                                                                voted or replied on
+                                                                <input name="a_notify1" type="checkbox" class="king-form-tall-checkbox"> Email me (nguyenhuuminhkhai@gmail.com) if my Comment is voted or replied on
                                                             </label>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="1" class="king-form-tall-buttons">
-                                                            <input onclick=" return qa_submit_answer(3, this);"
-                                                                value="Add Comment" title="" type="submit"
-                                                                class="king-form-tall-button king-form-tall-button-answer">
+                                                            <button type="submit" class="king-form-tall-button king-form-tall-button-answer"><span class="icon-loader-comment"></span> Add Comment</button>
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <input type="hidden" name="a_editor" value="">
-                                                <input type="hidden" name="a_doadd" value="1">
-                                                <input type="hidden" name="code"
-                                                    value="1-1669304788-228e82fb16acd66b699050fe5cf5a7624bf2cff1">
                                             </form>
                                         @else
-                                            <form method="post" action="../30/wild-flower-illustration" name="a_form">
+                                            <form  class="commentForm">
                                                 <table class="king-form-tall-table">
                                                     <tbody><tr>
                                                         <td class="king-form-tall-data">
-                                                            <textarea name="a_content" id="a_content" rows="5" cols="40" class="king-form-tall-text"></textarea>
+                                                            <textarea name="message" rows="5" cols="40" class="king-form-tall-text"></textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -295,60 +272,220 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="king-form-tall-data">
-                                                            <input name="a_name" type="text" value="" class="king-form-tall-text">
+                                                            <input name="name" type="text" value="" class="king-form-tall-text">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="king-form-tall-label">
                                                             <label>
-                                                                <input name="a_notify" id="a_notify" onclick="if (document.getElementById('a_notify').checked) document.getElementById('a_email').focus();" type="checkbox" value="1" class="king-form-tall-checkbox">
-                                                                <span id="a_email_shown" style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
+                                                                <input name="a_notify"  id="a_email_shown_comment" type="checkbox" class="king-form-tall-checkbox">
+                                                                <span style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
                                                             </label>
                                                         </td>
                                                     </tr>
-                                                    </tbody><tbody id="a_email_display" style="display: none;">
+                                                    </tbody><tbody id="a_email_display_comment" style="display: none;">
                                                         <tr>
                                                             <td class="king-form-tall-data">
-                                                                <input name="a_email" id="a_email" type="text" value="" class="king-form-tall-text">
+                                                                <input name="email" type="text" value="" class="king-form-tall-text">
+                                                                <span class="notify-comment"></span>
                                                                 <div class="king-form-tall-note">Privacy: Your email address will only be used for sending these notifications.</div>
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                    <tbody><tr>
-                                                        <td class="king-form-tall-label">
-                                                            Anti-spam verification:
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="king-form-tall-data">
-                                                            <div id="qa_captcha_div_1"><center><div class="g-recaptcha" data-sitekey="6Ldd6DcfAAAAAGPRXpyzLSOWRQd8gLVaGDNTCAR9" data-theme="light" data-type="image"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Ldd6DcfAAAAAGPRXpyzLSOWRQd8gLVaGDNTCAR9&amp;co=aHR0cHM6Ly9kZW1vcy5raW5ndGhlbWVzLm5ldDo0NDM.&amp;hl=en&amp;type=image&amp;v=pn3ro1xnhf4yB8qmnrhh9iD2&amp;theme=light&amp;size=normal&amp;cb=gfb4a1hbl1de" width="304" height="78" role="presentation" name="a-bj5tjjccix5h" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></center></div>
-                                                            <div class="king-form-tall-note">To avoid this verification in future, please <a href="../login">log in</a> or <a href="../register">register</a>.</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="1" class="king-form-tall-buttons">
-                                                            <input onclick=" return qa_submit_answer(30, this);" value="Add Comment" title="" type="submit" class="king-form-tall-button king-form-tall-button-answer">
-                                                        </td>
-                                                    </tr>
-                                                </tbody></table>
-                                                <input type="hidden" name="a_editor" value="">
-                                                <input type="hidden" name="a_doadd" value="1">
-                                                <input type="hidden" name="code" value="0-1670920436-04bca61bcea6a91cc8fc53b456dd581e1c680ba5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="king-form-tall-data">
+                                                                <div class="king-form-tall-note">To avoid this verification in future, please <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> or <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="1" class="king-form-tall-buttons">
+                                                                <button type="submit" class="king-form-tall-button king-form-tall-button-answer"><span class="icon-loader-comment"></span> Add Comment</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </form>
                                         @endif
                                     </div> <!-- END king-a-form -->
                                 </div>
                                 <div class="king-part-a-list">
                                     <div class="king-a-list" id="a_list">
-
-                                    </div> <!-- END king-a-list -->
-                                </div>
+                                        @foreach ($comments as $comment)
+                                        <div class="king-a-list-item hentry answer" id="a{{$comment->id}}">
+                                            <div class="king-a-item-main">
+                                                <div class="commentmain">
+                                                    <div class="a-top">
+                                                        <span class="king-a-item-avatar-meta">
+                                                            <span class="king-a-item-avatar">
+                                                                <a href="$" class="king-avatar-link"><img src="{{$comment->userId ? $comment->profile->avatar : $comment->avatar}}" width="43" height="80" class="king-avatar-image" alt="" /></a>
+                                                            </span>
+                                                        </span>
+                                                        <span class="meta-who">
+                                                            <span class="meta-who-data">
+                                                                <span class="vcard author"><a href="#" class="king-user-link url nickname">{{$comment->name}}</a></span>
+                                                            </span>
+                                                        </span>
+                                                        <div class="king-a-item-content">
+                                                            <a name="20"></a>
+                                                            <div class="entry-content">{{$comment->message}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="a-alt">
+                                                        <div class="king-a-selection"></div>
+                                                        <form method="post" action="{{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}/removecomment">
+                                                            @csrf
+                                                            <input type="hidden" name="commentId" value="{{$comment->id}}">
+                                                            <div class="king-a-item-buttons">
+                                                                    <span class="king-form-light-button king-form-light-button-edit" data-comment-id="{{$comment->id}}" title="Edit this Comment" onclick="return showReplyForm(this)"> Reply</span>
+                                                                @if (Auth::check())
+                                                                    @if ($comment->userId = Auth::user()->id)
+                                                                        <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> Delete</button>
+                                                                    @endif
+                                                                @endif
+                                                            </div>
+                                                        </form>
+                                                        <span class="meta-when">
+                                                            <span class="meta-when-data">
+                                                                <span class="published updated"><span class="value-title">{{$comment->updated_at}}</span></span>
+                                                            </span>
+                                                        </span>
+                                                    </div>                                                    
+                                                </div>
+                                                <div class="king-c-form" id="form-reply-{{$comment->id}}" style="margin-left: 120px;display: none;">
+                                                    <h2>Your comment on this Comment:</h2>
+                                                    @if (Auth::check())
+                                                        <form class="replyForm">
+                                                            <table class="king-form-tall-table">
+                                                                <input type="hidden" name="commentId" value="{{$comment->id}}">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="king-form-tall-data">
+                                                                            <textarea name="message" rows="5" cols="40" class="king-form-tall-text"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="king-form-tall-label">
+                                                                            <label>
+                                                                                <input name="c20_notify" type="checkbox" value="1" class="king-form-tall-checkbox" />
+                                                                                Email me (nguyenhuuminhkhai@gmail.com) if a comment is added after mine
+                                                                            </label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="1" class="king-form-tall-buttons">
+                                                                            <button type="submit" class="king-form-tall-button king-form-tall-button-comment"><span class="icon-loader-reply"></span> Add Comment</button>
+                                                                            <button type="button" class="king-form-tall-button king-form-tall-button-cancel" data-comment-id="{{$comment->id}}" onclick="return hideReplyForm(this)"> Cancel</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </form>
+                                                    @else
+                                                        <form class="replyForm">
+                                                            <input type="hidden" name="commentId" value="{{$comment->id}}">
+                                                            <table class="king-form-tall-table">
+                                                                <tbody><tr>
+                                                                    <td class="king-form-tall-data">
+                                                                        <textarea name="message" rows="5" cols="40" class="king-form-tall-text"></textarea>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="king-form-tall-label">
+                                                                        Your name to display (optional)
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="king-form-tall-data">
+                                                                        <input name="name" type="text" value="" class="king-form-tall-text">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="king-form-tall-label">
+                                                                        <label>
+                                                                            <input name="a_notify2" data-email-reply="{{$comment->id}}" type="checkbox" class="king-form-tall-checkbox a_email_shown_reply" >
+                                                                            <span style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody><tbody id="a_email_display_reply_{{$comment->id}}" style="display: none;">
+                                                                    <tr>
+                                                                        <td class="king-form-tall-data">
+                                                                            <input name="email" type="text" value="" class="king-form-tall-text">
+                                                                            <span class="notify-comment"></span>
+                                                                            <div class="king-form-tall-note">Privacy: Your email address will only be used for sending these notifications.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="king-form-tall-data">
+                                                                            <div class="king-form-tall-note">To avoid this verification in future, please <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> or <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="1" class="king-form-tall-buttons">
+                                                                            <button type="submit" class="king-form-tall-button king-form-tall-button-comment"><span class="icon-loader-reply"></span> Add Comment</button>
+                                                                            <button type="button" class="king-form-tall-button king-form-tall-button-cancel" data-comment-id="{{$comment->id}}" onclick="return hideReplyForm(this)"> Cancel</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </form>
+                                                    @endif
+                                                </div>
+                                                @foreach ($comment->reply as $reply)
+                                                    <div class="king-a-item-c-list" id="c{{$reply->id}}_list" style="margin-bottom: 10px">
+                                                        <div class="king-c-list-item  hentry comment" id="{{$reply->id}}">
+                                                            <span class="king-c-item-avatar-meta">
+                                                                <span class="king-c-item-avatar">
+                                                                    <a href="#" class="king-avatar-link"><img src="{{$reply->userId ? $reply->profile->avatar : $reply->avatar}}" width="80" height="80" class="king-avatar-image" alt=""></a>
+                                                                </span>
+                                                            </span>
+                                                            <span class="meta-who">
+                                                                <span class="meta-who-data"><span class="vcard author"><a href="#" class="king-user-link url nickname">{{$reply->name}}</a></span></span>
+                                                            </span>
+                                                            <div class="king-c-item-content">
+                                                                <a name="60"></a><div class="entry-content">{{$reply->message}}</div>
+                                                            </div>
+                                                            <div class="king-c-item-footer">
+                                                                <form method="post" action="{{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}/removereply">
+                                                                    @csrf
+                                                                    <input type="hidden" name="replyId" value="{{$reply->id}}">
+                                                                    @if (Auth::check())
+                                                                        @if ($comment->userId = Auth::user()->id)
+                                                                            <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> Delete</button>
+                                                                        @endif
+                                                                    @endif
+                                                                    <span class="meta-when">
+                                                                        <span class="meta-when-data"><span class="published updated"><span class="value-title" >{{$reply->updated_at}}</span></span></span>
+                                                                    </span>
+                                                                </form>
+                                                            </div>
+                                                            <div class="king-c-item-clear">
+                                                            </div>
+                                                        </div> <!-- END king-c-item -->
+                                                    </div> 
+                                                @endforeach
+                                                <!-- END king-c-form -->
+                                            </div>
+                                            <!-- END king-a-item-main -->
+                                            <div class="king-a-item-clear"></div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>                                
                             </div>
                             <div class="tab-pane " id="fbcomments">
                                 <div class="fbcomments">
                                     <div class="fb-comments"
                                         data-href="https://demos.kingthemes.net/3/single-image-iphone-wallpaper"
-                                        data-width="100%" data-numposts="10"></div>
+                                        data-width="100%" data-numposts="10">
+                                        <div style="display: flex;justify-content: center">
+                                            <img style="width: 250px; cursor: pointer;" src="{{asset('assets/images/fb.png') }}" alt="">
+                                        </div>
+                                        <p style="text-align: center">Chúng tôi đang phát triển</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,8 +523,106 @@
             </div> <!-- king-main-in -->
         </div> <!-- king-main -->
     </div>
+    {{-- <div class="king-error">
+        Your comment will be checked and approved shortly.
+    </div> --}}
 
 @endsection
-@push('scripts')
+@section('scripts')
+    <script>
+        $('.commentForm').submit(function (e) { 
+            var id = $('#id-blog-detail').val();
+            var slug = $('#slug-blog-detail').val();
+            e.preventDefault();
+            const data = $(this).serializeArray();
+            $('.icon-loader-comment').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-comment').html(``);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "post",
+                url: `{{ env('APP_URL') }}/${id}/${slug}/addcomment`,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    document.location.reload(true);
+                }
+            });
+            return false;
+        });
+        $('.replyForm').submit(function (e) { 
+            var id = $('#id-blog-detail').val();
+            var slug = $('#slug-blog-detail').val();
+            e.preventDefault();
+            const data = $(this).serializeArray();
+            $('.icon-loader-reply').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-reply').html(``);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "post",
+                url: `{{ env('APP_URL') }}/${id}/${slug}/addreply`,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    document.location.reload(true);
+                }
+            });
+            return false;
+        });
+    </script>
+    <script>
+        function showReplyForm(elem) {
+            let id = elem.getAttribute('data-comment-id');
+            let idForm = 'form-reply-' + id;
+            const element = document.getElementById(idForm);
+            element.style.display = "block";
+        }        
+        function hideReplyForm(elem) {
+            let id = elem.getAttribute('data-comment-id');
+            let idForm = 'form-reply-' + id;
+            const element = document.getElementById(idForm);
+            element.style.display = "none";
+        }
+        function changeIconSniper(elem) {
+            elem.innerHTML='';
+	        elem.innerHTML ='<i class="fas fa-spinner fa-pulse"></i> Deleting';
+        }
+    </script>
+    <script>
+        $("#a_email_shown_comment").change(function() {
+            if(this.checked) {
+                $("#a_email_display_comment").css("display","block")
+            }
+            else
+            {
+                $("#a_email_display_comment").css("display","none")
+            }
+        });
+        $(".a_email_shown_reply").change(function() {
+            debugger;
+            var checked = $(this).prop('checked')
+            if(checked)
+            {
+                var checkedId = $(this).attr("data-email-reply");
+                let idReply = 'a_email_display_reply_' + checkedId;
+                if(checkedId) {
+                    $("#"+idReply).css("display","block")
+                }
+                else
+                {
+                    $("#"+idReply).css("display","none")
+                }
+            }else
+            {
+                var checkedId = $(this).attr("data-email-reply");
+                let idReply = 'a_email_display_reply_' + checkedId;
+                $("#"+idReply).css("display","none")
+            }
+        });
 
-@endpush
+        
+    </script>
+@endsection
