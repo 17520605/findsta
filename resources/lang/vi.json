@@ -99,5 +99,19 @@
     "tooltip_remove_favorite": "Xóa khỏi mục ưa thích của tôi",
     "tooltip_like": "Tôi thích cái này",
     "tooltip_dislike": "Tôi không thích điều này",
-    "search_results": "Kết quả tìm kiếm :"
+    "search_results": "Kết quả tìm kiếm :",
+    "relative_posts": "Bài viết liên quan",
+    "reply": "Trả lời",
+    "delete": "Xóa",
+    "lable_checkbox_1": "Gửi email cho tôi",
+    "lable_checkbox_2": "nếu Bình luận của tôi được bình chọn hoặc phản hồi",
+    "add_comment": "Thêm bình luận",
+    "tab_comments": "Bình luận",
+    "developing_function": "Chúng tôi đang phát triển chức năng này",
+    "name_comment": "Tên của bạn để hiển thị (tùy chọn)",
+    "email_replied": "Gửi email cho tôi nếu Bình luận của tôi được trả lời",
+    "comment_privacity": "Quyền riêng tư: Địa chỉ email của bạn sẽ chỉ được sử dụng để gửi những thông báo này.",
+    "comment_verification": "Để tránh việc xác minh này trong tương lai, xin vui lòng",
+    "or": "hoặc",
+    "cancel": "Hủy"
 }

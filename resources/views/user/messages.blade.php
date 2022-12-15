@@ -1,3 +1,4 @@
+@section('title', 'Findsta Messages')
 @extends('layouts.master-home')
 @section('content')
     <script>

@@ -1,3 +1,4 @@
+@section('title', 'Findsta Register')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -19,7 +20,7 @@
                             <tr>
                                 <td class="king-form-tall-data">
                                     <input name="fname" id="fname" dir="auto" type="text" value=""
-                                        class="king-form-tall-text">
+                                        class="king-form-tall-text" required>
                                 </td>
                             </tr>
                             <tr>
@@ -40,7 +41,7 @@
                             </tr>
                             <tr>
                                 <td class="king-form-tall-data">
-                                    <input name="email" id="email" dir="auto" type="text" value="" class="king-form-tall-text">
+                                    <input name="email" id="email" dir="auto" type="email" value="" class="king-form-tall-text" required>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +51,7 @@
                             </tr>
                             <tr>
                                 <td class="king-form-tall-data">
-                                    <input name="password" id="password" dir="auto" type="password" value="" class="king-form-tall-text">
+                                    <input name="password" id="password" dir="auto" type="password" value="" class="king-form-tall-text" required>
                                 </td>
                             </tr>
                             <tr>
@@ -94,16 +95,19 @@
             $('.icon-loader-register').html(`<i class="fas fa-spinner fa-spin"></i>`);
             $('.notify-register').html(``);
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 type: "post",
                 url: "{{ route('post.register')}}",
                 data: data,
                 dataType: "json",
                 success: function (response) {
-                    $('.icon-loader-register').html(``);
                     if (response && response.result === 'ok') {
                         location.href = "{{ route('get.login')}}";
-                    } else
-                    if (response.result === 'fail') {
+                    } else if (response.result === 'fail') 
+                    {
+                        $('.icon-loader-register').html(``);
                         $('.notify-register').html(`<div class="king-form-tall-error">${response.message}</div>`)
                     }
                 }

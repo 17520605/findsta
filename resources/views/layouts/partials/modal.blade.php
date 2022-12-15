@@ -7,13 +7,13 @@
             <h4 class="modal-title">{{ __('login') }}</h4>
         </div>
         <div class="king-modal-form">
-            <form class="loginForm">
+            <form id="loginFormModal">
                 @csrf
-                <input type="text" class="modal-input" name="email" placeholder="{{ __('email') }}">
-                <input type="password" class="modal-input" name="password" placeholder="{{ __('password') }}">
+                <input type="email" class="modal-input" name="email" placeholder="{{ __('email') }}" required>
+                <input type="password" class="modal-input" name="password" placeholder="{{ __('password') }}" required>
                 <span class="notify-login"></span>
-                <div id="king-rememberbox"><input type="checkbox" name="remember" id="king-rememberme" value="1">
-                    <label for="king-rememberme" id="king-remember">{{ __('remember') }}</label>
+                <div><input type="checkbox" name="remember" value="1" >
+                    <label for="king-rememberme">{{ __('remember') }}</label>
                 </div>
                 <button type="submit" id="king-login"><span class="icon-loader"></span> {{ __('log_in') }}</button>
             </form>
@@ -24,7 +24,7 @@
             <div class="king-nav-user-clear">
             </div>
         </div>
-        <span class="modal-reglink"><a href="https://demos.kingthemes.net/register">{{ __('register') }}</a></span>
+        <span class="modal-reglink"><a href="{{env('APP_URL')}}/register">{{ __('register') }}</a></span>
     </div>
 </div>
 <div id="rlatermodal" class="king-modal-login">
@@ -44,33 +44,3 @@
         </div>
     </div>
 </div>
-@section('scripts')
-    <script>
-        const url = new URL(location.href);
-        $('.loginForm').submit(function (e) { 
-            e.preventDefault();
-            const data = $(this).serializeArray();
-            $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
-            $('.notify-login').html(``);
-            $.ajax({
-                type: "post",
-                url: "{{ route('post.login')}}",
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    $('.icon-loader').html(``);
-                    if (response && response.result === 'ok') {
-                        $('#loginmodal').modal('hide');
-                        setTimeout(function() {
-                            location.href = '/';
-                        }, 500);
-                    } else
-                    if (response.result === 'fail') {
-                        $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
-                    }
-                }
-            });
-            return false;
-        });
-    </script>
-@stop

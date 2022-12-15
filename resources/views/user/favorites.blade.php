@@ -1,3 +1,4 @@
+@section('title', 'Findsta Favorites')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -78,19 +79,20 @@
                                     <div class="king-q-item-title">
                                         <div class="king-title-up">
                                             @if ($favorite->list->type === 'video')
-                                                <a class="king-post-format" href="#video"><i
-                                                        class="fas fa-video"></i> Video</a>
+                                                <a class="king-post-format" href="{{ env('APP_URL') }}/videos"><i
+                                                class="fas fa-video"></i> Video</a>
                                             @elseif ($favorite->list->type === 'image')
-                                                <a class="king-post-format" href="#images"><i
+                                                <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                         class="fas fa-image"></i> Image</a>
                                             @elseif ($favorite->list->type === 'audio')
-                                                <a class="king-post-format" href="#images"><i
+                                                <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                         class="fa-solid fa-headphones"></i> Audio</a>
                                             @endif
-                                            <a class="king-post-format" href="#news"><i
+                                            <a class="king-post-format" href="{{ env('APP_URL') }}/news"><i
                                                     class="fas fa-newspaper"></i> News</a>
                                             <span class="metah-where">
-                                                <span class="metah-where-data"><a href="#" class="king-category-link">{{ $favorite->list->category }}</a></span>
+                                                <span class="metah-where-data"><a href="{{ env('APP_URL') }}/category/{{ $favorite->list->category }}"
+                                                        class="king-category-link">{{ $favorite->list->category }}</a></span>
                                             </span>
                                         </div>
                                         <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}">
@@ -109,9 +111,9 @@
                                                 href="#" class="king-user-link">{{ $favorite->list->author }}</a>
                                         </div>
                                         <div>
-                                            <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                                            <span><i class="fa fa-eye" aria-hidden="true"></i> 210</span>
-                                            <span><i class="fas fa-chevron-up"></i> 0</span>
+                                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $favorite->list->comments }}</span>
+                                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $favorite->list->viewer }}</span>
+                                            <span><i class="fas fa-chevron-up"></i> {{ $favorite->list->votes }}</span>
                                         </div>
                                     </div>
                                 </div>

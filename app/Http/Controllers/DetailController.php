@@ -162,10 +162,15 @@ class DetailController extends Controller
                 {
                     $related->category = 'Empty';
                 }
+                $count_comment = \App\Models\Comments::where([['blogId',$related->id]])->count();
+                $count_reply = \App\Models\Replies::where([['blogId',$related->id]])->count();
+                $count_vote = \App\Models\Likes::where([['blogId',$related->id]])->count();
+                $related->votes = $count_vote;
+                $related->comments =($count_comment + $count_reply);
             }  
            
         }
-        $topvideos = \App\Models\Blogs::where([['is_public',1],['type','video']])->orderby('id', 'DESC')->offset(0)->limit(5)->get();
+        $topvideos = \App\Models\Blogs::where([['is_public',1],['type','video']])->orderby('id', 'DESC')->offset(0)->limit(3)->get();
         foreach ($topvideos as $topvideo) {
             $bannerId = $topvideo->bannerId;
             if($bannerId)
@@ -179,6 +184,11 @@ class DetailController extends Controller
                 $poster = \App\Models\Files::where('id', '=', $fileId)->first();
                 $topvideo->thumbnail = $poster->thumbnail;
             }
+            $count_comment = \App\Models\Comments::where([['blogId',$topvideo->id]])->count();
+            $count_reply = \App\Models\Replies::where([['blogId',$topvideo->id]])->count();
+            $count_vote = \App\Models\Likes::where([['blogId',$topvideo->id]])->count();
+            $topvideo->votes = $count_vote;
+            $topvideo->comments =($count_comment + $count_reply);
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
         if($userId){

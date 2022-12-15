@@ -20,8 +20,6 @@ $(document).ready(function () {
       var ias = $.ias({
         container: ".container",
         item: ".box",
-        pagination: ".king-page-links-list",
-        next: ".king-page-next",
         delay: 300,
         negativeMargin: 200,
       });
@@ -34,17 +32,17 @@ $(document).ready(function () {
         magnificPopup();
         $('[data-toggle="tooltip"]').tooltip();
       });
-      ias.extension(
-        new IASSpinnerExtension({
-          html: '<div class="switch-loader"><span class="loader"></span></div>',
-        })
-      );
-      ias.extension(new IASTriggerExtension({ offset: "2", text: "Load More" }));
-      ias.extension(
-        new IASNoneLeftExtension({
-          html: '<div class="load-nomore"><span>End of the page.</span></div>',
-        })
-      );
+      // ias.extension(
+      //   new IASSpinnerExtension({
+      //     html: '<div class="switch-loader"><span class="loader"></span></div>',
+      //   })
+      // );
+      // ias.extension(new IASTriggerExtension({ offset: "1", text: "Load More" }));
+      // ias.extension(
+      //   new IASNoneLeftExtension({
+      //     html: '<div class="load-nomore"><span>End of the page.</span></div>',
+      //   })
+      // );
     }
   }
   function magnificPopup() {

@@ -1,3 +1,4 @@
+@section('title', 'Findsta Feedback')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -65,7 +66,7 @@
 @endsection
 @section('scripts')
     <script>
-        const url = new URL(location.href);
+        
         $('.feedbackForm').submit(function (e) { 
             e.preventDefault();
             const data = $(this).serializeArray();

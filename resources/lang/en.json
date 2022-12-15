@@ -99,5 +99,19 @@
     "tooltip_remove_favorite": "Remove from my favorites",
     "tooltip_like": "I like this",
     "tooltip_dislike": "I dislike this",
-    "search_results": "Search results :"
+    "search_results": "Search results :",
+    "related_posts": "Related Posts",
+    "reply": "Reply",
+    "delete": "Delete",
+    "lable_checkbox_1": "Email me",
+    "lable_checkbox_2": "if my Comment is voted or replied on",
+    "add_comment": "Add Comment",
+    "tab_comments": "Comments",
+    "developing_function": "We are developing this function",
+    "name_comment": "Your name to display (optional)",
+    "email_replied": "Email me if my Comment is replied on",
+    "comment_privacity": "Privacy: Your email address will only be used for sending these notifications.",
+    "comment_verification": "To avoid this verification in future, please",
+    "or": "or",
+    "cancel": "Cancel"
 }

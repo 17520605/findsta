@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="pixelstrap">
-    <title>Findsta interesting information</title>
+    {{-- <title>Findsta interesting information</title> --}}
+    <title>@yield('title')</title>
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <meta name="csrf-token" content="{{ csrf_token() }}">

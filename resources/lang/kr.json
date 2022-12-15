@@ -99,5 +99,19 @@
     "tooltip_remove_favorite": "즐겨찾기에서 제거",
     "tooltip_like": "좋아요",
     "tooltip_dislike": "싫어요",
-    "search_results": "검색 결과:"
+    "search_results": "검색 결과:",
+    "related_posts": "관련 게시물",
+    "reply": "답장",
+    "delete": "삭제",
+    "lable_checkbox_1": "나에게 이메일 보내기",
+    "lable_checkbox_2": "내 댓글이 투표되거나 답글이 달린 경우",
+    "add_comment": "설명 추가",
+    "tab_comments": "댓글",
+    "developing_function": "우리는 이 기능을 개발하고 있습니다",
+    "name_comment": "표시할 이름(선택 사항)",
+    "email_replied": "내 댓글에 대한 답글이 있으면 이메일로 보내주세요",
+    "comment_privacity": "개인 정보: 귀하의 이메일 주소는 이러한 알림을 보내는 데만 사용됩니다.",
+    "comment_verification": "앞으로 이 확인을 피하려면",
+    "or": "또는",
+    "cancel": "취소"
 }

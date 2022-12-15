@@ -1,3 +1,4 @@
+@section('title', 'Findsta Login')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -18,7 +19,7 @@
                             </tr>
                             <tr>
                                 <td class="king-form-tall-data">
-                                    <input name="email" dir="auto" type="text" value="" class="king-form-tall-text">
+                                    <input name="email" dir="auto" type="email" value="" class="king-form-tall-text" required>
                                 </td>
                             </tr>
                             <tr>
@@ -28,7 +29,7 @@
                             </tr>
                             <tr>
                                 <td class="king-form-tall-data" style="margin-top: 10px">
-                                    <input name="password" dir="auto" type="password" value="" class="king-form-tall-text">
+                                    <input name="password" dir="auto" type="password" value="" class="king-form-tall-text" required>
                                     <div class="king-form-tall-note"><a href="{{env('APP_URL')}}/forgot">{{ __('forgot_my_password') }}</a></div>
                                 </td>
                             </tr>
@@ -75,16 +76,19 @@
             $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
             $('.notify-login').html(``);
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 type: "post",
                 url: "{{ route('post.login')}}",
                 data: data,
                 dataType: "json",
                 success: function (response) {
-                    $('.icon-loader').html(``);
                     if (response && response.result === 'ok') {
                         location.href = "{{ route('home')}}";
                     } else
                     if (response.result === 'fail') {
+                        $('.icon-loader').html(``);
                         $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
                     }
                 }

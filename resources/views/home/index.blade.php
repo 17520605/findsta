@@ -1,3 +1,4 @@
+@section('title', 'Findsta Home')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -18,9 +19,9 @@
                         <a href="{{ env('APP_URL') }}/{{ $features[0]->id }}/{{ $features[0]->slug }}"
                             class="featured-title">{{ $features[0]->title }}</a>
                         <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> 576 </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> 1</span>
-                            <span><i class="fas fa-chevron-up"></i> 0</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[0]->viewer }} </span>
+                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[0]->comments }}</span>
+                            <span><i class="fas fa-chevron-up"></i> {{ $features[0]->votes }}</span>
                         </div>
                     </div>
                 </div>
@@ -36,9 +37,9 @@
                         <a href="{{ env('APP_URL') }}/{{ $features[1]->id }}/{{ $features[1]->slug }}"
                             class="featured-title">{{ $features[1]->title }}</a>
                         <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> 381 </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                            <span><i class="fas fa-chevron-up"></i> 0</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[1]->viewer }} </span>
+                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[1]->comments }}</span>
+                            <span><i class="fas fa-chevron-up"></i> {{ $features[1]->votes }}</span>
                         </div>
                     </div>
                 </div>
@@ -54,9 +55,9 @@
                         <a href="{{ env('APP_URL') }}/{{ $features[2]->id }}/{{ $features[2]->slug }}"
                             class="featured-title">{{ $features[2]->title }}</a>
                         <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> 681 </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                            <span><i class="fas fa-chevron-up"></i> 1</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[2]->viewer }} </span>
+                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[2]->comments }}</span>
+                            <span><i class="fas fa-chevron-up"></i> {{ $features[2]->votes }}</span>
                         </div>
                     </div>
                 </div>
@@ -72,9 +73,9 @@
                         <a href="{{ env('APP_URL') }}/{{ $features[3]->id }}/{{ $features[3]->slug }}"
                             class="featured-title">{{ $features[3]->title }}</a>
                         <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> 445 </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                            <span><i class="fas fa-chevron-up"></i> 0</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[3]->viewer }} </span>
+                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[3]->comments }}</span>
+                            <span><i class="fas fa-chevron-up"></i> {{ $features[3]->votes }}</span>
                         </div>
                     </div>
                 </div>
@@ -90,9 +91,9 @@
                         <a href="{{ env('APP_URL') }}/{{ $features[4]->id }}/{{ $features[4]->slug }}"
                             class="featured-title">{{ $features[4]->title }}</a>
                         <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> 466 </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                            <span><i class="fas fa-chevron-up"></i> 0</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[4]->viewer }} </span>
+                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[4]->comments }}</span>
+                            <span><i class="fas fa-chevron-up"></i> {{ $features[4]->votes }}</span>
                         </div>
                     </div>
                 </div>
@@ -136,19 +137,19 @@
                                         <div class="king-q-item-title">
                                             <div class="king-title-up">
                                                 @if ($list->type === 'video')
-                                                    <a class="king-post-format" href="#video"><i
+                                                    <a class="king-post-format" href="{{ env('APP_URL') }}/videos"><i
                                                             class="fas fa-video"></i> Video</a>
                                                 @elseif ($list->type === 'image')
-                                                    <a class="king-post-format" href="#images"><i
+                                                    <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                             class="fas fa-image"></i> Image</a>
                                                 @elseif ($list->type === 'audio')
-                                                    <a class="king-post-format" href="#images"><i
+                                                    <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                             class="fa-solid fa-headphones"></i> Audio</a>
                                                 @endif
-                                                <a class="king-post-format" href="#news"><i
+                                                <a class="king-post-format" href="{{ env('APP_URL') }}/news"><i
                                                         class="fas fa-newspaper"></i> News</a>
                                                 <span class="metah-where">
-                                                    <span class="metah-where-data"><a href="#"
+                                                    <span class="metah-where-data"><a href="{{ env('APP_URL') }}/category/{{ $list->category }}"
                                                             class="king-category-link">{{ $list->category }}</a></span>
                                                 </span>
                                             </div>
@@ -168,9 +169,9 @@
                                                     href="#" class="king-user-link">{{ $list->author }}</a>
                                             </div>
                                             <div>
-                                                <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                                                <span><i class="fa fa-eye" aria-hidden="true"></i> 210</span>
-                                                <span><i class="fas fa-chevron-up"></i> 0</span>
+                                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $list->comments }}</span>
+                                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $list->viewer }}</span>
+                                                <span><i class="fas fa-chevron-up"></i> {{ $list->votes }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -179,30 +180,53 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="king-page-links">
-                    <ul class="king-page-links-list">
-                        <li class="king-page-links-item">
-                            <span class="king-page-selected">1</span>
-                        </li>
-                        <li class="king-page-links-item">
-                            <a href="./?start=15" class="king-page-link">2</a>
-                        </li>
-                        <li class="king-page-links-item">
-                            <a href="./?start=15" class="king-page-link">3</a>
-                        </li>
-                        <li class="king-page-links-item">
-                            <a href="./?start=15" class="king-page-next"> &raquo;</a>
-                        </li>
-                    </ul>
-                    <div class="king-page-links-clear">
+                @if ($pagination)
+                    <div class="king-page-links">
+                        <ul class="king-page-links-list">
+                            <li class="king-page-links-item pagination-page-item prev {{$pagination["prev"] === false ? 'disabled' : ''}}" data-page="{{$pagination["prev"]}}">
+                                <a class="king-page-prev"> &laquo;</a>
+                            </li>
+                            @for ($i = $pagination["first"]; $i <= $pagination["last"]; $i++)
+                                <li class="king-page-links-item pagination-page-item page-item {{$i == $pagination["current"] ? 'active' : ''}}" data-page="{{$i}}">
+                                    <a class="king-page-link page-link" onclick="return changeIconLoadPage(this)">{{$i}}</a>
+                                </li>
+                            @endfor
+                            <li class="king-page-links-item pagination-page-item next {{$pagination["next"] === false ? 'disabled' : ''}}" data-page="{{$pagination["next"]}}">
+                                <a class="king-page-next"> &raquo;</a>
+                            </li>
+                        </ul>
+                        <div class="king-page-links-clear">
+                        </div>
                     </div>
-                </div>
+                @endif
             </div> <!-- king-main-in -->
             @includeIf('layouts.partials.sidebar')
         </div> <!-- king-main -->
     </div>
-
-
 @endsection
 @section('scripts')
+<script>
+    var url = new URL(window.location.href);
+    function changeParams(param, value){
+		if(param && value && param != '' && value != ''){
+			url.searchParams.set(param, value);
+			url = new URL(url.href);
+		}
+	}
+
+	$(document).ready(function () {
+		$('.pagination-page-item').not('.disabled').click(function () {
+			$('.pagination-page-item').removeClass('active');
+			$(this).addClass('active'); 0
+			let page = $(this).attr('data-page');
+			changeParams('page', page);
+			window.location.href = url.href;
+		});
+    });
+
+    function changeIconLoadPage(elem) {
+        elem.innerHTML='';
+        elem.innerHTML ='<i class="fas fa-spinner fa-pulse"></i>';
+    }
+</script>
 @stop

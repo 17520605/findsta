@@ -1,3 +1,4 @@
+@section('title', 'Findsta Following')
 @extends('layouts.master-home')
 @section('content')
     <script>

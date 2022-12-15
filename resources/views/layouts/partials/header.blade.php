@@ -14,10 +14,14 @@
         </div>
         <div class="king-logo">
             <a href="{{env('APP_URL')}}" class="king-logo-link" title="King MEDIA">
-              <img class="king-logol" src="{{ asset('logo/679494-kmedia.png') }}">
-              <img class="king-logon" src="{{ asset('logo/543191-kmediaw.png') }}">
-              <img class="king-mlogo" src="{{ asset('logo/313493-v7logo.png') }}">
-              <img class="king-mlogon" src="{{ asset('logo/320249-favnew.png') }}">
+                {{-- <img class="king-logol" src="{{ asset('logo/679494-kmedia.png') }}">
+                <img class="king-logon" src="{{ asset('logo/543191-kmediaw.png') }}">
+                <img class="king-mlogo" src="{{ asset('logo/313493-v7logo.png') }}">
+                <img class="king-mlogon" src="{{ asset('logo/320249-favnew.png') }}"> --}}
+                <img class="king-logol" src="{{ asset('logo_v1/light.png') }}">
+                <img class="king-logon" src="{{ asset('logo_v1/dark.png') }}">
+                <img class="king-mlogo" src="{{ asset('logo_v1/icon-m.png') }}">
+                <img class="king-mlogon" src="{{ asset('logo_v1/icon-m.png') }}">
             </a>
         </div>
     </div>
@@ -143,63 +147,91 @@
 @includeIf('layouts.partials.leftmenu')
 @includeIf('layouts.partials.search')
 @includeIf('layouts.partials.modal')
-@section('script')
-<script>
-    var url = new URL(window.location.href);
-    var activeMenu = url.pathname;
-    if(activeMenu == '/home' )
-    {
-        $('#home-head').addClass('active');
-        $('#videos-head').removeClass('active');
-        $('#audios-head').removeClass('active');
-        $('#images-head').removeClass('active');
-        $('#news-head').removeClass('active');
-        $('#hots-head').removeClass('active');
-    }
-    else if(activeMenu == '/videos' )
-    {
-        $('#home-head').removeClass('active');
-        $('#videos-head').addClass('active');
-        $('#audios-head').removeClass('active');
-        $('#images-head').removeClass('active');
-        $('#news-head').removeClass('active');
-        $('#hots-head').removeClass('active');
-    }
-    else if(activeMenu == '/audios' )
-    {
-        $('#home-head').removeClass('active');
-        $('#videos-head').removeClass('active');
-        $('#audios-head').addClass('active');
-        $('#images-head').removeClass('active');
-        $('#news-head').removeClass('active');
-        $('#hots-head').removeClass('active');
-    }
-    else if(activeMenu == '/images' )
-    {
-        $('#home-head').removeClass('active');
-        $('#videos-head').removeClass('active');
-        $('#audios-head').removeClass('active');
-        $('#images-head').addClass('active');
-        $('#news-head').removeClass('active');
-        $('#hots-head').removeClass('active');
-    }
-    else if(activeMenu == '/news' )
-    {
-        $('#home-head').removeClass('active');
-        $('#videos-head').removeClass('active');
-        $('#audios-head').removeClass('active');
-        $('#images-head').removeClass('active');
-        $('#news-head').addClass('active');
-        $('#hots-head').removeClass('active');
-    }
-    else if(activeMenu == '/hots' )
-    {
-        $('#home-head').removeClass('active');
-        $('#videos-head').removeClass('active');
-        $('#audios-head').removeClass('active');
-        $('#images-head').removeClass('active');
-        $('#news-head').removeClass('active');
-        $('#hots-head').addClass('active');
-    }
-</script>
+@section('scripts')
+    <script>
+        var url = new URL(window.location.href);
+        var activeMenu = url.pathname;
+        if(activeMenu == '/home' )
+        {
+            $('#home-head').addClass('active');
+            $('#videos-head').removeClass('active');
+            $('#audios-head').removeClass('active');
+            $('#images-head').removeClass('active');
+            $('#news-head').removeClass('active');
+            $('#hots-head').removeClass('active');
+        }
+        else if(activeMenu == '/videos' )
+        {
+            $('#home-head').removeClass('active');
+            $('#videos-head').addClass('active');
+            $('#audios-head').removeClass('active');
+            $('#images-head').removeClass('active');
+            $('#news-head').removeClass('active');
+            $('#hots-head').removeClass('active');
+        }
+        else if(activeMenu == '/audios' )
+        {
+            $('#home-head').removeClass('active');
+            $('#videos-head').removeClass('active');
+            $('#audios-head').addClass('active');
+            $('#images-head').removeClass('active');
+            $('#news-head').removeClass('active');
+            $('#hots-head').removeClass('active');
+        }
+        else if(activeMenu == '/images' )
+        {
+            $('#home-head').removeClass('active');
+            $('#videos-head').removeClass('active');
+            $('#audios-head').removeClass('active');
+            $('#images-head').addClass('active');
+            $('#news-head').removeClass('active');
+            $('#hots-head').removeClass('active');
+        }
+        else if(activeMenu == '/news' )
+        {
+            $('#home-head').removeClass('active');
+            $('#videos-head').removeClass('active');
+            $('#audios-head').removeClass('active');
+            $('#images-head').removeClass('active');
+            $('#news-head').addClass('active');
+            $('#hots-head').removeClass('active');
+        }
+        else if(activeMenu == '/hots' )
+        {
+            $('#home-head').removeClass('active');
+            $('#videos-head').removeClass('active');
+            $('#audios-head').removeClass('active');
+            $('#images-head').removeClass('active');
+            $('#news-head').removeClass('active');
+            $('#hots-head').addClass('active');
+        }
+    </script>
+    <script>
+        $('#loginFormModal').on("submit", function (e) { 
+            e.preventDefault();
+            const data = $(this).serializeArray();
+            $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
+            $('.notify-login').html(``);
+            $.ajax({
+                type: "post",
+                url: "{{ route('post.login')}}",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    $('.icon-loader').html(``);
+                    if (response && response.result === 'ok') {
+                        setTimeout(function() {
+                            location.reload();
+                            $('#loginmodal').modal('hide');
+                        },1000);
+                    } else
+                    if (response.result === 'fail') {
+                        $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
+                    }
+                }
+            });
+            return false;
+        });
+
+    </script>
 @stop

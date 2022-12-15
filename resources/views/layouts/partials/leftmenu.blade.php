@@ -37,7 +37,7 @@
             </li>
             @if (Auth::check())
                 <li class="king-nav-main-item king-nav-main-user">
-                    <a href="{{ env('APP_URL') }}/follow" class="king-nav-main-link"><i class="fa-solid fa-star"></i> {{ __('follow') }}</a>
+                    <a href="{{ route('user.get.myfavorite')}}" class="king-nav-main-link"><i class="fa-solid fa-star"></i> {{ __('follow') }}</a>
                 </li>
             @endif
         </ul>

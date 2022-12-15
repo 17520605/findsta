@@ -8,15 +8,12 @@
                 <a href="{{env('APP_URL')}}/tag/video">video</a>
                 <a href="{{env('APP_URL')}}/tag/music">music</a>
                 <a href="{{env('APP_URL')}}/tag/art">art</a>
-                <a href="{{env('APP_URL')}}/tag/vimeo">vimeo</a>
                 <a href="{{env('APP_URL')}}/tag/instagram">instagram</a>
                 <a href="{{env('APP_URL')}}/tag/design">design</a>
                 <a href="{{env('APP_URL')}}/tag/list">list</a>
                 <a href="{{env('APP_URL')}}/tag/blog">blog</a>
-                <a href="{{env('APP_URL')}}/tag/playlist">playlist</a>
                 <a href="{{env('APP_URL')}}/tag/btc">btc</a>
                 <a href="{{env('APP_URL')}}/tag/news">news</a>
-                <a href="{{env('APP_URL')}}/tag/soundcloud">soundcloud</a>
                 <a href="{{env('APP_URL')}}/tag/wallpaper">wallpaper</a>
             </div>
         </div>
@@ -36,9 +33,16 @@
                         </a>
                         <div class="simple-post-content"><a href="{{ env('APP_URL') }}/{{ $topvideo->id }}/{{ $topvideo->slug }}"
                                 class="simple-post-title">{{$topvideo->title}}</a></div>
-                        <div class="simple-post-meta"><span><i class="fa fa-eye" aria-hidden="true"></i> 210
-                            </span><span><i class="fa fa-comment" aria-hidden="true"></i> 0</span><span><i
-                                    class="fas fa-chevron-up"></i> 0</span></div>
+                        <div class="simple-post-meta">
+                            <span>
+                                <i class="fa fa-eye" aria-hidden="true"></i> {{$topvideo->viewer}}
+                            </span>
+                            <span>
+                                <i class="fa fa-comment" aria-hidden="true"></i> {{$topvideo->comments}}
+                            </span>
+                            <span>
+                                <i class="fas fa-chevron-up"></i> {{$topvideo->votes}}</span>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -77,10 +81,9 @@
             font-size: 22px;
             margin: auto;
             border-radius: 14px;
-            padding: 2px;
             color: #fff;
             border: 2px dashed #ffffff;">
-            <img style="width: 100%;height:100%;object-fit: cover;border-radius: 14px;" src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/167047936/original/3728fdd42eb2fac30262425a549a90d3b637be13/do-the-best-banner-design-for-you.jpg" alt=""></div>
+            <img style="width: 100%;height:100%;object-fit: cover;border-radius: 14px;" src="https://res.cloudinary.com/dsldtailo/image/upload/v1671123002/findsta/default/Special-offer-mega-sale-banner-promotion-Graphics-5443532-1_vxpog4.jpg" alt=""></div>
     </div>
 
 </div>

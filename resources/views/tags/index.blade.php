@@ -1,3 +1,4 @@
+@section('title', 'Findsta - Tags')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -32,19 +33,19 @@
                                             <div class="king-q-item-title">
                                                 <div class="king-title-up">
                                                     @if ($list->type === 'video')
-                                                        <a class="king-post-format" href="#video"><i
-                                                                class="fas fa-video"></i> Video</a>
+                                                        <a class="king-post-format" href="{{ env('APP_URL') }}/videos"><i
+                                                        class="fas fa-video"></i> Video</a>
                                                     @elseif ($list->type === 'image')
-                                                        <a class="king-post-format" href="#images"><i
+                                                        <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                                 class="fas fa-image"></i> Image</a>
                                                     @elseif ($list->type === 'audio')
-                                                        <a class="king-post-format" href="#images"><i
+                                                        <a class="king-post-format" href="{{ env('APP_URL') }}/images"><i
                                                                 class="fa-solid fa-headphones"></i> Audio</a>
                                                     @endif
-                                                    <a class="king-post-format" href="#news"><i
+                                                    <a class="king-post-format" href="{{ env('APP_URL') }}/news"><i
                                                             class="fas fa-newspaper"></i> News</a>
                                                     <span class="metah-where">
-                                                        <span class="metah-where-data"><a href="#"
+                                                        <span class="metah-where-data"><a href="{{ env('APP_URL') }}/category/{{ $list->category }}"
                                                                 class="king-category-link">{{ $list->category }}</a></span>
                                                     </span>
                                                 </div>
@@ -64,9 +65,9 @@
                                                         href="#" class="king-user-link">{{ $list->author }}</a>
                                                 </div>
                                                 <div>
-                                                    <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                                                    <span><i class="fa fa-eye" aria-hidden="true"></i> 210</span>
-                                                    <span><i class="fas fa-chevron-up"></i> 0</span>
+                                                    <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $list->comments }}</span>
+                                                    <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $list->viewer }}</span>
+                                                    <span><i class="fas fa-chevron-up"></i> {{ $list->votes }}</span>
                                                 </div>
                                             </div>
                                         </div>

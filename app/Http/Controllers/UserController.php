@@ -106,6 +106,20 @@ class UserController extends Controller
 
     }
 
+    public function changePassword($id, Request $request)
+    {
+        $userId = $id;
+        $password = $request->input('newpassword2');
+        $user = \App\Models\User::where('id', $userId)->first();
+        if($user)
+        {
+            $user->password = bcrypt($password);
+            $user->save();
+            return redirect()->back();
+        }
+        return false;
+    }
+
     public function myFavorite()
     {
         $userId = get_data_user('web');
@@ -171,6 +185,13 @@ class UserController extends Controller
                 {
                     $list->category = 'Empty';
                 }
+                           
+                $count_comment = \App\Models\Comments::where([['blogId',$list->id]])->count();
+                $count_reply = \App\Models\Replies::where([['blogId',$list->id]])->count();
+                $count_vote = \App\Models\Likes::where([['blogId',$list->id]])->count();
+                $list->votes = $count_vote;
+                $list->comments =($count_comment + $count_reply);
+                
                 $favorite->list = $list;
     
             }  

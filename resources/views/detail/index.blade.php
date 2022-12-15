@@ -1,3 +1,5 @@
+<? ?>
+@section('title', 'Findsta - '.$blog->title.'')
 @extends('layouts.master-home')
 @section('content')
     <script>
@@ -56,9 +58,9 @@
                                 <button title="{{$blog->favorite ? __('tooltip_remove_favorite') : __('tooltip_add_favorite')}}" data-favoriteid="{{$blog->id}}" onclick="return favorite(this);" value="Follow" class="{{$blog->favorite ? 'king-unfavorite-button' : 'king-favorite-button' }} "><i class="fa-solid fa-heart"></i></button>
                             </span>
                         @endif
-                        <div class="share-link" data-toggle="modal" data-target="#sharemodal" role="button"><i data-toggle="tooltip" data-placement="top" class="fas fa-share" title="Share"></i></div>
+                        <div class="share-link" data-toggle="modal" data-target="#sharemodal" role="button"><i data-toggle="tooltip" data-placement="top" class="fas fa-share" title="{{__('tooltip_share')}}"></i></div>
                         @if (Auth::check())
-                            <a href="#" class="share-link {{$blog->bookmark ? 'selected':''}}" data-toggle="tooltip" data-placement="right" title="Bookmark" data-bookmarkid="{{$blog->id}}" onclick="return bookmark(this);"><i class="far fa-bookmark"></i></a>
+                            <a href="#" class="share-link {{$blog->bookmark ? 'selected':''}}" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_bookmark')}}" data-bookmarkid="{{$blog->id}}" onclick="return bookmark(this);"><i class="far fa-bookmark"></i></a>
                         @endif
                     </div>
                     <div class="king-q-view hentry question" id="q3">
@@ -105,7 +107,7 @@
                     <div id="sharemodal" class="king-modal-login">
                         <div class="king-modal-content">
                             <div class="social-share">
-                                <h3>Share</h3>
+                                <h3>{{__('share')}}</h3>
                                 <a class="post-share share-fb" data-toggle="tooltip" data-placement="top"
                                     title="Facebook" href="#" target="_blank" rel="nofollow"
                                     onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ env('APP_URL') }}/{{ $blog->id }}/{{ $blog->slug }}','facebook-share-dialog','width=626,height=436');return false;"><i
@@ -224,8 +226,8 @@
                     <div class="maincom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#comments" data-toggle="tab"><i
-                                        class="fa-solid fa-comment-dots"></i> Comments</a></li>
-                            <li><a href="#fbcomments" data-toggle="tab"><i class="fab fa-facebook"></i> Comments</a>
+                                        class="fa-solid fa-comment-dots"></i> {{__('tab_comments')}}</a></li>
+                            <li><a href="#fbcomments" data-toggle="tab"><i class="fab fa-facebook"></i>  {{__('tab_comments')}}</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -267,7 +269,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="king-form-tall-label">
-                                                            Your name to display (optional)
+                                                            {{__('name_comment')}}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -279,7 +281,7 @@
                                                         <td class="king-form-tall-label">
                                                             <label>
                                                                 <input name="a_notify"  id="a_email_shown_comment" type="checkbox" class="king-form-tall-checkbox">
-                                                                <span style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
+                                                                <span style="display: none;"></span><span id="a_email_hidden" style="">{{__('email_replied')}}</span>
                                                             </label>
                                                         </td>
                                                     </tr>
@@ -288,19 +290,19 @@
                                                             <td class="king-form-tall-data">
                                                                 <input name="email" type="text" value="" class="king-form-tall-text">
                                                                 <span class="notify-comment"></span>
-                                                                <div class="king-form-tall-note">Privacy: Your email address will only be used for sending these notifications.</div>
+                                                                <div class="king-form-tall-note">{{__('comment_privacity')}}</div>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                     <tbody>
                                                         <tr>
                                                             <td class="king-form-tall-data">
-                                                                <div class="king-form-tall-note">To avoid this verification in future, please <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> or <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
+                                                                <div class="king-form-tall-note">{{__('comment_privacity')}} <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> {{__('or')}} <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="1" class="king-form-tall-buttons">
-                                                                <button type="submit" class="king-form-tall-button king-form-tall-button-answer"><span class="icon-loader-comment"></span> Add Comment</button>
+                                                                <button type="submit" class="king-form-tall-button king-form-tall-button-answer"><span class="icon-loader-comment"></span> {{__('add_comment')}}</button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -337,10 +339,10 @@
                                                             @csrf
                                                             <input type="hidden" name="commentId" value="{{$comment->id}}">
                                                             <div class="king-a-item-buttons">
-                                                                    <span class="king-form-light-button king-form-light-button-edit" data-comment-id="{{$comment->id}}" title="Edit this Comment" onclick="return showReplyForm(this)"> Reply</span>
+                                                                    <span class="king-form-light-button king-form-light-button-edit" data-comment-id="{{$comment->id}}" title="Edit this Comment" onclick="return showReplyForm(this)"> {{__('reply')}}</span>
                                                                 @if (Auth::check())
                                                                     @if ($comment->userId = Auth::user()->id)
-                                                                        <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> Delete</button>
+                                                                        <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> {{__('delete')}}</button>
                                                                     @endif
                                                                 @endif
                                                             </div>
@@ -368,7 +370,7 @@
                                                                         <td class="king-form-tall-label">
                                                                             <label>
                                                                                 <input name="c20_notify" type="checkbox" value="1" class="king-form-tall-checkbox" />
-                                                                                Email me (nguyenhuuminhkhai@gmail.com) if a comment is added after mine
+                                                                                {{__('lable_checkbox_1')}} (nguyenhuuminhkhai@gmail.com) {{__('lable_checkbox_2')}}
                                                                             </label>
                                                                         </td>
                                                                     </tr>
@@ -392,7 +394,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="king-form-tall-label">
-                                                                        Your name to display (optional)
+                                                                        {{__('name_comment')}}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -404,7 +406,7 @@
                                                                     <td class="king-form-tall-label">
                                                                         <label>
                                                                             <input name="a_notify2" data-email-reply="{{$comment->id}}" type="checkbox" class="king-form-tall-checkbox a_email_shown_reply" >
-                                                                            <span style="display: none;">Email me at this address if my Comment is voted or replied on:</span><span id="a_email_hidden" style="">Email me if my Comment is replied on</span>
+                                                                            <span style="display: none;"></span><span id="a_email_hidden" style=""> {{__('email_replied')}}</span>
                                                                         </label>
                                                                     </td>
                                                                 </tr>
@@ -413,20 +415,20 @@
                                                                         <td class="king-form-tall-data">
                                                                             <input name="email" type="text" value="" class="king-form-tall-text">
                                                                             <span class="notify-comment"></span>
-                                                                            <div class="king-form-tall-note">Privacy: Your email address will only be used for sending these notifications.</div>
+                                                                            <div class="king-form-tall-note"> {{__('comment_privacity')}}</div>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
                                                                 <tbody>
                                                                     <tr>
                                                                         <td class="king-form-tall-data">
-                                                                            <div class="king-form-tall-note">To avoid this verification in future, please <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> or <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
+                                                                            <div class="king-form-tall-note">{{__('comment_verification')}} <a href="{{env('APP_URL')}}/login">{{__('login')}}</a> {{__('or')}} <a href="{{env('APP_URL')}}/register">{{__('register')}}</a>.</div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="1" class="king-form-tall-buttons">
-                                                                            <button type="submit" class="king-form-tall-button king-form-tall-button-comment"><span class="icon-loader-reply"></span> Add Comment</button>
-                                                                            <button type="button" class="king-form-tall-button king-form-tall-button-cancel" data-comment-id="{{$comment->id}}" onclick="return hideReplyForm(this)"> Cancel</button>
+                                                                            <button type="submit" class="king-form-tall-button king-form-tall-button-comment"><span class="icon-loader-reply"></span> {{__('add_comment')}}</button>
+                                                                            <button type="button" class="king-form-tall-button king-form-tall-button-cancel" data-comment-id="{{$comment->id}}" onclick="return hideReplyForm(this)"> {{__('cancel')}}</button>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -454,7 +456,7 @@
                                                                     <input type="hidden" name="replyId" value="{{$reply->id}}">
                                                                     @if (Auth::check())
                                                                         @if ($comment->userId = Auth::user()->id)
-                                                                            <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> Delete</button>
+                                                                            <button class="king-form-light-button king-form-light-button-edit" title="Edit this Comment" type="submit" onclick="return changeIconSniper(this)"> {{__('delete')}}</button>
                                                                         @endif
                                                                     @endif
                                                                     <span class="meta-when">
@@ -484,7 +486,7 @@
                                         <div style="display: flex;justify-content: center">
                                             <img style="width: 250px; cursor: pointer;" src="{{asset('assets/images/fb.png') }}" alt="">
                                         </div>
-                                        <p style="text-align: center">Chúng tôi đang phát triển</p>
+                                        <p style="text-align: center">{{__('developing_function')}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -495,7 +497,7 @@
                     <div class="king-widget-main king-widget-main-low">
                         <div class="ilgilit under-content">
                             <div class="widget-title">
-                                Related Posts
+                                {{__('related_posts')}}
                             </div>
                             <div class="ilgili">
                                 @foreach ($relateds as $related)
@@ -509,9 +511,9 @@
                                         <a href="{{ env('APP_URL') }}/{{ $related->id }}/{{ $related->slug }}" class="simple-post-title">{{$related->title}}</a>
                                     </div>
                                     <div class="simple-post-meta">
-                                        <span><i class="fa fa-eye" aria-hidden="true"></i> 447 </span>
-                                        <span><i class="fa fa-comment" aria-hidden="true"></i> 0</span>
-                                        <span><i class="fas fa-chevron-up"></i> 0</span>
+                                        <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $related->comments }}</span>
+                                        <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $related->viewer }}</span>
+                                        <span><i class="fas fa-chevron-up"></i> {{ $related->votes }}</span>
                                     </div>
                                 </div>
                                 @endforeach

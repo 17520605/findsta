@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
         });
 
         Route::get('/', 'HomeController@index')->name('home');
+        // Route::get('/load-more', 'HomeController@loadmore')->name('loadmore');
     
         Route::post('/bookmark/{id}/toggle', 'HomeController@bookmark')->name('check.bookmark');
         Route::get('/bookmark', 'HomeController@bookmarkList')->name('get.bookmark');
@@ -63,7 +64,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('/my-setting', 'UserController@mySeting')->name('user.get.myseting');
             Route::post('/my-setting/{id}/save-edit', 'UserController@saveMySeting')->name('users.save-edit');
             
-            Route::get('/my-setting/password', 'UserController@saveMySetingPassword');
+            Route::post('/my-setting/{id}/change-password', 'UserController@changePassword')->name('users.change-password');
 
             Route::get('/my-favorites', 'UserController@myFavorite')->name('user.get.myfavorite');
 
