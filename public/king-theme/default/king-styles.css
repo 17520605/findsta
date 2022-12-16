@@ -7677,3 +7677,37 @@ a.king-readlater {
 .king-attribution{
     font-size: 12px;
 }
+
+@media (max-width: 600px) {
+    .king-c-form{
+        margin-left: 0px !important;
+    }
+    .king-c-list-item{
+        margin-left: 75px !important;
+    }
+    .king-form-tall-button{
+        min-width: 95px !important;
+    }
+    .btn-change-lang{
+        margin-top: 12px !important;
+        min-width: 100px !important;
+    }
+    #langsmodal .king-modal-content{
+        width : 90%;
+    }
+    #loginmodal .king-modal-content{
+        width : 90%;
+    }
+    .king-notify{
+        right: -90px !important;
+        width: 220px!important;
+    }
+    .mfp-gallery .mfp-image-holder .mfp-content{
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+    }
+    .mfp-close{
+        right: 5px !important;
+    }
+}

@@ -215,10 +215,8 @@ class DetailController extends Controller
             $saved = $commnet->save();
             if(isset($saved))
             {
-                $comments = \App\Models\Comments::where([['blogId', $blogId]])->orderby('id', 'DESC')->offset(0)->limit(10)->get();
                 return response()->json([
                     'success' => true,
-                    'comments' => $comments,
                 ]);
             }
         }else
@@ -234,7 +232,9 @@ class DetailController extends Controller
             $saved = $commnet->save();
             if(isset($saved))
             {
-                return redirect()->back();
+                return response()->json([
+                    'success' => true,
+                ]);
             }
         }
         return redirect()->back();

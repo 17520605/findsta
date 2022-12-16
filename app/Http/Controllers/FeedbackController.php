@@ -35,7 +35,7 @@ class FeedbackController extends Controller
         }
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
         if($userId){
-            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+            $count_bookmarks = \App\Models\Bookmarks::where([['userId',$userId]])->count();
         }
         else
         {

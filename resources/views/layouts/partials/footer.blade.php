@@ -12,7 +12,7 @@
     <li class="pinterest"><a href="./feed" data-toggle="tooltip" data-placement="top" title="RSS"><i
                 class="fa-solid fa-rss"></i></a></li>
     <li>
-        <div data-toggle="modal" data-target="#langsmodal" role="button"
+        <div class="btn-change-lang" data-toggle="modal" data-target="#langsmodal" role="button"
             style="border: 1px solid #f2f5f8;text-align: center;border-radius: 14px;margin: 0 6px;font-size: 13px;height: 40px;padding:0 10px;line-height: 40px;cursor:pointer;">
             <i class="fa-solid fa-language"></i> {{ __('language') }}
         </div>

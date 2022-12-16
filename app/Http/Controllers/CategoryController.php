@@ -31,7 +31,7 @@ class CategoryController extends Controller
             $bannerId = $list->bannerId;
             if($userId)
             {
-                $bookmark = \App\Models\bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
+                $bookmark = \App\Models\Bookmarks::where([['userId',$userId],['blogId',$list->id]])->first();
                 if($bookmark)
                 {
                     $list->bookmark = true;
@@ -91,7 +91,7 @@ class CategoryController extends Controller
         }  
         $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
         if($userId){
-            $count_bookmarks = \App\Models\bookmarks::where([['userId',$userId]])->count();
+            $count_bookmarks = \App\Models\Bookmarks::where([['userId',$userId]])->count();
         }
         else
         {

@@ -104,11 +104,12 @@
                 </li>
             @else
                 <li>
-                    <a class="reglink hreg" href="{{env('APP_URL')}}/register">{{__('register')}}</a>
+                    <a class="reglink hreg" style=" white-space: nowrap; " href="{{env('APP_URL')}}/register">{{__('register')}}</a>
                 </li>
                 <li>
                     <div class="reglink" data-toggle="modal" data-target="#loginmodal" role="button" title="{{__('login')}}">
-                        <i class="fa-solid fa-user"></i></div>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                 </li>
             @endif
                 <li>
