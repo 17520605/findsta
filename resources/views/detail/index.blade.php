@@ -31,6 +31,59 @@
                 @endif
             </div>
         </div>
+    @elseif($blog->type === 'audio')
+        <div class="king-video-in">
+            <div class="king-video">
+                <div class="king-playlist-uo">
+                    <img src="{{$blog->poster}}" class="king-playlist-thumb" />
+                    <div class="vjs-playlist king-playlist-post vjs-playlist-vertical vjs-csspointerevents vjs-mouse" id="king-playlist" style="display: block;">
+                        <ol class="vjs-playlist-item-list">
+                            <li class="vjs-playlist-item vjs-selected" tabindex="0">
+                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder vjs-playlist-now-playing">
+                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
+                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Dubstep">Dubstep</cite></div>
+                                </div>
+                            </li>
+                            <li class="vjs-playlist-item vjs-up-next" tabindex="0">
+                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
+                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
+                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Sunny weather">Sunny weather</cite></div>
+                                </div>
+                            </li>
+                            <li class="vjs-playlist-item" tabindex="0">
+                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
+                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
+                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Energy">Energy</cite></div>
+                                </div>
+                            </li>
+                            <li class="vjs-playlist-item" tabindex="0">
+                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
+                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
+                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Tender">Tender</cite></div>
+                                </div>
+                            </li>
+                            <li class="vjs-playlist-ad-overlay"></li>
+                        </ol>
+                    </div>
+                    <div class="king-playlist">
+                        <div class="vjs-playlist vjs-playlist-vertical vjs-csspointerevents vjs-mouse" id="king-playlist" style="display: none;">
+                            
+                        </div>
+                        <script type="application/json" class="king-playlist-data">
+                            [
+                                {
+                                    "name": "Dubstep",
+                                    "sources": [{ "src": "{{$blog->src}}", "type": "audio\/mpeg" }],
+                                    "poster": "https:\/\/demos.kingthemes.net\/king-include\/uploads\/2022\/04\/445299-pexels-henry.jpg"
+                                },
+                            ]
+                        </script>
+                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     @endif
     <div id="king-body-wrapper" class="king-body-in">
         <div class="king-main post-page">

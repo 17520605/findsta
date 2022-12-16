@@ -115,7 +115,12 @@
                         @foreach ($lists as $list)
                             <div class="box king-q-list-item" id="q{{ $list->id }}">
                                 <div class="king-post-upbtn">
-                                    <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+
+                                    @if ($list->type === 'audio')
+                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="king-listen magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="" data-original-title="Listen"><i class="fa-solid fa-headphones"></i></a>
+                                    @else
+                                        <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+                                    @endif
                                     @if (Auth::check())
                                         <a href="javascript:void(0)" class="king-readlater {{$list->bookmark ? 'selected' : ''}}" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_bookmark')}}" data-bookmarkid="{{ $list->id }}" onclick="return bookmark(this);"> <i class="far fa-bookmark"></i></a>
                                     @endif
@@ -127,12 +132,6 @@
                                         <span class="post-featured-img"><img class="item-img king-lazy" width="800" height="auto"
                                                 data-king-img-src="{{ $list->thumbnail }}" alt="" /></span>
                                     </a>
-                                    {{-- <A class="item-a" href="./29/multiple-wallpaper-images-enjoy-it">
-                                    <span class="post-featured-img"><img class="item-img king-lazy" width="800"
-                                            height="450"
-                                            data-king-img-src="https://demos.kingthemes.net/king-include/uploads/2022/03/316676-macos-monterey-1920x1080-wwdc-2021-5k-23424.jpg"
-                                            alt="" /></span>
-                                </A> --}}
                                     <div class="king-post-content">
                                         <div class="king-q-item-title">
                                             <div class="king-title-up">
