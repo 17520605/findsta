@@ -12,41 +12,50 @@ class ForgotPasswordController extends Controller
 {
     public function getFormResetPassword()
     {
-        return view('auth.passwords.email');
+        $categories = \App\Models\Categories::where([['is_public',1]])->orderby('id', 'DESC')->get(); 
+        return view('auth.forgot',['categories'=>$categories]);
     }
     public function sendCodeResetPassword(Request $request)
     {
-        $email = $request->email;
-
-        $checkUser = User::where('email',$email)->first();
+        $email = $request->input('email');
+        $time_code = Carbon::now();
+        $checkUser = \App\Models\User::where('email',$email)->first();
 
         if(!$checkUser)
         {
-            return redirect()->back()->with('danger','Email bạn nhập khôn tồn tại !');
+            return response()->json([
+                'result' => 'fail',
+                'message' => "The email you entered does not exist in the system !"
+            ], 200);
         }
+        else
+        {
+            $profile = \App\Models\Profile::where('email',  $email)->first();
 
-        $code=bcrypt(md5(time().$email));
+            $code=bcrypt(md5(time().$email));
 
-        $checkUser->code = $code;
+            $checkUser->code = $code;
+            $checkUser->isRequiredChangePassword = 1;
+            $checkUser->time_code = $time_code;
 
-        $checkUser->time_code = Carbon::now();
+            $checkUser->save();
 
-        $checkUser->save();
+            $url = route('get.reset',['code'=>$checkUser->code , 'email'=>$email, 'time_code'=>$time_code]);
+            $data = [
+                'route' => $url,
+                'name' => $profile->lname .' '.$profile->fname,
+            ];
+            //Tiến hành gửi mail
+            Mail::send('mail.resset_password', $data , function($message) use ($email){
+                $message->to($email, 'Resset Password')->subject('Resset Password');
+            });
+            
+            return response()->json([
+                'result' => 'ok',
+                'message' => "The request for a refund has been sent, please check your email !"
+            ], 200);
 
-        $url = route('get.send.reset.password',['code'=>$checkUser->code , 'email'=>$email]);
-        $data = [
-            'route' => $url
-        ];
-        //Tiến hành gửi mail
-        Mail::send('email.resset_password', $data , function($message) use ($email){
-	        $message->to($email, 'Resset Password')->subject('Lấy lại mật khẩu !');
-        });
+        }
         
-        return redirect()->back()->with('success','Mã code đã được gửi đến Email của bạn !');
-
-    }
-    public function getresetPassword()
-    {
-        return view('auth.passwords.reset');
     }
 }

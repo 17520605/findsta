@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Route;
             Route::get  ('register'  ,'RegisterController@getRegister')->name('get.register');
             Route::post ('register'  ,'RegisterController@postRegister')->name('post.register');
     
-            Route::get  ('forgot'  ,'ForgotPasswordController@getFormResetPassword')->name('get.form.reset.password');
-            Route::post  ('forgot' ,'ForgotPasswordController@sendCodeResetPassword');
+            Route::get  ('forgot'  ,'ForgotPasswordController@getFormResetPassword')->name('get.forgot');
+            Route::post  ('forgot' ,'ForgotPasswordController@sendCodeResetPassword')->name('post.forgot');
     
-            Route::get  ('reset'  ,'ForgotPasswordController@getresetPassword')->name('get.send.reset.password');
+            Route::get  ('reset'  ,'ResetPasswordController@getResetPassword')->name('get.reset');
+
+            Route::post  ('reset'  ,'ResetPasswordController@resetPassword')->name('post.reset');
+            
         });
 
         Route::get('/', 'HomeController@index')->name('home');

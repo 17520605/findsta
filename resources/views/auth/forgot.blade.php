@@ -8,52 +8,68 @@
         <div class="king-main one-page">
             <div class="king-main-in">
                 <div class="king-part-form king-inner">
-                    <form method="post" action="./forgot">
+                    <form class="fogotForm">
                         <table class="king-form-tall-table">
                             <tr>
                                 <td class="king-form-tall-label">
-                                    Email or Username:
+                                    {{ __('email') }}
                                 </td>
                             </tr>
                             <tr>
                                 <td class="king-form-tall-data">
-                                    <input name="emailhandle" id="emailhandle" type="text" value=""
-                                        class="king-form-tall-text">
-                                    <div class="king-form-tall-note">A message will be sent to your email address with
-                                        instructions.</div>
+                                    <input name="email" type="email" value="" class="king-form-tall-text" required>
+                                    <div class="king-form-tall-note">A message will be sent to your email address with  instructions.</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="king-form-tall-label">
-                                    Anti-spam verification:
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="king-form-tall-data">
-                                    <div id="qa_captcha_div_1">
-                                        <center>
-                                            <div class="g-recaptcha" data-sitekey="6Ldd6DcfAAAAAGPRXpyzLSOWRQd8gLVaGDNTCAR9"
-                                                data-theme="light" data-type="image"></div>
-                                        </center>
-                                    </div>
+                                <td>
+                                    <span class="notify-fogot"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="1" class="king-form-tall-buttons">
-                                    <input value="Send Reset Password Email" title="" type="submit"
-                                        class="king-form-tall-button king-form-tall-button-send">
+                                    <button type="submit" class="king-form-tall-button king-form-tall-button-send"><span class="icon-loader"></span> Send Reset Password Email</button>
                                 </td>
                             </tr>
                         </table>
-                        <input type="hidden" name="doforgot" value="1">
-                        <input type="hidden" name="code" value="0-1670861699-0837d116d15ba061a5ee3f6015766df2d44c823f">
                     </form>
                 </div>
             </div> <!-- king-main-in -->
         </div> <!-- king-main -->
-
-
     @endsection
-    @section('script')
-
-    @stop
+    @section('scripts')
+        <script>
+            $('.fogotForm').submit(function (e) { 
+                e.preventDefault();
+                const data = $(this).serializeArray();
+                $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
+                $('.notify-fogot').html(``);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "post",
+                    url: "{{ route('post.forgot')}}",
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response && response.result === 'ok') {
+                            $('.notify-fogot').html(` <div class="king-suggest-next" style="border-radius:10px;margin-top: 10px;margin-bottom: 20px">${response.message} <strong style="color: #e60023"> Automatically redirect later <span id="countdowntimer"></span></strong></div>`);
+                            var timeleft = 10;
+                            var downloadTimer = setInterval(function(){
+                            timeleft--;
+                            document.getElementById("countdowntimer").textContent = timeleft;
+                            if(timeleft <= 0)
+                                location.href = "{{ route('get.login')}}";
+                            },1000);
+                        } else
+                        if (response.result === 'fail') {
+                            $('.icon-loader').html(``);
+                            $('.notify-fogot').html(`<div class="king-form-tall-error">${response.message}</div>`)
+                        }
+                    }
+                });
+                return false;
+            });
+        </script>
+    @endsection

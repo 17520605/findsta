@@ -1,4 +1,7 @@
 <? ?>
+@section('og-image', $blog->poster)
+@section('og-title', $blog->title)
+@section('og-description', $blog->desc)
 @section('title', 'Findsta - '.$blog->title.'')
 @extends('layouts.master-home')
 @section('content')
@@ -41,25 +44,7 @@
                             <li class="vjs-playlist-item vjs-selected" tabindex="0">
                                 <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder vjs-playlist-now-playing">
                                     <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
-                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Dubstep">Dubstep</cite></div>
-                                </div>
-                            </li>
-                            <li class="vjs-playlist-item vjs-up-next" tabindex="0">
-                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
-                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
-                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Sunny weather">Sunny weather</cite></div>
-                                </div>
-                            </li>
-                            <li class="vjs-playlist-item" tabindex="0">
-                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
-                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
-                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Energy">Energy</cite></div>
-                                </div>
-                            </li>
-                            <li class="vjs-playlist-item" tabindex="0">
-                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder">
-                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
-                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="Tender">Tender</cite></div>
+                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="{{$blog->title}}">{{$blog->title}}</cite></div>
                                 </div>
                             </li>
                             <li class="vjs-playlist-ad-overlay"></li>
@@ -80,7 +65,6 @@
                         </script>
                         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                     </div>
-                    
                 </div>
             </div>
         </div>
