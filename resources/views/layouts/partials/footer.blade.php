@@ -68,7 +68,7 @@
 <div class="king-nav-footer-clear">
 </div>
 <div class="king-attribution" id="insertfooter">
-    2023 © <A href="#">Findsta</A> | {{ __('all_rights_reserved') }}
+    {{ date('Y') }} © <A href="#">Findsta</A> | {{ __('all_rights_reserved') }}
 </div>
 <div class="king-footer-clear">
 </div>
