@@ -63,7 +63,7 @@
                         @foreach ($favorites as $favorite)
                         <div class="box king-q-list-item king-q-favorited " id="q{{ $favorite->list->id }}">
                             <div class="king-post-upbtn">
-                                @if ($list->type === 'audio')
+                                @if ($favorite->list->type === 'audio')
                                     <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="king-listen magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="" data-original-title="Listen"><i class="fa-solid fa-headphones"></i></a>
                                 @else
                                     <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
