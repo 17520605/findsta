@@ -44,32 +44,3 @@
         </div>
     </div>
 </div>
-@section('scripts')
-    <script>
-        $('#loginFormModal').submit(function (e) { 
-            e.preventDefault();
-            const data = $(this).serializeArray();
-            $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
-            $('.notify-login').html(``);
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: "post",
-                url: "{{ route('post.login')}}",
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    if (response && response.result === 'ok') {
-                        location.href = "{{ route('home')}}";
-                    } else
-                    if (response.result === 'fail') {
-                        $('.icon-loader').html(``);
-                        $('.notify-login').html(`<div class="king-form-tall-error">${response.message}</div>`)
-                    }
-                }
-            });
-            return false;
-        });
-    </script>
-@endsection
