@@ -46,7 +46,7 @@
 </div>
 @section('scripts')
     <script>
-        $('.loginFormModal').submit(function (e) { 
+        $('#loginFormModal').submit(function (e) { 
             e.preventDefault();
             const data = $(this).serializeArray();
             $('.icon-loader').html(`<i class="fas fa-spinner fa-spin"></i>`);
