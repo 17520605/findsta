@@ -115,7 +115,6 @@
                         @foreach ($lists as $list)
                             <div class="box king-q-list-item" id="q{{ $list->id }}">
                                 <div class="king-post-upbtn">
-
                                     @if ($list->type === 'audio')
                                         <a href="{{ env('APP_URL') }}/{{ $list->id }}/{{ $list->slug }}" class="king-listen magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="" data-original-title="Listen"><i class="fa-solid fa-headphones"></i></a>
                                     @else

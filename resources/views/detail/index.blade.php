@@ -36,37 +36,17 @@
         </div>
     @elseif($blog->type === 'audio')
         <div class="king-video-in">
-            <div class="king-video">
-                <div class="king-playlist-uo">
-                    <img src="{{$blog->poster}}" class="king-playlist-thumb" />
-                    <div class="vjs-playlist king-playlist-post vjs-playlist-vertical vjs-csspointerevents vjs-mouse" id="king-playlist" style="display: block;">
-                        <ol class="vjs-playlist-item-list">
-                            <li class="vjs-playlist-item vjs-selected" tabindex="0">
-                                <div class="vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder vjs-playlist-now-playing">
-                                    <span class="vjs-playlist-now-playing-text" title="Now Playing">Now Playing</span>
-                                    <div class="vjs-playlist-title-container"><span class="vjs-up-next-text" title="Up Next">Up Next</span><cite class="vjs-playlist-name" title="{{$blog->title}}">{{$blog->title}}</cite></div>
-                                </div>
-                            </li>
-                            <li class="vjs-playlist-ad-overlay"></li>
-                        </ol>
-                    </div>
+            <DIV CLASS="king-video">
+                <DIV id="audio-playlist" CLASS="king-playlist-uo">
+                    <img src="{{$blog->poster}}" class="king-playlist-thumb" >
+                    <div class="vjs-playlist king-playlist-post" id="king-playlist" style="display:block;"></div>
                     <div class="king-playlist">
-                        <div class="vjs-playlist vjs-playlist-vertical vjs-csspointerevents vjs-mouse" id="king-playlist" style="display: none;">
-                            
-                        </div>
-                        <script type="application/json" class="king-playlist-data">
-                            [
-                                {
-                                    "name": "Dubstep",
-                                    "sources": [{ "src": "{{$blog->src}}", "type": "audio\/mpeg" }],
-                                    "poster": "https:\/\/demos.kingthemes.net\/king-include\/uploads\/2022\/04\/445299-pexels-henry.jpg"
-                                },
-                            ]
-                        </script>
-                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                        <div class="vjs-playlist" id="king-playlist" style="display:none;"></div>
+                        <audio id="audio-vjs" class="video-js vjs-theme-sea" autoplay controls preload="auto" height="60" data-setup="{}"></audio >
+                        <script type="application/json" class="king-playlist-data">[{"name":"{{$blog->title}}","sources":[{"src":"{{$blog->src}}","type":"audio\/mpeg"}]},{"name":"Sunny weather","sources":[{"src":"https:\/\/demos.kingthemes.net\/king-include\/uploads\/2022\/03\/125454-bensound-sunny.mp3","type":"audio\/mpeg"}]},{"name":"Energy","sources":[{"src":"https:\/\/demos.kingthemes.net\/king-include\/uploads\/2022\/03\/922863-bensound-energy.mp3","type":"audio\/mpeg"}]},{"name":"Tender","sources":[{"src":"https:\/\/demos.kingthemes.net\/king-include\/uploads\/2022\/03\/59745-bensound-tenderness.mp3","type":"audio\/mpeg"}]}]</script>
                     </div>
-                </div>
-            </div>
+                </DIV>
+            </DIV>
         </div>
     @endif
     <div id="king-body-wrapper" class="king-body-in">
@@ -259,6 +239,7 @@
                                     onclick="return reacclick(this);">Angry</div>
                             </li>
                         </ul>
+                        <p style="text-align: center;padding-bottom: 10px">{{__('developing_function')}}</p>
                     </div>
                     <div class="maincom">
                         <ul class="nav nav-tabs">
@@ -662,6 +643,12 @@
             }
         });
 
-        
+        var player = videojs(document.querySelector("#audio-vjs"), {
+            controlBar: {
+                fullscreenToggle: false,
+                volumePanel: { inline: false, volumeControl: { vertical: true } },
+            },
+            inactivityTimeout: 0,
+        });
     </script>
 @endsection

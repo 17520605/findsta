@@ -1,6 +1,7 @@
 $(document).ready(function () {
   kinglazyload();
   mansoryLoad();
+  kingplaylist();
   window.setTimeout(function() {
     mansoryLoad();
   }, 1200);
@@ -242,7 +243,6 @@ $(document).ready(function () {
       player.playlistUi();
     }
   }
-  kingplaylist();
   function kinggallery() {
     $(".king-gallery").owlCarousel({
       nav: !0,

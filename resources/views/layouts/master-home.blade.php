@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    {{--
+    <!--
      __  __       _                               _         _ _          _____            _             _               
     |  \/  |     | |                             | |       (_) |        / ____|          | |           | |              
     | \  / | __ _| | _____    __ _  __      _____| |__  ___ _| |_ ___  | |     ___  _ __ | |_ __ _  ___| |_   _   _ ___ 
@@ -11,7 +11,9 @@
 
     -Facebook : https://www.facebook.com/nguyenhuuminhkhai/
     -Email : nguyenhuuminhkhai@gmail.com
-    -Phone : 0969819947
+    -Phone : +84 --- --- ---
+    -Feedback https://findsta.net/feedback
+    -Email findsta support : support247@findsta.net
 
     .########.####.##....##.########...######..########....###........##....##.########.########
     .##........##..###...##.##.....##.##....##....##......##.##.......###...##.##..........##...
@@ -21,7 +23,7 @@
     .##........##..##...###.##.....##.##....##....##....##.....##.###.##...###.##..........##...
     .##.......####.##....##.########...######.....##....##.....##.###.##....##.########....##...
 
-    --}}  
+    --->  
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

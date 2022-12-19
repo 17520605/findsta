@@ -63,7 +63,11 @@
                         @foreach ($favorites as $favorite)
                         <div class="box king-q-list-item king-q-favorited " id="q{{ $favorite->list->id }}">
                             <div class="king-post-upbtn">
-                                <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+                                @if ($list->type === 'audio')
+                                    <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="king-listen magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="" data-original-title="Listen"><i class="fa-solid fa-headphones"></i></a>
+                                @else
+                                    <a href="{{ env('APP_URL') }}/{{ $favorite->list->id }}/{{ $favorite->list->slug }}" class="ajax-popup-link magnefic-button mgbutton" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_quick_view')}}"><i class="fa-solid fa-chevron-up"></i></a>
+                                @endif
                                 @if (Auth::check())
                                     <a href="javascript:void(0)" class="king-readlater {{$favorite->list->bookmark ? 'selected' : ''}}" data-toggle="tooltip" data-placement="right" title="{{__('tooltip_bookmark')}}" data-bookmarkid="{{ $favorite->list->id }}" onclick="return bookmark(this);"> <i class="far fa-bookmark"></i></a>
                                 @endif

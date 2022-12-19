@@ -5665,6 +5665,7 @@ a.king-subbrowse-cat-item {
     list-style: none;
     display: flex;
     padding: 20px;
+    padding-bottom: 10px;
     justify-content: center;
 }
 
