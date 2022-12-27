@@ -120,7 +120,7 @@
                 $('.icon-loader').html(``);
                 if (response && response.result === 'ok') {
                     setTimeout(function() {
-                        location.reload();
+                        window.location = window.location.origin;
                         $('#loginmodal').modal('hide');
                     },1000);
                 } else
