@@ -31,6 +31,7 @@
                             <label><input name="user_lang" type="radio" value="en" {{Session::get('language') === ('en') ? 'checked' : (Session::get('language') === null ? 'checked': null)}} class="king-form-tall-radio"> English - (US)</label><br>
                             <label><input name="user_lang" type="radio" value="kr" {{Session::get('language') === 'kr' ? 'checked' : null}} class="king-form-tall-radio"> Korea - 대한민국</label><br>
                             <label><input name="user_lang" type="radio" value="vi" {{Session::get('language') === 'vi' ? 'checked' : null}} class="king-form-tall-radio"> Việt Nam - Vietnamese</label><br>
+                            <label><input name="user_lang" type="radio" value="cn" {{Session::get('language') === 'cn' ? 'checked' : null}} class="king-form-tall-radio"> China - 中國</label><br>
                         </td>
                     </tr>
 

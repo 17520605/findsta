@@ -6,100 +6,103 @@
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
     <div id="king-body-wrapper" class="king-body-in">
-        <div class="king-featureds grids-2">
-            <div class="king-featured-grid">
-                <div class="featured-posts grid-1">
-                    <a href="{{ env('APP_URL') }}/{{ $features[0]->id }}/{{ $features[0]->slug }}">
-                        <div class="featured-post">
-                            <div class="king-box-bg" data-king-img-src="{{ $features[0]->thumbnail }}">
+        @if (count($features) > 4){
+            <div class="king-featureds grids-2">
+                <div class="king-featured-grid">
+                    <div class="featured-posts grid-1">
+                        <a href="{{ env('APP_URL') }}/{{ $features[0]->id }}/{{ $features[0]->slug }}">
+                            <div class="featured-post">
+                                <div class="king-box-bg" data-king-img-src="{{ $features[0]->thumbnail }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="featured-content">
+                            <a href="{{ env('APP_URL') }}/{{ $features[0]->id }}/{{ $features[0]->slug }}"
+                                class="featured-title">{{ $features[0]->title }}</a>
+                            <div class="featured-meta">
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[0]->viewer }} </span>
+                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[0]->comments }}</span>
+                                <span><i class="fas fa-chevron-up"></i> {{ $features[0]->votes }}</span>
                             </div>
                         </div>
-                    </a>
-                    <div class="featured-content">
-                        <a href="{{ env('APP_URL') }}/{{ $features[0]->id }}/{{ $features[0]->slug }}"
-                            class="featured-title">{{ $features[0]->title }}</a>
-                        <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[0]->viewer }} </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[0]->comments }}</span>
-                            <span><i class="fas fa-chevron-up"></i> {{ $features[0]->votes }}</span>
-                        </div>
                     </div>
-                </div>
-
-                <div class="featured-posts grid-2">
-                    <a href="{{ env('APP_URL') }}/{{ $features[1]->id }}/{{ $features[1]->slug }}">
-                        <div class="featured-post">
-                            <div class="king-box-bg" data-king-img-src="{{ $features[1]->thumbnail }}">
+    
+                    <div class="featured-posts grid-2">
+                        <a href="{{ env('APP_URL') }}/{{ $features[1]->id }}/{{ $features[1]->slug }}">
+                            <div class="featured-post">
+                                <div class="king-box-bg" data-king-img-src="{{ $features[1]->thumbnail }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="featured-content">
+                            <a href="{{ env('APP_URL') }}/{{ $features[1]->id }}/{{ $features[1]->slug }}"
+                                class="featured-title">{{ $features[1]->title }}</a>
+                            <div class="featured-meta">
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[1]->viewer }} </span>
+                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[1]->comments }}</span>
+                                <span><i class="fas fa-chevron-up"></i> {{ $features[1]->votes }}</span>
                             </div>
                         </div>
-                    </a>
-                    <div class="featured-content">
-                        <a href="{{ env('APP_URL') }}/{{ $features[1]->id }}/{{ $features[1]->slug }}"
-                            class="featured-title">{{ $features[1]->title }}</a>
-                        <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[1]->viewer }} </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[1]->comments }}</span>
-                            <span><i class="fas fa-chevron-up"></i> {{ $features[1]->votes }}</span>
-                        </div>
                     </div>
-                </div>
-
-                <div class="featured-posts grid-3">
-                    <a href="{{ env('APP_URL') }}/{{ $features[2]->id }}/{{ $features[2]->slug }}">
-                        <div class="featured-post">
-                            <div class="king-box-bg" data-king-img-src="{{ $features[2]->thumbnail }}">
+    
+                    <div class="featured-posts grid-3">
+                        <a href="{{ env('APP_URL') }}/{{ $features[2]->id }}/{{ $features[2]->slug }}">
+                            <div class="featured-post">
+                                <div class="king-box-bg" data-king-img-src="{{ $features[2]->thumbnail }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="featured-content">
+                            <a href="{{ env('APP_URL') }}/{{ $features[2]->id }}/{{ $features[2]->slug }}"
+                                class="featured-title">{{ $features[2]->title }}</a>
+                            <div class="featured-meta">
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[2]->viewer }} </span>
+                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[2]->comments }}</span>
+                                <span><i class="fas fa-chevron-up"></i> {{ $features[2]->votes }}</span>
                             </div>
                         </div>
-                    </a>
-                    <div class="featured-content">
-                        <a href="{{ env('APP_URL') }}/{{ $features[2]->id }}/{{ $features[2]->slug }}"
-                            class="featured-title">{{ $features[2]->title }}</a>
-                        <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[2]->viewer }} </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[2]->comments }}</span>
-                            <span><i class="fas fa-chevron-up"></i> {{ $features[2]->votes }}</span>
-                        </div>
                     </div>
-                </div>
-
-                <div class="featured-posts grid-4">
-                    <a href="{{ env('APP_URL') }}/{{ $features[3]->id }}/{{ $features[3]->slug }}">
-                        <div class="featured-post">
-                            <div class="king-box-bg" data-king-img-src="{{ $features[3]->thumbnail }}">
+    
+                    <div class="featured-posts grid-4">
+                        <a href="{{ env('APP_URL') }}/{{ $features[3]->id }}/{{ $features[3]->slug }}">
+                            <div class="featured-post">
+                                <div class="king-box-bg" data-king-img-src="{{ $features[3]->thumbnail }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="featured-content">
+                            <a href="{{ env('APP_URL') }}/{{ $features[3]->id }}/{{ $features[3]->slug }}"
+                                class="featured-title">{{ $features[3]->title }}</a>
+                            <div class="featured-meta">
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[3]->viewer }} </span>
+                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[3]->comments }}</span>
+                                <span><i class="fas fa-chevron-up"></i> {{ $features[3]->votes }}</span>
                             </div>
                         </div>
-                    </a>
-                    <div class="featured-content">
-                        <a href="{{ env('APP_URL') }}/{{ $features[3]->id }}/{{ $features[3]->slug }}"
-                            class="featured-title">{{ $features[3]->title }}</a>
-                        <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[3]->viewer }} </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[3]->comments }}</span>
-                            <span><i class="fas fa-chevron-up"></i> {{ $features[3]->votes }}</span>
-                        </div>
                     </div>
-                </div>
-
-                <div class="featured-posts grid-5">
-                    <a href="{{ env('APP_URL') }}/{{ $features[4]->id }}/{{ $features[4]->slug }}">
-                        <div class="featured-post">
-                            <div class="king-box-bg" data-king-img-src="{{ $features[4]->thumbnail }}">
+    
+                    <div class="featured-posts grid-5">
+                        <a href="{{ env('APP_URL') }}/{{ $features[4]->id }}/{{ $features[4]->slug }}">
+                            <div class="featured-post">
+                                <div class="king-box-bg" data-king-img-src="{{ $features[4]->thumbnail }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="featured-content">
+                            <a href="{{ env('APP_URL') }}/{{ $features[4]->id }}/{{ $features[4]->slug }}"
+                                class="featured-title">{{ $features[4]->title }}</a>
+                            <div class="featured-meta">
+                                <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[4]->viewer }} </span>
+                                <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[4]->comments }}</span>
+                                <span><i class="fas fa-chevron-up"></i> {{ $features[4]->votes }}</span>
                             </div>
                         </div>
-                    </a>
-                    <div class="featured-content">
-                        <a href="{{ env('APP_URL') }}/{{ $features[4]->id }}/{{ $features[4]->slug }}"
-                            class="featured-title">{{ $features[4]->title }}</a>
-                        <div class="featured-meta">
-                            <span><i class="fa fa-eye" aria-hidden="true"></i> {{ $features[4]->viewer }} </span>
-                            <span><i class="fa fa-comment" aria-hidden="true"></i> {{ $features[4]->comments }}</span>
-                            <span><i class="fas fa-chevron-up"></i> {{ $features[4]->votes }}</span>
-                        </div>
                     </div>
+    
                 </div>
-
             </div>
-        </div>
+        }   
+        @endif
         <ul class="king-nav-sub-list">
             <li class="king-nav-sub-item king-nav-sub-recent">
                 <h3 style="padding: 20px">{{__('list_new_post')}}</h3>

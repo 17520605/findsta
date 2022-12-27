@@ -59,7 +59,7 @@
                 <ul class="king-nav-cat-list king-nav-cat-list-4">
                     @foreach ($categories as $category)
                     <li class="king-nav-cat-item king-nav-cat-art">
-                        <a href="{{ env('APP_URL') }}/category/{{ $category->slug}}" class="king-nav-cat-link"><span style="color:{{ $category->color}}"><i class="fa-brands {{ $category->icon}}"></i></span>{{ $category->name}}</a>
+                        <a href="{{ env('APP_URL') }}/category/{{ $category->slug}}" class="king-nav-cat-link"><span style="color:{{ $category->color}}"><i class="fa-brands fa-solid fa {{ $category->icon}}"></i></span>{{ $category->name}}</a>
                         <span class="king-nav-cat-note">(4)</span>
                     </li>
                     @endforeach

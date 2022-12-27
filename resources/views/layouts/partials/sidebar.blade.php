@@ -8,11 +8,11 @@
                 <a href="{{env('APP_URL')}}/tag/video">video</a>
                 <a href="{{env('APP_URL')}}/tag/music">music</a>
                 <a href="{{env('APP_URL')}}/tag/art">art</a>
-                <a href="{{env('APP_URL')}}/tag/instagram">instagram</a>
+                <a href="{{env('APP_URL')}}/tag/job">job</a>
                 <a href="{{env('APP_URL')}}/tag/design">design</a>
                 <a href="{{env('APP_URL')}}/tag/list">list</a>
-                <a href="{{env('APP_URL')}}/tag/blog">blog</a>
-                <a href="{{env('APP_URL')}}/tag/btc">btc</a>
+                <a href="{{env('APP_URL')}}/tag/blog">blogs</a>
+                <a href="{{env('APP_URL')}}/tag/it">it</a>
                 <a href="{{env('APP_URL')}}/tag/news">news</a>
                 <a href="{{env('APP_URL')}}/tag/wallpaper">wallpaper</a>
             </div>
@@ -57,8 +57,8 @@
                     <ul class="king-nav-cat-list king-nav-cat-list-1">
                         @foreach ($categories as $category)
                         <li class="king-nav-cat-item king-nav-cat-entertainment">
-                            <a href="./{{ $category->slug}}" class="king-nav-cat-link"><span style="color: {{ $category->color}}"><i
-                                        class="fa-brands {{ $category->icon}}"></i></span>{{ $category->name}}</a>
+                            <a href="{{env('APP_URL')}}/category/{{ $category->slug}}" class="king-nav-cat-link"><span style="color: {{ $category->color}}"><i
+                                        class="fa-brands fa fa-solid {{ $category->icon}}"></i></span>{{ $category->name}}</a>
                             <span class="king-nav-cat-note">(1)</span>
                         </li>
                         @endforeach

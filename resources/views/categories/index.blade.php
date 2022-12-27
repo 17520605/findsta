@@ -6,7 +6,7 @@
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
     <div class="head-title">
-        <span class="d-inline-block"><i class="fa-brands {{$category->icon}}"></i>  {{$category->name}}</span>
+        <span class="d-inline-block"><i class="fa-brands fa-solid fa {{$category->icon}}"></i>  {{$category->name}}</span>
     </div>
     <div id="king-body-wrapper" class="king-body-in">
         <div class="king-main full-page">
