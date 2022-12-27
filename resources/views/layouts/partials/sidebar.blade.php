@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="king-sidebar king-widget-wb">
-        <div
+        {{-- <div
             style="display: block;
             position: relative;
             background-color: #afadc4a3;
@@ -83,7 +83,18 @@
             border-radius: 14px;
             color: #fff;
             border: 2px dashed #ffffff;">
-            <img style="width: 100%;height:100%;object-fit: cover;border-radius: 14px;" src="https://res.cloudinary.com/dsldtailo/image/upload/v1671123002/findsta/default/Special-offer-mega-sale-banner-promotion-Graphics-5443532-1_vxpog4.jpg" alt=""></div>
+            <img style="width: 100%;height:100%;object-fit: cover;border-radius: 14px;" src="https://res.cloudinary.com/dsldtailo/image/upload/v1671123002/findsta/default/Special-offer-mega-sale-banner-promotion-Graphics-5443532-1_vxpog4.jpg" alt=""></div> --}}
+            <div style="display: block;
+                background-color: #afadc4a3;
+                height: 220px;
+                width: 100%;
+                text-align: center;
+                line-height: 220px;
+                font-size: 22px;
+                margin: auto;
+                border-radius: 14px;
+                color: #fff;
+                border: 2px dashed #ffffff;">Ad Area</div>
     </div>
 
 </div>
