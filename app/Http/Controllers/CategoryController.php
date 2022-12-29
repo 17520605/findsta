@@ -56,7 +56,10 @@ class CategoryController extends Controller
             if($categoryId)
             {
                 $categories = \App\Models\Categories::where([['is_public',1],['id',$categoryId]])->first();
-                $list->category = $categories->name;
+                 if($categories)
+                {
+                    $list->category = $categories->name;
+                }
             }
             else
             {

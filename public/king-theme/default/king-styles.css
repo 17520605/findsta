@@ -1362,10 +1362,12 @@ button.king-vote-down-disabled {
 }
 
 .post-content img {
-    max-height: 400px;
-    border-radius: 14px;
+    max-height: 550px;
+    border-radius: 8px;
     margin: 14px 0;
     max-width: 100%;
+    display: block;
+    width: auto !important;
     height: auto !important;
 }
 
@@ -3130,6 +3132,7 @@ section {
     width: 100%;
     height: auto;
     min-height: 240px;
+    max-height: 450px;
     object-fit: cover;
 }
 

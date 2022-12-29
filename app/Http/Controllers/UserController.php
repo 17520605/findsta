@@ -179,7 +179,10 @@ class UserController extends Controller
                 if($categoryId)
                 {
                     $categories = \App\Models\Categories::where([['is_public',1],['id',$categoryId]])->first();
+                     if($categories)
+                {
                     $list->category = $categories->name;
+                }
                 }
                 else
                 {
