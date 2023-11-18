@@ -6,7 +6,7 @@
         b.className = b.className.replace('king-body-js-off', 'king-body-js-on');
     </script>
     <div id="king-body-wrapper" class="king-body-in">
-        @if (count($features) > 4){
+        @if (count($features) > 4)
             <div class="king-featureds grids-2">
                 <div class="king-featured-grid">
                     <div class="featured-posts grid-1">
@@ -100,8 +100,7 @@
                     </div>
     
                 </div>
-            </div>
-        }   
+            </div>  
         @endif
         <ul class="king-nav-sub-list">
             <li class="king-nav-sub-item king-nav-sub-recent">
