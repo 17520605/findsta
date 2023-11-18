@@ -32,7 +32,7 @@
                             <tr>
                                 <td style="padding-top: 30px;" class="m_1805024013170923873padding-top-0">
                                     <div style="display: none; max-height: 0px; overflow: hidden;">
-                                        Welcome to Findsta!
+                                        Welcome to CryptoNexNews!
                                     </div>
                                     <table width="660" border="0" cellpadding="0" cellspacing="0"
                                         style="width: 660px; background-color: #ffffff;" bgcolor="#ffffff">
@@ -51,7 +51,7 @@
                                                                     style="
                                                                         background: #ffffff
                                                                         no-repeat top center;
-                                                                        background-image: url('https://res.cloudinary.com/dsldtailo/image/upload/v1670915111/findsta/default/unnamed_3_fjaffm.png');
+                                                                        background-image: url('https://res.cloudinary.com/dsldtailo/image/upload/v1670915111/cryptonexnews/default/unnamed_3_fjaffm.png');
                                                                         background-size: 660px auto;
                                                                         background-repeat: no-repeat;
                                                                         background-position: top center;"
@@ -66,7 +66,7 @@
                                                                             <tr>
                                                                                 <td
                                                                                     style="padding-bottom: 80px; padding-top: 37px; padding-left: 60px; font-size: 25px; font-weight: bold; color: #e60023;">
-                                                                                    <img src="https://res.cloudinary.com/dsldtailo/image/upload/v1670915776/findsta/default/puzzle-2862401-2390525.webp_wf07sd.png" width="110" alt="">
+                                                                                    <img src="https://res.cloudinary.com/dsldtailo/image/upload/v1670915776/cryptonexnews/default/puzzle-2862401-2390525.webp_wf07sd.png" width="110" alt="">
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -146,7 +146,7 @@
                                                                 <td align="center"
                                                                     style="color: #6a4bce; font-size: 14px; line-height: 20px; padding-bottom: 10px;">
                                                                     <div>
-                                                                        <a href="https://findsta.net/"
+                                                                        <a href="https://cryptonexnews.com/"
                                                                             style="
                                                                             font-family: Verdana, Sans-Serif;
                                                                             background-color: #e60023;
@@ -200,7 +200,7 @@
                                                 <td align="left"
                                                     style="padding-bottom: 45px; padding-left: 60px; padding-right: 60px;">
                                                     <div style="font-size: 20px; color: #1e1f4e;font-weight: 600">
-                                                        Team Support Findsta
+                                                        Team Support CryptoNexNews
                                                     </div>
                                                 </td>
                                             </tr>
@@ -211,7 +211,7 @@
                             <tr>
                                 <td align="center"
                                     style="text-align: center; padding-top: 50px; padding-bottom: 50px; font-family: Verdana, Sans-Serif; color: #666666; font-size: 12px; line-height: 18px;">
-                                    © 2023 Findsta International Ltd.
+                                    © 2023 CryptoNexNews International Ltd.
                                 </td>
                             </tr>
                         </tbody>

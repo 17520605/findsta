@@ -1,4 +1,4 @@
-@section('title', 'Findsta Login')
+@section('title', 'CryptoNews Reset')
 @extends('layouts.master-home')
 @section('content')
     <script>

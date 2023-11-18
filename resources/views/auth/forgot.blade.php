@@ -1,3 +1,4 @@
+@section('title', 'CryptoNews Forgot')
 @extends('layouts.master-home')
 @section('content')
     <script>

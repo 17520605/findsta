@@ -28,9 +28,10 @@
                     </tr>
                     <tr>
                         <td class="king-form-tall-data">
-                            <label><input name="user_lang" type="radio" value="en" {{Session::get('language') === ('en') ? 'checked' : (Session::get('language') === null ? 'checked': null)}} class="king-form-tall-radio"> English - (US)</label><br>
+                             <label><input name="user_lang" type="radio" value="vi" {{Session::get('language') === 'vi' ? 'checked' : (Session::get('language') === null ? 'checked': null)}} class="king-form-tall-radio"> Việt Nam - Vietnamese</label><br>
+                            <label><input name="user_lang" type="radio" value="en" {{Session::get('language') === ('en') ? 'checked' : null}} class="king-form-tall-radio"> English - (US)</label><br>
                             <label><input name="user_lang" type="radio" value="kr" {{Session::get('language') === 'kr' ? 'checked' : null}} class="king-form-tall-radio"> Korea - 대한민국</label><br>
-                            <label><input name="user_lang" type="radio" value="vi" {{Session::get('language') === 'vi' ? 'checked' : null}} class="king-form-tall-radio"> Việt Nam - Vietnamese</label><br>
+                           
                             <label><input name="user_lang" type="radio" value="cn" {{Session::get('language') === 'cn' ? 'checked' : null}} class="king-form-tall-radio"> China - 中國</label><br>
                         </td>
                     </tr>
@@ -69,7 +70,7 @@
 <div class="king-nav-footer-clear">
 </div>
 <div class="king-attribution" id="insertfooter">
-    {{ date('Y') }} © <A href="#">Findsta</A> | {{ __('all_rights_reserved') }}
+    {{ date('Y') }} © <A href="#">CryptoNews</A> | {{ __('all_rights_reserved') }}
 </div>
 <div class="king-footer-clear">
 </div>

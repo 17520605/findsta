@@ -35,10 +35,6 @@
                 <a href="{{ env('APP_URL') }}/videos" id="videos-head" class="king-nav-head-link"><i class="fa-solid fa-clapperboard"></i>
                     {{ __('videos') }}</a>
             </li>
-            <li class="king-nav-head-item king-nav-head-updates">
-                <a href="{{ env('APP_URL') }}/audios" id="audios-head" class="king-nav-head-link"><i class="fa-solid fa-headphones"></i>
-                    {{ __('audios') }}</a>
-            </li>
             <li class="king-nav-head-item king-nav-head-reactions">
                 <a href="{{ env('APP_URL') }}/images" id="images-head" class="king-nav-head-link"><i class="fa-solid fa-image"></i> {{ __('images') }}</a>
             </li>

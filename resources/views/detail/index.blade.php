@@ -2,7 +2,7 @@
 @section('og-image', $blog->poster)
 @section('og-title', $blog->title)
 @section('og-description', $blog->desc)
-@section('title', 'Findsta - '.$blog->title.'')
+@section('title', 'CryptoNews - '.$blog->title.'')
 @extends('layouts.master-home')
 @section('content')
     <script>

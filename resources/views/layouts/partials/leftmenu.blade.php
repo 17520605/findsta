@@ -23,9 +23,6 @@
             <li class="king-nav-main-item king-nav-main-hot">
                 <a href="{{ env('APP_URL') }}" class="king-nav-main-link"><i class="fa-solid fa-clapperboard"></i> {{ __('videos') }}</a>
             </li>
-            <li class="king-nav-main-item king-nav-main-news">
-                <a href="{{ env('APP_URL') }}/audios" class="king-nav-main-link"><i class="fa-solid fa-headphones"></i> {{ __('audios') }}</a>
-            </li>
             <li class="king-nav-main-item king-nav-main-ask">
                 <a href="{{ env('APP_URL') }}/images" class="king-nav-main-link"><i class="fas fa-image"></i> {{ __('images') }}</a>
             </li>

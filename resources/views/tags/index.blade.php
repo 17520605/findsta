@@ -1,4 +1,4 @@
-@section('title', 'Findsta - Tags')
+@section('title', 'CryptoNews - Tags')
 @extends('layouts.master-home')
 @section('content')
     <script>
