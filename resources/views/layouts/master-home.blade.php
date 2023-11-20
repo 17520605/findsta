@@ -12,14 +12,23 @@
     -Facebook : https://www.facebook.com/nguyenhuuminhkhai/
     -Email : nguyenhuuminhkhai@gmail.com
     -Phone : +84 --- --- ---
-    -Feedback https://cryptonexnews.com/feedback
-    -Email cryptonexnews support : support247@cryptonexnews.com
+    -Feedback https://findsta.net/feedback
+    -Email findsta support : support247@findsta.net
+
+    .########.####.##....##.########...######..########....###........##....##.########.########
+    .##........##..###...##.##.....##.##....##....##......##.##.......###...##.##..........##...
+    .##........##..####..##.##.....##.##..........##.....##...##......####..##.##..........##...
+    .######....##..##.##.##.##.....##..######.....##....##.....##.....##.##.##.######......##...
+    .##........##..##..####.##.....##.......##....##....#########.....##..####.##..........##...
+    .##........##..##...###.##.....##.##....##....##....##.....##.###.##...###.##..........##...
+    .##.......####.##....##.########...######.....##....##.....##.###.##....##.########....##...
+
     --->  
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="W">
-    <meta name="keywords" content="CryptoNexNews">
+    <meta name="keywords" content="Findsta">
     <meta name="author" content="nguyenhuuminhkhai@gmail.com">                                                                                              
     <meta property="og:image" content="@yield('og-image')">
     <meta property="og:title" content="@yield('og-title')" />

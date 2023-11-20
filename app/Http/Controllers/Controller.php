@@ -33,7 +33,7 @@ class Controller extends BaseController
 
     public function uploadFile($file, $isUsed = false, $folder ,$type)
     {
-        $data1 = 'cryptonexnews';
+        $data1 = 'findsta';
         $data2 = $folder;
         $root = $data1 . '/' . $data2;
         $path = Storage::disk('temp')->putFile('/', $file);

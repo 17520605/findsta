@@ -436,7 +436,7 @@
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <img src="https://cryptonexnews.com/logo_v1/light.png" style="width: 200px;" alt="">
+                <img src="https://findsta.net/logo_v1/light.png" style="width: 200px;" alt="">
               </a>
               </td>
             </tr>
@@ -464,7 +464,7 @@
                             </td>
                           </tr>
                         </table>
-                        <p>For security, this request was received from a operating system device using . If you did not request a password reset, please ignore this email or <a href="https://cryptonexnews.com/feedback">contact support</a> if you have questions.</p>
+                        <p>For security, this request was received from a operating system device using . If you did not request a password reset, please ignore this email or <a href="https://findsta.net/feedback">contact support</a> if you have questions.</p>
                         <p>Thanks,
                           <br>The support team</p>
                         <!-- Sub copy -->
@@ -487,7 +487,7 @@
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
-                        cryptonexnews.com
+                        Findsta.net
                       </p>
                     </td>
                   </tr>

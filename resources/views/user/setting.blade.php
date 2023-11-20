@@ -9,7 +9,7 @@
         <div class="user-box">
             <div class="user-box-pt">
                 <div class="user-box-cover">
-                    <div data-king-img-src="https://res.cloudinary.com/dsldtailo/image/upload/v1670949819/cryptonexnews/default/happy-new-year-2023-background-with-minimal-red-line_1361-4043.webp_qmvgim.png"
+                    <div data-king-img-src="https://res.cloudinary.com/dsldtailo/image/upload/v1670949819/findsta/default/happy-new-year-2023-background-with-minimal-red-line_1361-4043.webp_qmvgim.png"
                         class="king-box-bg"></div>
                     <div class="user-box-up">
                         <div class="user-box-links"></div>
